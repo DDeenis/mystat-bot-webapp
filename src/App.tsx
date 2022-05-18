@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { expand, setButtonText } from "./helpers/telegram";
+import "./App.css";
 
 function App() {
   useEffect(() => {
