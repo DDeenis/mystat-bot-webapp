@@ -4,10 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mystat Bot</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Test no javascript</h1>
+    <div class="main-container">
+      <h2>Действия</h2>
+      <section class="main-menu-actions">
+        <div class="main-menu-actions__header">Расписание</div>
+        <div class="main-menu-actions__actions">
+          <button class="main-menu-actions__button">На сегодня</button>
+          <button class="main-menu-actions__button">На завтра</button>
+          <button class="main-menu-actions__button">На месяц</button>
+        </div>
+      </section>
+    </div>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
