@@ -3,11 +3,15 @@ import { expand, setButtonText } from "./helpers/telegram";
 
 function App() {
   useEffect(() => {
-    expand();
+    // expand();
     setButtonText("TEST");
   }, []);
 
-  return <div className="App"></div>;
+  return (
+    <div className="main-container">
+      <h1>TEST</h1>
+    </div>
+  );
 }
 
 export default App;
