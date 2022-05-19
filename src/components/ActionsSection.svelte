@@ -3,8 +3,8 @@
 </script>
 
 <section class="main-menu-actions">
-  <div class="main-menu-actions__header">{header}</div>
-  <div class="main-menu-actions__actions">
+  <div class="main-menu-actions_header">{header}</div>
+  <div class="main-menu-actions_actions">
     <slot />
   </div>
 </section>
@@ -17,7 +17,7 @@
     margin-bottom: 1.25rem;
   }
 
-  .main-menu-actions__header {
+  .main-menu-actions_header {
     width: 100%;
     padding: 0.75rem;
     background-color: var(--color-secondary);
@@ -27,9 +27,14 @@
     margin-bottom: 0.5rem;
   }
 
-  .main-menu-actions__actions {
+  .main-menu-actions_actions {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 0.5rem;
+  }
+
+  /* why svelte delete this style?  */
+  :global(.main-menu-actions_actions > :last-child:nth-child(odd)) {
+    grid-column: span 2;
   }
 </style>
