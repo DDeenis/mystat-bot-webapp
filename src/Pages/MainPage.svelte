@@ -21,7 +21,3 @@
   <ActionButton>Информация о себе</ActionButton>
   <ActionButton>О боте</ActionButton>
 </ActionsSection>
-<ActionsSection header={"Действия"}>
-  <ActionButton variant={"danger"}>Выход</ActionButton>
-  <ActionButton variant={"danger"}>Войти в другой аккаунт</ActionButton>
-</ActionsSection>
