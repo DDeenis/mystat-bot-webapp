@@ -1,16 +1,12 @@
 <script lang="ts">
   import MainPage from "./Pages/MainPage.svelte";
+  import SchedulePage from "./Pages/SchedulePage.svelte";
   import "./styles.css";
-
-  console.log(window.Telegram.WebApp, window.Telegram?.WebApp?.initData);
 </script>
 
 <div class="main-container">
-  <MainPage />
-  <p style="word-break: break-all;">
-    {JSON.stringify(window.Telegram?.WebApp)}
-  </p>
-  <p style="word-break: break-all;">{window.Telegram?.WebApp?.initData}</p>
+  <!-- <MainPage /> -->
+  <SchedulePage />
 </div>
 
 <style>
