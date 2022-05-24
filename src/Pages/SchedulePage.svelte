@@ -1,16 +1,46 @@
-<script>
+<script lang="ts">
   import { mystatApi } from "src/api/mystat";
   import Schedule from "src/components/Schedule/Schedule.svelte";
   import { Datepicker } from "svelte-calendar";
+  import { isDatesEqual } from "src/helpers/dates";
+  import ScheduleMonth from "src/components/Schedule/ScheduleMonth.svelte";
   import dayjs from "dayjs";
   import "dayjs/locale/ru.js";
-  import { isDatesEqual } from "src/helpers/dates";
+  import { onMount } from "svelte";
+
+  export let defaultDate: Date = new Date();
+  export let scheduleFor: "day" | "month" = "day";
 
   dayjs.locale("ru");
 
   let scheduleItems = [];
-  let selected = new Date();
+  let scheduleItemsMonth = new Map<string, any[]>();
+  let selected = defaultDate;
   let store;
+
+  const fetchSchedule = (date: Date) => {
+    const method =
+      scheduleFor === "day"
+        ? mystatApi.getScheduleByDate
+        : mystatApi.getMonthSchedule;
+    method.call(mystatApi, date).then((response) => {
+      if (response.success) {
+        if (scheduleFor === "day") {
+          scheduleItems = response.data;
+        } else {
+          scheduleItemsMonth.clear();
+          for (const item of response.data) {
+            if (scheduleItemsMonth.has(item.date)) {
+              scheduleItemsMonth.get(item.date).push(item);
+            } else {
+              scheduleItemsMonth.set(item.date, [item]);
+            }
+          }
+          scheduleItemsMonth = scheduleItemsMonth;
+        }
+      }
+    });
+  };
 
   const theme = {
     calendar: {
@@ -44,23 +74,26 @@
   };
 
   $: {
-    if ($store && !isDatesEqual(selected, $store.selected)) {
+    const selectedFromStore = $store?.selected;
+
+    if (selectedFromStore && !isDatesEqual(selected, selectedFromStore)) {
       selected = $store.selected;
-      mystatApi.getScheduleByDate(selected).then((response) => {
-        if (response.success) {
-          scheduleItems = response.data;
-          console.log(scheduleItems);
-        }
-      });
+      fetchSchedule(selected);
     }
   }
+
+  onMount(() => fetchSchedule(defaultDate));
 </script>
 
 <div class="datepicker-container">
   <p>Выберите дату:</p>
   <Datepicker bind:store {theme} {selected} />
 </div>
-<Schedule items={scheduleItems} />
+{#if scheduleFor === "day"}
+  <Schedule items={scheduleItems} />
+{:else}
+  <ScheduleMonth items={scheduleItemsMonth} />
+{/if}
 
 <style>
   .datepicker-container {

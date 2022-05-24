@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
   import ScheduleItem from "./ScheduleItem.svelte";
 
-  export let items;
+  export let items: any[];
 </script>
 
 <div class="schedule-grid">
