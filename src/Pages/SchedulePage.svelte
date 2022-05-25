@@ -86,7 +86,7 @@
 </script>
 
 <div class="datepicker-container">
-  <p>Выберите дату:</p>
+  <p>Выберите дату</p>
   <Datepicker bind:store {theme} {selected} />
 </div>
 {#if scheduleFor === "day"}

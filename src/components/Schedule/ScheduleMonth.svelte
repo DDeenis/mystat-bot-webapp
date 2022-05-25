@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { formatScheduleDate } from "src/helpers/dates";
+
   import ScheduleItem from "./ScheduleItem.svelte";
 
   export let items: Map<string, any[]>;
@@ -9,8 +11,9 @@
     <p class="no-elements">Нет пар</p>
   {/if}
   {#each [...items.entries()] as [date, items]}
+    {@const dateFormatted = formatScheduleDate(new Date(date))}
     <div class="entry">
-      <p>{date}</p>
+      <p class="schedule-date">{dateFormatted}</p>
       <div class="schedule-grid">
         {#each items as item}
           <ScheduleItem {item} />
@@ -41,7 +44,7 @@
   }
 
   .entry {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
   }
 
   .entry p {
@@ -53,5 +56,12 @@
   .no-elements {
     text-align: center;
     font-size: 1.125rem;
+  }
+
+  .schedule-date {
+    background-color: #dbdffd;
+    padding: 0.25rem;
+    border-radius: 12px;
+    text-align: center;
   }
 </style>

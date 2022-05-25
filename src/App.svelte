@@ -6,7 +6,7 @@
 
 <div class="main-container">
   <!-- <MainPage /> -->
-  <SchedulePage scheduleFor="day" />
+  <SchedulePage scheduleFor="month" />
 </div>
 
 <style>
