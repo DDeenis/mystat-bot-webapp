@@ -1,6 +1,7 @@
 <script>
   import ActionButton from "src/components/ActionButton.svelte";
   import ActionsSection from "src/components/ActionsSection.svelte";
+  import Multiselect from "src/components/Multiselect/Multiselect.svelte";
 </script>
 
 <ActionsSection header={"Расписание"}>
@@ -21,3 +22,4 @@
   <ActionButton>Информация о себе</ActionButton>
   <ActionButton>О боте</ActionButton>
 </ActionsSection>
+<Multiselect variants={["select", "this", "cool", "variant"]} />

@@ -1,12 +1,10 @@
 <script lang="ts">
   import MainPage from "./Pages/MainPage.svelte";
-  import SchedulePage from "./Pages/SchedulePage.svelte";
   import "./styles.css";
 </script>
 
 <div class="main-container">
-  <!-- <MainPage /> -->
-  <SchedulePage scheduleFor="month" />
+  <MainPage />
 </div>
 
 <style>

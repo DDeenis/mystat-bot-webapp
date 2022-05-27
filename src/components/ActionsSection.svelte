@@ -33,7 +33,6 @@
     gap: 0.5rem;
   }
 
-  /* why svelte delete this style?  */
   :global(.main-menu-actions_actions > :last-child:nth-child(odd)) {
     grid-column: span 2;
   }
