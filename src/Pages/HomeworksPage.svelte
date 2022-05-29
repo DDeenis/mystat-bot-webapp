@@ -26,7 +26,6 @@
       if (res.success) {
         homeworks = res.data;
       }
-      console.log(res);
     });
   };
 

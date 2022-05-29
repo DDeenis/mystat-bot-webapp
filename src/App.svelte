@@ -1,13 +1,15 @@
 <script lang="ts">
-  import HomeworksPage from "./Pages/HomeworksPage.svelte";
   import MainPage from "./Pages/MainPage.svelte";
+  import { Router } from "svelte-navigator";
   import "./styles.css";
+  import PageRoutes from "./Pages/PageRoutes.svelte";
 </script>
 
-<div class="main-container">
-  <!-- <MainPage /> -->
-  <HomeworksPage />
-</div>
+<Router primary={false}>
+  <div class="main-container">
+    <PageRoutes />
+  </div>
+</Router>
 
 <style>
   .main-container {

@@ -16,6 +16,7 @@
     "svelte-calendar": "^3.1.6",
     "svelte-check": "^2.2.7",
     "svelte-preprocess": "^4.9.8",
+    "svelte-navigator": "^3.1.5",
     "tslib": "^2.3.1",
     "typescript": "^4.5.4",
     "vite": "^2.9.9",
