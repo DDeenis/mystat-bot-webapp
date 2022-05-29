@@ -532,10 +532,10 @@ ms@2.1.2:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-mystat-api@^3.0.9:
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/mystat-api/-/mystat-api-3.0.9.tgz#98be7a9d730838950da3d2ae046d78f356d853f5"
-  integrity sha512-D2WGKGsI/POvCJYMRaeeIXQQA3EnbI67dtI7oixWmCpDIhqHllfKA67tWeCtfagI53J/5e+u+z5FmehN+/AvjQ==
+mystat-api@^3.0.10:
+  version "3.0.10"
+  resolved "https://registry.yarnpkg.com/mystat-api/-/mystat-api-3.0.10.tgz#ca5642b6cf4bcfc1f863ddb76070c4c9056c3da3"
+  integrity sha512-8kmZ3mXRmW7IxEgAr03kmiDm5xn1+RGzblFUOqPDEYxINaHzND7F1Lfcv95jaHNgSwhLhSzg2eOc+wA4PxSodw==
   dependencies:
     cross-fetch "^3.1.5"
 

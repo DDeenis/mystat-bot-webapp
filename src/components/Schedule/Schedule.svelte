@@ -2,9 +2,6 @@
   import ScheduleItem from "./ScheduleItem.svelte";
 
   export let items: any[];
-
-  $: console.log(items);
-  
 </script>
 
 <div class="schedule-grid">

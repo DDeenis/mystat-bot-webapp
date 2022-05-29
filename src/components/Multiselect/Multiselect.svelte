@@ -2,13 +2,11 @@
   import { createEventDispatcher } from "svelte";
 
   export let variants: string[] = [];
-
-  let selectedVariant: string;
+  export let selectedVariant: string | undefined = undefined;
 
   const dispatch = createEventDispatcher();
 
   const onSelect = (variant: string) => () => {
-    console.log(variant);
     selectedVariant = variant;
     dispatch("select", variant);
   };
@@ -46,7 +44,8 @@
     background-color: var(--color-secondary);
   }
 
-  .container > *:not(:last-child) {
-    margin-right: 0.5rem;
+  .container > * {
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
   }
 </style>

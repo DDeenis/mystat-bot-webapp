@@ -1,10 +1,12 @@
 <script lang="ts">
+  import HomeworksPage from "./Pages/HomeworksPage.svelte";
   import MainPage from "./Pages/MainPage.svelte";
   import "./styles.css";
 </script>
 
 <div class="main-container">
-  <MainPage />
+  <!-- <MainPage /> -->
+  <HomeworksPage />
 </div>
 
 <style>
