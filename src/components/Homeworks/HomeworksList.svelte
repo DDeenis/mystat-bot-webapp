@@ -1,12 +1,18 @@
 <script lang="ts">
-  import HomeworkItem from "./HomeworkItem.svelte";
+  import { MystatHomeworkStatus } from "mystat-api/dist/types";
+  import HomeworkActive from "./HomeworkItem/HomeworkActive.svelte";
 
   export let items: any[];
+  export let status: MystatHomeworkStatus;
+
+  const homeworkItems = {
+    [MystatHomeworkStatus.Active]: HomeworkActive,
+  };
 </script>
 
 <div class="list">
   {#each items as hw}
-    <HomeworkItem item={hw} />
+    <svelte:component this={homeworkItems[status]} item={hw} />
   {/each}
 </div>
 

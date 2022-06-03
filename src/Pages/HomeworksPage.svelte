@@ -47,7 +47,7 @@
       bind:selectedVariant={localizedType}
     />
   </div>
-  <HomeworksList items={homeworks} />
+  <HomeworksList items={homeworks} status={hwStatus} />
 </div>
 
 <style>
