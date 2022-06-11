@@ -1,12 +1,17 @@
 <script lang="ts">
-  import { MystatHomeworkStatus } from "mystat-api/dist/types";
-  import HomeworkActive from "./HomeworkItem/HomeworkActive.svelte";
+  import { MystatHomeworkStatus } from 'mystat-api/dist/types';
+  import HomeworkActive from './HomeworkItem/HomeworkActive.svelte';
 
   export let items: any[];
   export let status: MystatHomeworkStatus;
 
+  // TODO: create separate component for all types
   const homeworkItems = {
     [MystatHomeworkStatus.Active]: HomeworkActive,
+    [MystatHomeworkStatus.Checked]: HomeworkActive,
+    [MystatHomeworkStatus.Deleted]: HomeworkActive,
+    [MystatHomeworkStatus.Overdue]: HomeworkActive,
+    [MystatHomeworkStatus.Uploaded]: HomeworkActive
   };
 </script>
 

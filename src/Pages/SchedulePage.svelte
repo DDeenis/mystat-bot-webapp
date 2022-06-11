@@ -1,37 +1,34 @@
 <script lang="ts">
-  import { mystatApi } from "src/api/mystat";
-  import Schedule from "src/components/Schedule/Schedule.svelte";
-  import { Datepicker } from "svelte-calendar";
-  import { isDatesEqual } from "src/helpers/dates";
-  import ScheduleMonth from "src/components/Schedule/ScheduleMonth.svelte";
-  import dayjs from "dayjs";
-  import "dayjs/locale/ru.js";
-  import { onMount } from "svelte";
+  import { mystatApi } from 'src/api/mystat';
+  import Schedule from 'src/components/Schedule/Schedule.svelte';
+  import { Datepicker } from 'svelte-calendar';
+  import { isDatesEqual } from 'src/helpers/dates';
+  import ScheduleMonth from 'src/components/Schedule/ScheduleMonth.svelte';
+  import dayjs from 'dayjs';
+  import 'dayjs/locale/ru.js';
+  import { onMount } from 'svelte';
 
   export let defaultDate: Date = new Date();
-  export let scheduleFor: "day" | "month" = "day";
+  export let scheduleFor: 'day' | 'month' = 'day';
 
-  dayjs.locale("ru");
+  dayjs.locale('ru');
 
-  let scheduleItems = [];
+  let scheduleItems: any[] = [];
   let scheduleItemsMonth = new Map<string, any[]>();
   let selected = defaultDate;
-  let store;
+  let store: any;
 
   const fetchSchedule = (date: Date) => {
-    const method =
-      scheduleFor === "day"
-        ? mystatApi.getScheduleByDate
-        : mystatApi.getMonthSchedule;
+    const method = scheduleFor === 'day' ? mystatApi.getScheduleByDate : mystatApi.getMonthSchedule;
     method.call(mystatApi, date).then((response) => {
       if (response.success) {
-        if (scheduleFor === "day") {
+        if (scheduleFor === 'day') {
           scheduleItems = response.data;
         } else {
           scheduleItemsMonth.clear();
           for (const item of response.data) {
             if (scheduleItemsMonth.has(item.date)) {
-              scheduleItemsMonth.get(item.date).push(item);
+              scheduleItemsMonth.get(item.date)?.push(item);
             } else {
               scheduleItemsMonth.set(item.date, [item]);
             }
@@ -44,33 +41,33 @@
 
   const theme = {
     calendar: {
-      width: "700px",
-      maxWidth: "100vw",
+      width: '700px',
+      maxWidth: '100vw',
       legend: {
-        height: "45px",
+        height: '45px'
       },
-      shadow: "0px 10px 26px rgba(0, 0, 0, 0.25)",
+      shadow: '0px 10px 26px rgba(0, 0, 0, 0.25)',
       colors: {
         text: {
-          primary: "#333",
-          highlight: "#fff",
+          primary: '#333',
+          highlight: '#fff'
         },
         background: {
-          primary: "#fff",
-          highlight: "#eb7400",
-          hover: "#eee",
+          primary: '#fff',
+          highlight: '#eb7400',
+          hover: '#eee'
         },
-        border: "#eee",
+        border: '#eee'
       },
       font: {
-        regular: "1.5em",
-        large: "25em",
+        regular: '1.5em',
+        large: '25em'
       },
       grid: {
-        disabledOpacity: ".35",
-        outsiderOpacity: ".6",
-      },
-    },
+        disabledOpacity: '.35',
+        outsiderOpacity: '.6'
+      }
+    }
   };
 
   $: {
@@ -89,7 +86,7 @@
   <p>Выберите дату</p>
   <Datepicker bind:store {theme} {selected} />
 </div>
-{#if scheduleFor === "day"}
+{#if scheduleFor === 'day'}
   <Schedule items={scheduleItems} />
 {:else}
   <ScheduleMonth items={scheduleItemsMonth} />

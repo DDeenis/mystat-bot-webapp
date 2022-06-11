@@ -1,5 +1,5 @@
-<script>
-  export let item;
+<script lang="ts">
+  export let item: any;
 </script>
 
 <div class="hw-item-container">

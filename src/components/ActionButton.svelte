@@ -1,22 +1,20 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
-  import { Link } from "svelte-navigator";
+  import { createEventDispatcher } from 'svelte';
 
-  export let variant: "regular" | "danger" = "regular";
-  // TODO: remove default value
+  export let variant: 'regular' | 'danger' = 'regular';
   export let path: string;
 
-  const isDanger = variant === "danger";
+  const isDanger = variant === 'danger';
   const dispatch = createEventDispatcher();
 
-  const onClick = () => dispatch("click");
+  const onClick = () => dispatch('click');
 </script>
 
-<Link to={path}>
+<a href={path}>
   <button class="button" class:button-danger={isDanger} on:click={onClick}>
     <slot />
   </button>
-</Link>
+</a>
 
 <style>
   .button {
