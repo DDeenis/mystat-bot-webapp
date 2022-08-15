@@ -1,15 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { getUserByChatId } from "../../server/database/database";
 
 type ResponseData = {
   message?: string;
 };
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  const body = req.body;
-  console.log(body);
+  const chatId = req.body;
+  const user = await getUserByChatId(chatId);
 
-  res.status(200).json({ message: body?.first_name ?? "ERROR" });
+  res.status(200).json({ message: user?.username ?? "ERROR" });
 }

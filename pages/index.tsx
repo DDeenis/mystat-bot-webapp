@@ -7,17 +7,13 @@ const Home: NextPage = () => {
   useEffect(() => {
     if (!window) return;
 
-    // @ts-ignore
-    console.log(window?.Telegram.WebApp.initDataUnsafe);
     fetch("./api/login", {
       // @ts-ignore
-      body: JSON.stringify(window?.Telegram.WebApp.initDataUnsafe),
+      body: JSON.stringify(window.Telegram.WebApp.initDataUnsafe.chat.id),
       method: "POST",
-    });
-    // .then((res) => res.json())
-    // .then((res) => setMessage(res.message));
-    // @ts-ignore
-    setMessage(JSON.stringify(window?.Telegram.WebApp.initDataUnsafe));
+    })
+      .then((res) => res.json())
+      .then((res) => setMessage(res.message));
   }, []);
 
   // @ts-ignore
