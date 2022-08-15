@@ -9,7 +9,7 @@ const Home: NextPage = () => {
 
     fetch("./api/login", {
       // @ts-ignore
-      body: JSON.stringify(window.Telegram.WebApp.initDataUnsafe.chat.id),
+      body: JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user.id),
       method: "POST",
     })
       .then((res) => res.json())
