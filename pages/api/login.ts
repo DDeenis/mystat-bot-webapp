@@ -11,5 +11,5 @@ export default function handler(
   const body = req.body;
   console.log(body);
 
-  res.status(200).json({ message: "Hello from Next.js!" });
+  res.status(200).json({ message: body?.first_name ?? "ERROR" });
 }
