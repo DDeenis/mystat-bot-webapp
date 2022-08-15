@@ -10,7 +10,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  const chatId = req.body;
+  const chatId = parseInt(req.body);
   const user = await getUserByChatId(chatId);
 
   if (user) {
