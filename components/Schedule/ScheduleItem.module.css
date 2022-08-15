@@ -1,0 +1,34 @@
+.container {
+  padding: 0.5rem;
+  border: 1px solid rgb(228, 224, 224);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container > *:not(:last-child) {
+  margin-bottom: 0.35rem;
+}
+
+.subject {
+  font-weight: 600;
+  text-align: center;
+}
+
+.label {
+  padding: 0.25rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.timeLabel {
+  background-color: #c2ded1;
+}
+
+.roomLabel {
+  background-color: #ece5c7;
+}
+
+.teacherLabel {
+  background-color: #8cc0de;
+}
