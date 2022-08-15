@@ -5,6 +5,8 @@ const Home: NextPage = () => {
   const [message, setMessage] = useState<string>();
 
   useEffect(() => {
+    if (!window) return;
+
     // @ts-ignore
     console.log(window?.Telegram.WebApp.initDataUnsafe);
     fetch("./api/login", {
@@ -17,7 +19,7 @@ const Home: NextPage = () => {
   }, []);
 
   // @ts-ignore
-  return <div>Hello</div>;
+  return <div>Hello from {message}</div>;
 };
 
 export default Home;
