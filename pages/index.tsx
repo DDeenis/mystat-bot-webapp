@@ -13,9 +13,11 @@ const Home: NextPage = () => {
       // @ts-ignore
       body: JSON.stringify(window?.Telegram.WebApp.initDataUnsafe),
       method: "POST",
-    })
-      .then((res) => res.json())
-      .then((res) => setMessage(res.message));
+    });
+    // .then((res) => res.json())
+    // .then((res) => setMessage(res.message));
+    // @ts-ignore
+    setMessage(JSON.stringify(window?.Telegram.WebApp.initDataUnsafe));
   }, []);
 
   // @ts-ignore
