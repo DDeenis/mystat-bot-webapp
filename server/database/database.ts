@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { IUser, UserModel } from "./entity/User.js";
+import { IUser, UserModel } from "./entity/User";
 
 export const connectMongo = async (connectionString: string): Promise<void> => {
   await mongoose.connect(connectionString, (err) =>
