@@ -1,0 +1,40 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: var(--border-radius-lg);
+  background-color: var(--bg-primary);
+  padding: 0.5rem 0.75rem;
+}
+
+.dataContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  border-radius: var(--border-radius-full);
+}
+
+.userName {
+  font-size: var(--text-sm);
+  color: var(--color-primary);
+}
+
+.pointsInfo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pointsInfo :first-child {
+  width: 18px;
+  height: 18px;
+}
+
+.pointsInfo :last-child {
+  color: var(--color-primary);
+  font-size: var(--text-sm);
+}

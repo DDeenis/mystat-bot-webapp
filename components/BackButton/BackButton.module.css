@@ -1,0 +1,13 @@
+.button {
+  width: 100%;
+  color: var(--color-primary);
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding-block: 0.45rem;
+  margin-bottom: 0.5rem;
+}

@@ -1,11 +1,10 @@
 .button {
   width: 100%;
   padding: 0.75rem 0;
-  background-color: var(--color-primary);
-  color: hsl(227.37, 9.09%, 20.02%);
-  font-weight: 600;
+  background-color: var(--bg-primary);
+  color: var(--color-primary);
   text-align: center;
-  border-radius: 3px;
+  border-radius: var(--border-radius-xs);
   border: none;
   cursor: pointer;
 }
@@ -15,7 +14,7 @@
 }
 
 .button:hover {
-  background-color: var(--color-primary-hover);
+  filter: brightness(80%);
 }
 
 .buttonDanger:hover {

@@ -4,15 +4,19 @@ import { ScheduleItem } from "./ScheduleItem";
 
 type Props = {
   items: any[];
+  isLoading?: boolean;
 };
 
-export const Schedule = ({ items }: Props) => {
+export const Schedule = ({ items, isLoading }: Props) => {
   return (
     <div className={styles.scheduleGrid}>
-      {items.length === 0 && <p className={styles.noElements}>Нет пар</p>}
-      {items.map((item, i) => (
-        <ScheduleItem item={item} key={i} />
-      ))}
+      {/* TODO: add loader skeleton */}
+      {isLoading && <p className={styles.noElements}>Загрузка...</p>}
+      {items?.length === 0 && !isLoading && (
+        <p className={styles.noElements}>Нет пар</p>
+      )}
+      {!isLoading &&
+        items.map((item, i) => <ScheduleItem item={item} key={i} />)}
     </div>
   );
 };

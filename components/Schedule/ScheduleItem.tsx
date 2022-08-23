@@ -10,15 +10,16 @@ export const ScheduleItem = ({ item }: Props) => {
   return (
     <div className={styles.container}>
       <p className={styles.subject}>{item.subject_name}</p>
-      <p className={clsx(styles.label, styles.timeLabel)}>
-        {item.started_at} - {item.finished_at}
-      </p>
-      <p className={clsx(styles.label, styles.roomLabel)}>
-        Аудитория {item.room_name}
-      </p>
-      <p className={clsx(styles.label, styles.teacherLabel)}>
-        {item.teacher_name}
-      </p>
+      <div className={styles.timeLabelContainer}>
+        <p className={clsx(styles.label, styles.timeLabel)}>
+          {item.started_at}
+        </p>
+        <p className={clsx(styles.label, styles.timeLabel)}>
+          {item.finished_at}
+        </p>
+      </div>
+      <p className={styles.label}>Аудитория {item.room_name}</p>
+      <p className={styles.label}>{item.teacher_name}</p>
     </div>
   );
 };

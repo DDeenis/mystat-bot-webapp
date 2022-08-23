@@ -3,20 +3,25 @@ import { z } from "zod";
 import { createRouter } from "../context";
 
 export const mystatRouter = createRouter()
-  // .middleware(({ ctx, next }) => {
-  //   if (!ctx.user) {
-  //     throw new TRPCError({ code: "UNAUTHORIZED", message: "Unauthorized" });
-  //   }
+  .middleware(({ ctx, next }) => {
+    if (!ctx.user) {
+      throw new TRPCError({ code: "UNAUTHORIZED", message: "Unauthorized" });
+    }
 
-  //   return next();
-  // })
+    return next();
+  })
+  .query("profile", {
+    async resolve({ ctx }) {
+      return ctx.user?.getProfileInfo();
+    },
+  })
   .query("schedule", {
     input: z.object({
       scheduleFor: z.enum(["day", "month"]).default("day"),
       // Passing normal date cause infinite loop, so only use toDateString()
       date: z.string(),
     }),
-    async resolve({ ctx, input: { scheduleFor, date: dateStr } }) {
+    resolve({ ctx, input: { scheduleFor, date: dateStr } }) {
       const date = new Date(dateStr);
 
       if (scheduleFor === "day") {
@@ -32,7 +37,7 @@ export const mystatRouter = createRouter()
       hwType: z.number().min(0).max(1),
       page: z.number(),
     }),
-    async resolve({ ctx, input: { hwStatus, hwType, page } }) {
+    resolve({ ctx, input: { hwStatus, hwType, page } }) {
       return ctx.user?.getHomeworkList(hwStatus, page, hwType);
     },
   });

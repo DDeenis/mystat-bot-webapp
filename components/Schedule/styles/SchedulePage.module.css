@@ -4,10 +4,81 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1rem;
 }
 
 .datepickerContainer p {
   margin-bottom: 0.5rem;
-  font-size: 1.25rem;
+  font-size: var(--text-lg);
 }
+
+/* Datepicker customization */
+
+.datepickerContainer
+  :global(.react-calendar__navigation__label__labelText--from) {
+  color: var(--color-light);
+  font-weight: 600;
+  font-size: var(--text-base);
+  text-transform: capitalize;
+}
+
+.datepickerContainer :global(.react-calendar) {
+  background-color: var(--bg-default);
+  font-family: var(--font-family-primary);
+  padding: 1rem;
+  border: none;
+  border-radius: var(--border-radius-md);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12), 0px 8px 16px rgba(0, 0, 0, 0.12),
+    0px 1px 24px rgba(0, 0, 0, 0.12);
+}
+
+.datepickerContainer :global(.react-calendar__navigation) {
+  align-items: center;
+}
+
+.datepickerContainer :global(.react-calendar__navigation__arrow) {
+  min-width: 35px;
+  max-height: 35px;
+  padding-block: 0.75rem;
+  margin-inline: 0.5rem;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: var(--border-dark);
+  border-radius: var(--border-radius-sm);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12),
+    0px 1px 8px rgba(0, 0, 0, 0.1);
+}
+
+.datepickerContainer :global(.react-calendar__navigation__prev2-button),
+.datepickerContainer :global(.react-calendar__navigation__next2-button) {
+  display: none;
+}
+
+.datepickerContainer
+  :global(.react-calendar__month-view__weekdays__weekday abbr),
+.datepickerContainer
+  :global(.react-calendar__month-view__days__day--neighboringMonth) {
+  color: var(--color-tertiary);
+  text-decoration: none;
+}
+
+.datepickerContainer :global(.react-calendar__tile) {
+  max-width: 37px;
+  height: 37px;
+  margin: 4px;
+  border-radius: var(--border-radius-sm);
+}
+
+.datepickerContainer :global(.react-calendar__tile--now) {
+  background-color: var(--bg-main);
+  color: var(--color-primary);
+}
+
+.datepickerContainer :global(.react-calendar__tile--active) {
+  background-color: var(--bg-primary);
+}
+
+/* .datepickerContainer
+  :global(.) {
+} */

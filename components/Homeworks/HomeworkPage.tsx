@@ -10,12 +10,12 @@ import {
   localizedToType,
 } from "../../utils/homework";
 import { trpc } from "../../utils/trpc";
+import { BackButton } from "../BackButton/BackButton";
 import { Multiselect } from "../Multiselect/Multiselect";
 import styles from "./HomeworkPage.module.css";
 import { HomeworksList } from "./HomeworksList";
 
 type Props = {
-  // homeworks?: any[];
   hwStatus?: MystatHomeworkStatus;
   hwType?: MystatHomeworkType;
   page?: number;
@@ -32,12 +32,10 @@ export const HomeworkPage: React.FC<Props> = ({
 }) => {
   const [localizedStatus, setLocalizedStatus] = useState("Текущие");
   const [localizedType, setLocalizedType] = useState("Домашние задания");
-  const { data, refetch } = trpc.useQuery(
-    ["mystat.homework", { hwStatus, hwType, page }],
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
+  const { data, refetch } = trpc.useQuery([
+    "mystat.homework",
+    { hwStatus, hwType, page },
+  ]);
 
   useEffect(() => {
     onStatusChange?.(localizedToStatus(localizedStatus));
@@ -51,6 +49,7 @@ export const HomeworkPage: React.FC<Props> = ({
 
   return (
     <div className={styles.hwContainer}>
+      <BackButton />
       <div className={styles.element}>
         <Multiselect
           variants={hwLocalizedVariants}

@@ -19,9 +19,10 @@ type Props = {
 export const HomeworksList = ({ items, status }: Props) => {
   return (
     <div className={styles.list}>
-      {items.map((hw) =>
+      {items.map((hw, i) =>
         React.createElement(homeworkItems[status], {
           item: hw,
+          key: i,
         })
       )}
     </div>

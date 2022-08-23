@@ -5,6 +5,7 @@ import { trpc } from "../../utils/trpc";
 import { Schedule } from "./Schedule";
 import { ScheduleMonth } from "./ScheduleMonth";
 import "react-calendar/dist/Calendar.css";
+import { BackButton } from "../BackButton/BackButton";
 
 type Props = {
   scheduleFor?: "day" | "month";
@@ -16,19 +17,19 @@ export const SchedulePage = ({
   defaultDate = new Date(),
 }: Props) => {
   const [date, setDate] = useState(defaultDate);
-  const { data } = trpc.useQuery(
-    ["mystat.schedule", { scheduleFor, date: date.toDateString() }],
-    { refetchOnWindowFocus: false }
-  );
+  const { data, isLoading } = trpc.useQuery([
+    "mystat.schedule",
+    { scheduleFor, date: date.toDateString() },
+  ]);
 
   return (
     <>
+      <BackButton />
       <div className={styles.datepickerContainer}>
-        <p>Выберите дату</p>
         <Calendar value={date} onChange={setDate} locale="ru-RU" />
       </div>
       {scheduleFor === "day" ? (
-        <Schedule items={data?.data ?? []} />
+        <Schedule items={data?.data} isLoading={isLoading} />
       ) : (
         {
           /*        <ScheduleMonth items={data?.data ?? []} /> */

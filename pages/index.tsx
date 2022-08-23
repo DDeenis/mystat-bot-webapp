@@ -1,31 +1,38 @@
-import type { NextPage } from "next";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { NextPage } from "next";
+import { ActionButton } from "../components/ActionButton/ActionButton";
+import { ActionsSection } from "../components/ActionsSection/ActionsSection";
+import { UserInfoBar } from "../components/UserInfoBar/UserInfoBar";
 import { paths } from "../utils/routes";
+import { trpc } from "../utils/trpc";
 
-const LoginPage: NextPage = () => {
-  const { push } = useRouter();
+const Home: NextPage = () => {
+  const { data } = trpc.useQuery(["mystat.profile"]);
 
-  useEffect(() => {
-    if (!window) return;
-
-    const userId = window.Telegram.WebApp.initDataUnsafe?.user?.id;
-
-    fetch("/api/login", {
-      body: JSON.stringify(userId),
-      method: "POST",
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        // Set-Cookie header not working, so need to set in browser
-        document.cookie = `chatId=${userId}`;
-
-        res.logged ? push(paths.home) : push(paths.error);
-      });
-  }, []);
-
-  // TODO: add loader
-  return <div className="login-page">Выполняется вход...</div>;
+  return (
+    <>
+      {data?.success && <UserInfoBar userInfo={data?.data} />}
+      <ActionsSection header={"Расписание"}>
+        <ActionButton path={paths.schedule.today}>На сегодня</ActionButton>
+        <ActionButton path={paths.schedule.tomorrow}>На завтра</ActionButton>
+        <ActionButton path={paths.schedule.month}>На месяц</ActionButton>
+      </ActionsSection>
+      <ActionsSection header={"Домашние задания"}>
+        <ActionButton path={paths.homework}>
+          Посмотреть домашние задания
+        </ActionButton>
+      </ActionsSection>
+      <ActionsSection header={"Экзамены"}>
+        <ActionButton path={paths.exams.future}>Назначенные</ActionButton>
+        <ActionButton path={paths.exams.all}>Все</ActionButton>
+      </ActionsSection>
+      <ActionsSection header={"Разное"}>
+        <ActionButton path={paths.news}>Новости</ActionButton>
+        <ActionButton path={paths.group}>Группа</ActionButton>
+        <ActionButton path={paths.info}>Информация о себе</ActionButton>
+        <ActionButton path={paths.info}>О боте</ActionButton>
+      </ActionsSection>
+    </>
+  );
 };
 
-export default LoginPage;
+export default Home;

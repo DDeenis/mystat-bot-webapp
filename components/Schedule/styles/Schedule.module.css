@@ -3,19 +3,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 0.5rem;
-  padding-top: 1rem;
+  padding-top: 0.75rem;
   position: relative;
-}
-
-.scheduleGrid::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 1px;
-  background-color: lightgray;
 }
 
 .noElements {
   text-align: center;
-  font-size: 1.125rem;
+  font-size: var(--text-lg);
 }

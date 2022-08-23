@@ -8,13 +8,13 @@
   width: max-content;
   padding: 0.5rem;
   border-radius: 20px;
-  background-color: var(--color-primary);
-  color: white;
+  background-color: var(--bg-primary);
+  color: var(--color-primary);
   cursor: pointer;
 }
 
 .variant__selected {
-  background-color: var(--color-secondary);
+  background-color: var(--bg-secondary);
 }
 
 .container > * {
