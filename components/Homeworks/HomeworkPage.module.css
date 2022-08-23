@@ -1,0 +1,8 @@
+.hwContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.element {
+  margin-bottom: 0.75rem;
+}

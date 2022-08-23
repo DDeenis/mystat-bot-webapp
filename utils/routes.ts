@@ -1,10 +1,11 @@
 export const paths = {
+  home: "home",
   schedule: {
     today: "schedule/today",
     tomorrow: "schedule/tomorrow",
     month: "schedule/month",
   },
-  homeworks: "homeworks",
+  homework: "homework",
   exams: {
     future: "exams/future",
     all: "exams/all",
@@ -13,4 +14,5 @@ export const paths = {
   group: "group",
   info: "info",
   about: "about",
+  error: "error",
 };

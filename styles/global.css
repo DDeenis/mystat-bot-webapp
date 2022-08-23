@@ -1,0 +1,33 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: hsl(207, 47%, 99%);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-primary: hsl(230.53, 100%, 95%);
+  --color-secondary: hsl(230.53, 100%, 90%);
+  --color-primary-hover: hsl(230.53, 100%, 93%);
+}
+
+.main-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}

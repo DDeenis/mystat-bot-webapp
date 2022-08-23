@@ -1,24 +1,32 @@
 import * as trpc from "@trpc/server";
 import * as trpcNext from "@trpc/server/adapters/next";
+import { getUserByChatId } from "./database/database";
 import userStore from "./store/userStore";
 
 // TODO: remove this?
 export async function createContext(opts?: trpcNext.CreateNextContextOptions) {
   async function getUser() {
-    const userIdRaw = opts?.req.headers.userId;
-    if (userIdRaw && typeof userIdRaw === "string") {
-      const userId = parseInt(userIdRaw);
+    if (!opts?.req.cookies) return;
 
-      const userFromStore = userStore.get(userId);
+    const chatIdRaw = opts?.req.cookies?.["chatId"];
 
-      // let userFromDb: IUser | undefined;
-      // if (!userFromStore) {
-      //   userFromDb = await getUserByChatId(userId);
-      // }
+    if (chatIdRaw) {
+      const chatId = parseInt(chatIdRaw);
 
-      return userFromStore;
+      if (!userStore.has(chatId)) {
+        const userFromDb = await getUserByChatId(chatId);
+
+        if (userFromDb) {
+          userStore.set(chatId, { ...userFromDb });
+        }
+      }
+
+      const user = userStore.get(chatId);
+
+      return user;
     }
-    return null;
+
+    return undefined;
   }
 
   const user = await getUser();

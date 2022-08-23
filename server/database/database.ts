@@ -1,19 +1,31 @@
-import mongoose from "mongoose";
-import { IUser, UserModel } from "./entity/User";
+import { createClient } from "@supabase/supabase-js";
+import { IUser } from "./types";
 
-export const connectMongo = async (connectionString: string): Promise<void> => {
-  await mongoose.connect(connectionString, (err) =>
-    console.log(err ? err : "Mongoose is connected")
-  );
-};
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+
+if (!supabaseUrl) {
+  throw new Error("No supabase url provided");
+}
+
+if (!supabaseKey) {
+  throw new Error("No supabase key provided");
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+const usersTable = "users";
 
 export const getUserByChatId = async (
   chatId: number
 ): Promise<IUser | undefined> => {
-  await ensureConnection();
+  const { data, error } = await supabase
+    .from(usersTable)
+    .select("*")
+    .eq("chatId", chatId);
 
-  const user = await UserModel.findOne({ chatId });
-  return user?.toObject();
+  if (error) throw error;
+
+  return data?.[0] as IUser | undefined;
 };
 
 export const isUserExist = async (chatId: number): Promise<boolean> => {
@@ -25,16 +37,4 @@ export const isUserExist = async (chatId: number): Promise<boolean> => {
   }
 
   return false;
-};
-
-const ensureConnection = async () => {
-  const connectionString = process.env?.MONGO_CONNECTION;
-
-  if (!connectionString) {
-    throw new Error("Connection string is not provided");
-  }
-
-  if (mongoose.connections.length < 1) {
-    await connectMongo(connectionString);
-  }
 };

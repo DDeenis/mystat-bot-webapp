@@ -1,9 +1,14 @@
 import { withTRPC } from "@trpc/next";
 import { AppType } from "next/dist/shared/lib/utils";
 import type { AppRouter } from "../server/routers/app";
+import "../styles/global.css";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />;
+  return (
+    <main className="main-container">
+      <Component {...pageProps} />
+    </main>
+  );
 };
 
 function getBaseUrl() {
@@ -32,6 +37,12 @@ export default withTRPC<AppRouter>({
      */
     return {
       url: `${getBaseUrl()}/api/trpc`,
+      // cookies not included in SSR by default
+      headers() {
+        return {
+          cookie: ctx?.req?.headers.cookie,
+        };
+      },
       /**
        * @link https://react-query-v3.tanstack.com/reference/QueryClient
        */

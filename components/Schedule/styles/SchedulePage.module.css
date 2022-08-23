@@ -1,0 +1,13 @@
+.datepickerContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.datepickerContainer p {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}

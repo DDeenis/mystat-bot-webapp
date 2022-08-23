@@ -1,0 +1,42 @@
+.mainMenuActions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.75rem;
+  border-radius: 20px;
+  background-color: hsl(230.53, 100%, 98%);
+  padding: 0.75rem;
+}
+
+.mainMenuActions_header {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--color-secondary);
+  color: hsl(220, 60%, 5.88%);
+  font-weight: 700;
+  text-align: center;
+  border-radius: 20px 20px 3px 3px;
+  margin-bottom: 0.5rem;
+}
+
+.mainMenuActions_actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.5rem;
+}
+
+.mainMenuActions_actions > :last-child:nth-child(odd) {
+  grid-column: span 2;
+}
+
+.mainMenuActions_actions > :last-child:nth-child(odd) > button {
+  border-radius: 3px 3px 10px 10px;
+}
+
+.mainMenuActions_actions > :last-child > button {
+  border-bottom-right-radius: 20px;
+}
+
+.mainMenuActions_actions > :nth-last-child(2):nth-child(odd) > button {
+  border-bottom-left-radius: 20px;
+}

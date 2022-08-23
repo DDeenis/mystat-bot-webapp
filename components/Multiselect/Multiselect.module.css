@@ -1,0 +1,23 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.variant {
+  width: max-content;
+  padding: 0.5rem;
+  border-radius: 20px;
+  background-color: var(--color-primary);
+  color: white;
+  cursor: pointer;
+}
+
+.variant__selected {
+  background-color: var(--color-secondary);
+}
+
+.container > * {
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+}

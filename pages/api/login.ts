@@ -3,6 +3,7 @@ import { getUserByChatId } from "../../server/database/database";
 import userStore from "../../server/store/userStore";
 
 type ResponseData = {
+  logged: boolean;
   message?: string;
 };
 
@@ -10,6 +11,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
+  if (!req.body) {
+    res.status(400).json({ logged: false, message: "No chatId provided" });
+    return;
+  }
+
   const chatId = parseInt(req.body);
   const user = await getUserByChatId(chatId);
 
@@ -18,7 +24,11 @@ export default async function handler(
       username: user.username,
       password: user.password,
     });
+
+    // res.setHeader("Set-Cookie", `chatId=${req.body}`);
+    res.status(200).json({ logged: Boolean(user) });
+    return;
   }
 
-  res.status(200).json({ message: user?.username ?? "ERROR" });
+  res.status(404).json({ logged: false, message: "User not found" });
 }

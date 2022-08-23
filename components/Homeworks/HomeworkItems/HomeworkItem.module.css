@@ -1,0 +1,8 @@
+.hwItemContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.hwItemContainer > *:not(:last-child) {
+  margin-bottom: 0.35rem;
+}

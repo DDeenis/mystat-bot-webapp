@@ -1,10 +1,9 @@
 import React from "react";
 import { formatScheduleDate } from "../../utils/dates";
 import { ScheduleItem } from "./ScheduleItem";
-import styles from "./ScheduleMonth.module.css";
+import styles from "./styles/ScheduleMonth.module.css";
 
 type Props = {
-  // TODO: fix type (any)
   items: Map<string, any[]>;
 };
 

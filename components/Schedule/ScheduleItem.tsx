@@ -1,9 +1,8 @@
 import clsx from "clsx";
 import React from "react";
-import styles from "./ScheduleItem.module.css";
+import styles from "./styles/ScheduleItem.module.css";
 
 type Props = {
-  // TODO: fix type
   item: any;
 };
 

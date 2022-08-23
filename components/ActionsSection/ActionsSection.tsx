@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "./styles.module.css";
+import styles from "./ActionsSection.module.css";
 
 type Props = {
   header: string;
-  children: React.ReactElement;
+  children: JSX.Element | JSX.Element[];
 };
 
-export const ActionSection = ({ header, children }: Props) => {
+export const ActionsSection = ({ header, children }: Props) => {
   return (
     <section className={styles.mainMenuActions}>
       <div className={styles.mainMenuActions_header}>{header}</div>

@@ -1,23 +1,31 @@
 import type { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { paths } from "../utils/routes";
 
-const Home: NextPage = () => {
-  const [message, setMessage] = useState<string>();
+const LoginPage: NextPage = () => {
+  const { push } = useRouter();
 
   useEffect(() => {
     if (!window) return;
 
-    fetch("./api/login", {
-      // @ts-ignore
-      body: JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user.id),
+    const userId = window.Telegram.WebApp.initDataUnsafe?.user?.id;
+
+    fetch("/api/login", {
+      body: JSON.stringify(userId),
       method: "POST",
     })
       .then((res) => res.json())
-      .then((res) => setMessage(res.message));
+      .then((res) => {
+        // Set-Cookie header not working, so need to set in browser
+        document.cookie = `chatId=${userId}`;
+
+        res.logged ? push(paths.home) : push(paths.error);
+      });
   }, []);
 
-  // @ts-ignore
-  return <div>Hello from {message}</div>;
+  // TODO: add loader
+  return <div className="login-page">Выполняется вход...</div>;
 };
 
-export default Home;
+export default LoginPage;
