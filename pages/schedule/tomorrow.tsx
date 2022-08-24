@@ -5,7 +5,7 @@ const ScheduleTomorrowPage = () => {
   const tomorrowDate = new Date();
   tomorrowDate.setDate(tomorrowDate.getDate() + 1);
 
-  return <SchedulePage scheduleFor="day" defaultDate={tomorrowDate} />;
+  return <SchedulePage defaultDate={tomorrowDate} />;
 };
 
 export default ScheduleTomorrowPage;
