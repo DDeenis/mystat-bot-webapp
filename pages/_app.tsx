@@ -1,31 +1,9 @@
 import { withTRPC } from "@trpc/next";
 import { AppType } from "next/dist/shared/lib/utils";
-import { useEffect } from "react";
 import type { AppRouter } from "../server/routers/app";
 import "../styles/global.css";
 
-// for development only
-const fallbackId = undefined;
-
 const MyApp: AppType = ({ Component, pageProps }) => {
-  useEffect(() => {
-    if (!window) return;
-
-    const userId =
-      window.Telegram.WebApp.initDataUnsafe?.user?.id ?? fallbackId;
-
-    fetch("/api/login", {
-      body: JSON.stringify(userId),
-      method: "POST",
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        // Set-Cookie header not working, so need to set in browser
-        document.cookie = `chatId=${userId}`;
-      })
-      .catch((e) => console.error(e));
-  }, []);
-
   return (
     <main className="main-container">
       <Component {...pageProps} />
