@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React from "react";
+import { InfoCard } from "../InfoCard/InfoCard";
 import styles from "./styles/ScheduleItem.module.css";
 
 type Props = {
@@ -8,18 +9,17 @@ type Props = {
 
 export const ScheduleItem = ({ item }: Props) => {
   return (
-    <div className={styles.container}>
-      <p className={styles.subject}>{item.subject_name}</p>
-      <div className={styles.timeLabelContainer}>
-        <p className={clsx(styles.label, styles.timeLabel)}>
-          {item.started_at}
-        </p>
-        <p className={clsx(styles.label, styles.timeLabel)}>
-          {item.finished_at}
-        </p>
-      </div>
-      <p className={styles.label}>Аудитория {item.room_name}</p>
-      <p className={styles.label}>{item.teacher_name}</p>
-    </div>
+    <InfoCard title={item.subject_name}>
+      <InfoCard.Row>
+        <InfoCard.Cell>
+          <p className={styles.timeLabel}>{item.started_at}</p>
+        </InfoCard.Cell>
+        <InfoCard.Cell>
+          <p className={styles.timeLabel}>{item.finished_at}</p>
+        </InfoCard.Cell>
+      </InfoCard.Row>
+      <InfoCard.Element>Аудитория {item.room_name}</InfoCard.Element>
+      <InfoCard.Element>{item.teacher_name}</InfoCard.Element>
+    </InfoCard>
   );
 };

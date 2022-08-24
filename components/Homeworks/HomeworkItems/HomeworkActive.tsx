@@ -1,4 +1,7 @@
+import clsx from "clsx";
 import React from "react";
+import { formatHomeworkDate } from "../../../utils/dates";
+import { InfoCard } from "../../InfoCard/InfoCard";
 import styles from "./HomeworkItem.module.css";
 
 type Props = {
@@ -7,16 +10,33 @@ type Props = {
 
 export const HomeworkActive = ({ item }: Props) => {
   return (
-    <div className={styles.hwItemContainer}>
-      <span>✏️ Предмет: {item.name_spec}</span>
-      <span>📖 Тема: {item.theme}</span>
-      <span>💡 Преподаватель: {item.fio_teach}</span>
-      <span>📅 Дата выдачи: {item.creation_time}</span>
-      <span>❕ Сдать до: {item.completion_time}</span>
-      <span>✒️ Комментарий: {item.comment}</span>
-      <a href={item.file_path} rel="noopener noreferrer">
-        📁 Путь к файлу
-      </a>
-    </div>
+    <InfoCard title={item.name_spec}>
+      <InfoCard.Row>
+        <InfoCard.Cell>
+          <span className={clsx(styles.creationTime, styles.time)}>
+            {formatHomeworkDate(item.creation_time)}
+          </span>
+        </InfoCard.Cell>
+        <InfoCard.Cell>
+          <span className={clsx(styles.completionTime, styles.time)}>
+            {formatHomeworkDate(item.completion_time)}
+          </span>
+        </InfoCard.Cell>
+      </InfoCard.Row>
+      <InfoCard.Element>{item.theme}</InfoCard.Element>
+      <InfoCard.Element>{item.fio_teach}</InfoCard.Element>
+      {Boolean(item.comment) && (
+        <InfoCard.Element>{item.comment}</InfoCard.Element>
+      )}
+      <InfoCard.Element>
+        <a
+          href={item.file_path}
+          rel="noopener noreferrer"
+          className={styles.filePath}
+        >
+          Скачать файл
+        </a>
+      </InfoCard.Element>
+    </InfoCard>
   );
 };

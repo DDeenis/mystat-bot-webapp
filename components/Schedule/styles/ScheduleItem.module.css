@@ -1,43 +1,6 @@
-.container {
-  border: var(--border-secondary);
-  border-radius: var(--border-radius-sm);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.subject {
-  font-weight: 500;
-  color: var(--color-primary);
-  background-color: var(--bg-secondary);
-  padding: 0.5rem;
-  font-size: var(--text-sm);
-}
-
-.label {
-  padding: 0.5rem;
-  background-color: var(--bg-shade);
-  font-size: var(--text-sm);
-}
-
-.container > .label:not(:last-child) {
-  border-bottom: var(--border-secondary);
-}
-
-.timeLabelContainer {
-  display: flex;
-  align-items: center;
-  border-bottom: var(--border-secondary);
-}
-
 .timeLabel {
-  width: 100%;
   text-align: center;
   color: var(--bg-primary);
   font-weight: 500;
   font-size: var(--text-base);
-}
-
-.timeLabelContainer > :first-child {
-  border-right: var(--border-secondary);
 }

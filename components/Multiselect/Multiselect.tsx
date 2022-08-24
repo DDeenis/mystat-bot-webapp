@@ -2,8 +2,10 @@ import clsx from "clsx";
 import React from "react";
 import styles from "./Multiselect.module.css";
 
+type Variant = string;
+
 type Props = {
-  variants: string[];
+  variants: Variant[];
   selectedVariant?: string;
   onSelect: (selectedVariant: string) => void;
 };

@@ -1,0 +1,43 @@
+.container {
+  border: var(--border-secondary);
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: max-content;
+}
+
+.subject {
+  font-weight: 500;
+  color: var(--color-primary);
+  background-color: var(--bg-secondary);
+  padding: 0.5rem;
+  font-size: var(--text-sm);
+}
+
+.elementsContainer {
+  background-color: var(--bg-shade);
+}
+
+.cardElement {
+  padding: 0.5rem;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.cardRow {
+  display: flex;
+  align-items: center;
+}
+
+.cardCell {
+  width: 100%;
+}
+
+.cardRow > .cardCell:not(:last-child) {
+  border-right: var(--border-secondary);
+}
+
+.elementsContainer > :is(.cardElement, .cardRow):not(:last-child) {
+  border-bottom: var(--border-secondary);
+}

@@ -52,16 +52,16 @@ export const HomeworkPage: React.FC<Props> = ({
       <BackButton />
       <div className={styles.element}>
         <Multiselect
-          variants={hwLocalizedVariants}
-          selectedVariant={localizedStatus}
-          onSelect={setLocalizedStatus}
+          variants={hwLocalizedTypes}
+          selectedVariant={localizedType}
+          onSelect={setLocalizedType}
         />
       </div>
       <div className={styles.element}>
         <Multiselect
-          variants={hwLocalizedTypes}
-          selectedVariant={localizedType}
-          onSelect={setLocalizedType}
+          variants={hwLocalizedVariants}
+          selectedVariant={localizedStatus}
+          onSelect={setLocalizedStatus}
         />
       </div>
       {Boolean(data?.data?.length) && (

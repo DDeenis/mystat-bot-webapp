@@ -10,4 +10,9 @@
   gap: 12px;
   padding-block: 0.45rem;
   margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  filter: blur(80%);
 }

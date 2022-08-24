@@ -2,22 +2,19 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  gap: 0.35rem;
 }
 
 .variant {
   width: max-content;
-  padding: 0.5rem;
-  border-radius: 20px;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius-lg);
   background-color: var(--bg-primary);
   color: var(--color-primary);
   cursor: pointer;
+  box-shadow: inset 0px 0px 0px 2px var(--stroke-dark);
 }
 
 .variant__selected {
   background-color: var(--bg-secondary);
-}
-
-.container > * {
-  margin-right: 0.25rem;
-  margin-bottom: 0.25rem;
 }
