@@ -3,23 +3,18 @@ import styles from "./styles/SchedulePage.module.css";
 import Calendar from "react-calendar";
 import { trpc } from "../../utils/trpc";
 import { Schedule } from "./Schedule";
-import { ScheduleMonth } from "./ScheduleMonth";
-import "react-calendar/dist/Calendar.css";
 import { BackButton } from "../BackButton/BackButton";
+import "react-calendar/dist/Calendar.css";
 
 type Props = {
-  scheduleFor?: "day" | "month";
   defaultDate?: Date;
 };
 
-export const SchedulePage = ({
-  scheduleFor = "day",
-  defaultDate = new Date(),
-}: Props) => {
+export const SchedulePage = ({ defaultDate = new Date() }: Props) => {
   const [date, setDate] = useState(defaultDate);
   const { data, isLoading } = trpc.useQuery([
     "mystat.schedule",
-    { scheduleFor, date: date.toDateString() },
+    { date: date.toDateString() },
   ]);
 
   return (
@@ -28,13 +23,7 @@ export const SchedulePage = ({
       <div className={styles.datepickerContainer}>
         <Calendar value={date} onChange={setDate} locale="ru-RU" />
       </div>
-      {scheduleFor === "day" ? (
-        <Schedule items={data?.data} isLoading={isLoading} />
-      ) : (
-        {
-          /*        <ScheduleMonth items={data?.data ?? []} /> */
-        }
-      )}
+      <Schedule items={data?.data} isLoading={isLoading} />
     </>
   );
 };

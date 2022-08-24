@@ -22,7 +22,8 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       .then((res) => {
         // Set-Cookie header not working, so need to set in browser
         document.cookie = `chatId=${userId}`;
-      });
+      })
+      .catch((e) => console.error(e));
   }, []);
 
   return (

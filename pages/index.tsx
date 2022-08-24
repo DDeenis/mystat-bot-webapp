@@ -14,7 +14,6 @@ const Home: NextPage = () => {
       <ActionsSection header={"Расписание"}>
         <ActionButton path={paths.schedule.today}>На сегодня</ActionButton>
         <ActionButton path={paths.schedule.tomorrow}>На завтра</ActionButton>
-        <ActionButton path={paths.schedule.month}>На месяц</ActionButton>
       </ActionsSection>
       <ActionsSection header={"Домашние задания"}>
         <ActionButton path={paths.homework}>
