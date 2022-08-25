@@ -16,36 +16,37 @@ import styles from "./HomeworkPage.module.css";
 import { HomeworksList } from "./HomeworksList";
 
 type Props = {
-  hwStatus?: MystatHomeworkStatus;
-  hwType?: MystatHomeworkType;
-  page?: number;
-  onStatusChange?: (val: MystatHomeworkStatus) => void;
-  onTypeChange?: (val: MystatHomeworkType) => void;
+  hwStatus: MystatHomeworkStatus;
+  hwType: MystatHomeworkType;
+  page: number;
+  onStatusChange: (val: MystatHomeworkStatus) => void;
+  onTypeChange: (val: MystatHomeworkType) => void;
+  onPageChange: (val: number) => void;
 };
 
 export const HomeworkPage: React.FC<Props> = ({
-  hwStatus = MystatHomeworkStatus.Active,
-  hwType = MystatHomeworkType.Homework,
-  page = 1,
+  hwStatus,
+  hwType,
+  page,
   onStatusChange,
   onTypeChange,
+  onPageChange,
 }) => {
   const [localizedStatus, setLocalizedStatus] = useState("Текущие");
   const [localizedType, setLocalizedType] = useState("Домашние задания");
-  const { data, refetch } = trpc.useQuery([
-    "mystat.homework",
-    { hwStatus, hwType, page },
-  ]);
+  const { data } = trpc.useQuery(
+    ["mystat.homework", { hwStatus, hwType, page }],
+    { keepPreviousData: true }
+  );
 
   useEffect(() => {
-    onStatusChange?.(localizedToStatus(localizedStatus));
-    onTypeChange?.(localizedToType(localizedType));
+    onStatusChange(localizedToStatus(localizedStatus));
+    onTypeChange(localizedToType(localizedType));
   }, [localizedStatus, localizedType]);
 
   useEffect(() => {
-    // refetch
-    refetch();
-  }, [hwStatus, hwType, page]);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [page]);
 
   return (
     <div className={styles.hwContainer}>
@@ -65,7 +66,12 @@ export const HomeworkPage: React.FC<Props> = ({
         />
       </div>
       {Boolean(data?.data?.length) && (
-        <HomeworksList items={data?.data} status={hwStatus} />
+        <HomeworksList
+          items={data?.data}
+          status={hwStatus}
+          page={page}
+          onPageChange={onPageChange}
+        />
       )}
     </div>
   );

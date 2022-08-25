@@ -8,7 +8,7 @@ type Props = {
   item: any;
 };
 
-export const HomeworkActive = ({ item }: Props) => {
+export const HomeworkOverdue = ({ item }: Props) => {
   return (
     <InfoCard title={item.name_spec}>
       <InfoCard.Row>
@@ -23,6 +23,11 @@ export const HomeworkActive = ({ item }: Props) => {
           </span>
         </InfoCard.Cell>
       </InfoCard.Row>
+      <InfoCard.Element>
+        <span className={clsx(styles.time, styles.completionTime)}>
+          Просрочено {formatHomeworkDate(item.overdue_time)}
+        </span>
+      </InfoCard.Element>
       <InfoCard.Element>{item.theme}</InfoCard.Element>
       <InfoCard.Element>{item.fio_teach}</InfoCard.Element>
       {Boolean(item.comment) && (
@@ -35,6 +40,15 @@ export const HomeworkActive = ({ item }: Props) => {
           className={styles.filePath}
         >
           Скачать задание
+        </a>
+      </InfoCard.Element>
+      <InfoCard.Element>
+        <a
+          href={item.homework_stud.file_path}
+          rel="noopener noreferrer"
+          className={styles.filePath}
+        >
+          Скачать загруженный файл
         </a>
       </InfoCard.Element>
     </InfoCard>

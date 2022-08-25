@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pagesContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.buttonControl {
+  width: 30px;
+  height: 30px;
+  background-color: var(--bg-default);
+  position: relative;
+  border-radius: var(--border-radius-full);
+  border: var(--border-dark);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12),
+    0px 1px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.buttonControl::before,
+.buttonControl::after {
+  content: "";
+  position: absolute;
+  background-color: var(--bg-main);
+  width: 12px;
+  height: 2px;
+  --offset-block: 9px;
+}
+
+.buttonNext::before {
+  left: 10px;
+  top: var(--offset-block);
+  transform: rotate(45deg);
+}
+
+.buttonNext::after {
+  left: 10px;
+  bottom: var(--offset-block);
+  transform: rotate(-45deg);
+}
+
+.buttonPrev::before {
+  right: 10px;
+  top: var(--offset-block);
+  transform: rotate(135deg);
+}
+
+.buttonPrev::after {
+  right: 10px;
+  bottom: var(--offset-block);
+  transform: rotate(-135deg);
+}
+
+.buttonControl_disabled::before,
+.buttonControl_disabled::after {
+  background-color: var(--bg-disabled);
+}
+
+.page {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: var(--border-radius-full);
+  background-color: var(--bg-primary);
+  color: var(--color-primary);
+  text-align: center;
+  cursor: pointer;
+}
+
+.page_selected {
+  background-color: var(--bg-tertiary);
+}

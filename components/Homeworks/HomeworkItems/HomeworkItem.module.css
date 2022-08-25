@@ -9,3 +9,7 @@
 .completionTime {
   color: var(--bg-error);
 }
+
+.creationTimeUploaded {
+  color: var(--bg-tertiary);
+}
