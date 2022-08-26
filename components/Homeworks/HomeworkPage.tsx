@@ -2,13 +2,8 @@ import {
   MystatHomeworkStatus,
   MystatHomeworkType,
 } from "mystat-api/dist/types";
-import React, { useEffect, useState } from "react";
-import {
-  hwLocalizedTypes,
-  hwLocalizedVariants,
-  localizedToStatus,
-  localizedToType,
-} from "../../utils/homework";
+import React, { useEffect } from "react";
+import { homeworkTypes, homeworkVariants } from "../../utils/homework";
 import { trpc } from "../../utils/trpc";
 import { BackButton } from "../BackButton/BackButton";
 import { Multiselect } from "../Multiselect/Multiselect";
@@ -32,18 +27,14 @@ export const HomeworkPage: React.FC<Props> = ({
   onTypeChange,
   onPageChange,
 }) => {
-  const [localizedStatus, setLocalizedStatus] = useState("Текущие");
-  const [localizedType, setLocalizedType] = useState("Домашние задания");
   const { data, isLoading, remove } = trpc.useQuery(
     ["mystat.homework", { hwStatus, hwType, page }],
     { keepPreviousData: true }
   );
 
   useEffect(() => {
-    onStatusChange(localizedToStatus(localizedStatus));
-    onTypeChange(localizedToType(localizedType));
     onPageChange(1);
-  }, [localizedStatus, localizedType]);
+  }, [hwStatus, hwType]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -53,17 +44,17 @@ export const HomeworkPage: React.FC<Props> = ({
     <div className={styles.hwContainer}>
       <BackButton />
       <div className={styles.element}>
-        <Multiselect
-          variants={hwLocalizedTypes}
-          selectedVariant={localizedType}
-          onSelect={setLocalizedType}
+        <Multiselect<MystatHomeworkType>
+          variants={homeworkTypes}
+          selectedVariant={hwType}
+          onSelect={onTypeChange}
         />
       </div>
       <div className={styles.element}>
-        <Multiselect
-          variants={hwLocalizedVariants}
-          selectedVariant={localizedStatus}
-          onSelect={setLocalizedStatus}
+        <Multiselect<MystatHomeworkStatus>
+          variants={homeworkVariants}
+          selectedVariant={hwStatus}
+          onSelect={onStatusChange}
         />
       </div>
       {Boolean(data?.data) && (

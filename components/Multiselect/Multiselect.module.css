@@ -18,3 +18,14 @@
 .variant__selected {
   background-color: var(--bg-secondary);
 }
+
+.variant.variant__asTabs {
+  width: 100%;
+  margin: 0;
+}
+
+.container.container_withTabs {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 0.35rem;
+}
