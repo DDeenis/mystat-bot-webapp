@@ -38,6 +38,7 @@
   border-right: var(--border-secondary);
 }
 
-.elementsContainer > :is(.cardElement, .cardRow):not(:last-child) {
+.elementsContainer > .cardElement:not(:last-child),
+.elementsContainer > .cardRow:not(:last-child) {
   border-bottom: var(--border-secondary);
 }

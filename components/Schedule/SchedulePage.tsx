@@ -20,10 +20,10 @@ export const SchedulePage = ({ defaultDate = new Date() }: Props) => {
   return (
     <>
       <BackButton />
+      <Schedule items={data?.data} isLoading={isLoading} />
       <div className={styles.datepickerContainer}>
         <Calendar value={date} onChange={setDate} locale="ru-RU" />
       </div>
-      <Schedule items={data?.data} isLoading={isLoading} />
     </>
   );
 };

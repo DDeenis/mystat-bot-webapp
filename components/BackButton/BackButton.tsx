@@ -13,7 +13,7 @@ export const BackButton = ({ children = "Назад" }: Props) => {
   return (
     <button onClick={back} className={styles.button}>
       <IconArrowLeft />
-      {children}
+      <p className={styles.text}>{children}</p>
     </button>
   );
 };

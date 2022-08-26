@@ -9,9 +9,10 @@
 }
 
 .dataContainer {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
   align-items: center;
-  gap: 10px;
+  column-gap: 10px;
 }
 
 .avatar {
