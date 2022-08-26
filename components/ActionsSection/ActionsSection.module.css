@@ -27,16 +27,13 @@
 
 .mainMenuActions_actions > :last-child:nth-child(odd) {
   grid-column: span 2;
-}
-
-.mainMenuActions_actions > :last-child:nth-child(odd) > button {
   border-radius: 3px 3px 10px 10px;
 }
 
-.mainMenuActions_actions > :last-child > button {
+.mainMenuActions_actions > :last-child {
   border-bottom-right-radius: 20px;
 }
 
-.mainMenuActions_actions > :nth-last-child(2):nth-child(odd) > button {
+.mainMenuActions_actions > :nth-last-child(2):nth-child(odd) {
   border-bottom-left-radius: 20px;
 }
