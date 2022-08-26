@@ -53,11 +53,11 @@ button {
   --stroke-primary: rgba(76, 139, 245, 0.54);
   --stroke-secondary: rgba(56, 192, 93, 0.54);
 
-  --border-light: 1px solid rgba(255, 255, 255, 0.54);
-  --border-dark: 1px solid rgba(38, 50, 56, 0.24);
-  --border-primary: 1px solid rgba(76, 139, 245, 0.54);
-  --border-secondary: 1px solid rgba(56, 192, 93, 0.54);
-  --border-disabled: 1px dashed rgba(38, 50, 56, 0.24);
+  --border-light: 1px solid var(--stroke-light);
+  --border-dark: 1px solid var(--stroke-dark);
+  --border-primary: 1px solid var(--stroke-primary);
+  --border-secondary: 1px solid var(--stroke-secondary);
+  --border-disabled: 1px dashed var(--stroke-dark);
 
   --border-radius-xs: 3px;
   --border-radius-sm: 6px;
@@ -66,7 +66,6 @@ button {
   --border-radius-full: 100%;
 
   --font-family-primary: "Roboto", sans-serif;
-  --font-family-secondary: "Red Hat Display", sans-serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;

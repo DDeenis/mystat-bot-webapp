@@ -31,12 +31,20 @@ const monthNamesTitle = [
 export const formatScheduleDate = (date: Date) =>
   `${date.getDate()} ${monthNamesTitle[date.getMonth()]} ${date.getFullYear()}`;
 
+const padDate = (val: number) => val.toString().padStart(2, "0");
+
 export const formatHomeworkDate = (dateStr: string) => {
   const date = new Date(dateStr);
-  return `${date.getDate().toString().padStart(2, "0")}.${date
-    .getMonth()
-    .toString()
-    .padStart(2, "0")}.${date.getFullYear()}`;
+  return `${padDate(date.getDate())}.${padDate(
+    date.getMonth()
+  )}.${date.getFullYear()}`;
+};
+
+export const formatNewsDate = (dateStr: string) => {
+  const date = new Date(dateStr);
+  return `${formatHomeworkDate(dateStr)} ${padDate(date.getHours())}:${padDate(
+    date.getMinutes()
+  )}`;
 };
 
 export const isDatesEqual = (first: Date, second: Date) => {

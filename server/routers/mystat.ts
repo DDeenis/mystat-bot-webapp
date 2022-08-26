@@ -40,6 +40,19 @@ export const mystatRouter = createRouter()
     resolve({ ctx, input: { hwStatus, hwType, page } }) {
       return ctx.user?.getHomeworkList(hwStatus, page, hwType);
     },
+  })
+  .query("allNews", {
+    async resolve({ ctx }) {
+      return ctx.user?.getNews();
+    },
+  })
+  .query("newsDetails", {
+    input: z.object({
+      id: z.string(),
+    }),
+    async resolve({ ctx, input: { id } }) {
+      return ctx.user?.getNewsDetails(id);
+    },
   });
 
 export const UserRouter = typeof mystatRouter;

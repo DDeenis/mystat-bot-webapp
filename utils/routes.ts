@@ -10,7 +10,10 @@ export const paths = {
     future: "exams/future",
     all: "exams/all",
   },
-  news: "news",
+  news: {
+    allNews: "news",
+    newsDetails: (id: number) => `${paths.news.allNews}/${id}`,
+  },
   group: "group",
   info: "info",
   about: "about",

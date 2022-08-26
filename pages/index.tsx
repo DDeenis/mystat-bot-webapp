@@ -13,7 +13,7 @@ const LoginPage: NextPage = () => {
     if (!window) return;
 
     const userId =
-      window.Telegram.WebApp.initDataUnsafe?.user?.id ?? fallbackId;
+      window.Telegram?.WebApp.initDataUnsafe.user?.id ?? fallbackId;
 
     fetch("/api/login", {
       body: JSON.stringify(userId),

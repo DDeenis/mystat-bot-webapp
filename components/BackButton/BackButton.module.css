@@ -14,5 +14,5 @@
 }
 
 .button:hover {
-  filter: blur(80%);
+  filter: brightness(80%);
 }

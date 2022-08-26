@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+  padding: 1rem;
+  border: var(--border-dark);
+  border-radius: var(--border-radius-lg);
+  background-color: var(--bg-quaternary);
+  cursor: pointer;
+}
+
+.theme {
+  color: var(--color-light);
+  font-size: var(--text-lg);
+  font-weight: 500;
+}
+
+.date {
+  padding: 0.25rem 0.5rem;
+  width: max-content;
+  background-color: var(--bg-default);
+  border-radius: var(--border-radius-lg);
+  font-size: var(--text-sm);
+  margin-top: 0.5rem;
+}
+
+.container:hover {
+  filter: brightness(90%);
+}
