@@ -25,9 +25,9 @@
 }
 
 .pointsInfo {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 5px;
 }
 
 .pointsInfo :first-child {

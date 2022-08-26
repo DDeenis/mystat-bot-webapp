@@ -2,7 +2,6 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
 }
 
 .variant {
@@ -13,6 +12,7 @@
   color: var(--color-primary);
   cursor: pointer;
   box-shadow: inset 0px 0px 0px 2px var(--stroke-dark);
+  margin: 0 0.25rem 0.35rem 0;
 }
 
 .variant__selected {
