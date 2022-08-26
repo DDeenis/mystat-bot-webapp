@@ -33,7 +33,9 @@ export const HomeworksList = ({ items, status, page, onPageChange }: Props) => {
           })
         )}
       </div>
-      <Pagination page={page} maxPages={10} onPageChange={onPageChange} />
+      {items.length !== 0 && (
+        <Pagination page={page} maxPages={10} onPageChange={onPageChange} />
+      )}
     </>
   );
 };

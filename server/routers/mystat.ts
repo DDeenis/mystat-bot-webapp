@@ -53,6 +53,16 @@ export const mystatRouter = createRouter()
     async resolve({ ctx, input: { id } }) {
       return ctx.user?.getNewsDetails(id);
     },
+  })
+  .query("futureExams", {
+    async resolve({ ctx }) {
+      return ctx.user?.getFutureExams();
+    },
+  })
+  .query("allExams", {
+    async resolve({ ctx }) {
+      return ctx.user?.getExams();
+    },
   });
 
 export const UserRouter = typeof mystatRouter;

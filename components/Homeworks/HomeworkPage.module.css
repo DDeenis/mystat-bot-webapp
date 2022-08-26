@@ -6,3 +6,7 @@
 .element {
   margin-bottom: 0.75rem;
 }
+
+.empty {
+  text-align: center;
+}

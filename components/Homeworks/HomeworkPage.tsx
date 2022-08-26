@@ -34,7 +34,7 @@ export const HomeworkPage: React.FC<Props> = ({
 }) => {
   const [localizedStatus, setLocalizedStatus] = useState("Текущие");
   const [localizedType, setLocalizedType] = useState("Домашние задания");
-  const { data } = trpc.useQuery(
+  const { data, isLoading, remove } = trpc.useQuery(
     ["mystat.homework", { hwStatus, hwType, page }],
     { keepPreviousData: true }
   );
@@ -65,13 +65,17 @@ export const HomeworkPage: React.FC<Props> = ({
           onSelect={setLocalizedStatus}
         />
       </div>
-      {Boolean(data?.data?.length) && (
+      {Boolean(data?.data) && (
         <HomeworksList
           items={data?.data}
           status={hwStatus}
           page={page}
           onPageChange={onPageChange}
         />
+      )}
+      {isLoading && <p className={styles.empty}>Загрузка...</p>}
+      {data?.data?.length === 0 && !isLoading && (
+        <p className={styles.empty}>Нет заданий этого типа</p>
       )}
     </div>
   );
