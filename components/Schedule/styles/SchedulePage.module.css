@@ -68,7 +68,6 @@
   height: 37px;
   margin: 4px;
   border-radius: var(--border-radius-sm);
-  flex-basis: 14.285714285714286%;
 }
 
 .datepickerContainer :global(.react-calendar__tile--now) {
