@@ -63,6 +63,18 @@ export const mystatRouter = createRouter()
     async resolve({ ctx }) {
       return ctx.user?.getExams();
     },
+  })
+  .query("leaders", {
+    input: z.object({
+      list: z.enum(["group", "stream"]),
+    }),
+    async resolve({ ctx, input: { list } }) {
+      if (list === "stream") {
+        return ctx.user?.getStreamLeaders();
+      }
+
+      return ctx.user?.getGroupLeaders();
+    },
   });
 
 export const UserRouter = typeof mystatRouter;

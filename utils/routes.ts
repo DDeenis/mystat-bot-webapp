@@ -16,6 +16,8 @@ export const paths = {
   },
   group: "group",
   info: "info",
+  settings: "settings",
   about: "about",
   error: "error",
+  reviews: "reviews",
 };

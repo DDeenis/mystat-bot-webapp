@@ -25,10 +25,13 @@ const Home: NextPage = () => {
         <ActionButton path={paths.exams.all}>Все</ActionButton>
       </ActionsSection>
       <ActionsSection header={"Разное"}>
+        <ActionButton path={paths.group}>Группа и поток</ActionButton>
         <ActionButton path={paths.news.allNews}>Новости</ActionButton>
-        <ActionButton path={paths.group}>Группа</ActionButton>
         <ActionButton path={paths.info}>Информация о себе</ActionButton>
-        <ActionButton path={paths.info}>О боте</ActionButton>
+        <ActionButton path={paths.reviews}>Отзывы</ActionButton>
+        <ActionButton path={paths.settings}>
+          Настройки и обратная связь
+        </ActionButton>
       </ActionsSection>
     </>
   );

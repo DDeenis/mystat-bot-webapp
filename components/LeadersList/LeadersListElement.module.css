@@ -1,0 +1,69 @@
+.container {
+  width: 100%;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  background-color: var(--bg-quaternary);
+  border: none;
+  border-radius: 24px;
+  padding: 0.25rem;
+}
+
+.position {
+  min-width: 35px;
+  height: 35px;
+  background-color: var(--bg-primary);
+  color: var(--color-primary);
+  font-size: var(--text-sm);
+  border: none;
+  border-radius: var(--border-radius-full);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.studentInfo {
+  width: 100%;
+  background-color: var(--bg-primary);
+  color: var(--color-primary);
+  border: none;
+  border-radius: var(--border-radius-lg);
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.studentName {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  border-radius: var(--border-radius-full);
+}
+
+.name {
+  margin-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 10px;
+}
+
+.pointsInfo {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+}
+
+.amount {
+  margin-left: 5px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-primary);
+}

@@ -42,6 +42,7 @@ export const HomeworkPage: React.FC<Props> = ({
   useEffect(() => {
     onStatusChange(localizedToStatus(localizedStatus));
     onTypeChange(localizedToType(localizedType));
+    onPageChange(1);
   }, [localizedStatus, localizedType]);
 
   useEffect(() => {
