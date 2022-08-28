@@ -4,12 +4,12 @@ import { ExamsList } from "../../components/Exams/ExamsList";
 import { trpc } from "../../utils/trpc";
 
 const AllExamsPage = () => {
-  const { data } = trpc.useQuery(["mystat.allExams"]);
+  const { data, isLoading } = trpc.useQuery(["mystat.allExams"]);
 
   return (
     <>
       <BackButton />
-      {data?.success && <ExamsList exams={data.data} />}
+      <ExamsList exams={data?.data} isLoading={isLoading} />
     </>
   );
 };

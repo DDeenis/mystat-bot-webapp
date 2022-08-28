@@ -7,8 +7,13 @@ import { trpc } from "../utils/trpc";
 
 const GroupAndStreamPage = () => {
   const [listFor, setListFor] = useState<LeadersVariantsType>("group");
-  const { data } = trpc.useQuery(["mystat.leaders", { list: listFor }]);
-  const { data: profile } = trpc.useQuery(["mystat.profile"]);
+  const { data, isLoading } = trpc.useQuery([
+    "mystat.leaders",
+    { list: listFor },
+  ]);
+  const { data: profile, isLoading: isLoadingProfile } = trpc.useQuery([
+    "mystat.profile",
+  ]);
 
   return (
     <>
@@ -19,12 +24,11 @@ const GroupAndStreamPage = () => {
         onSelect={setListFor}
         variantsAsTabs
       />
-      {data?.success && (
-        <LeadersList
-          students={data.data}
-          studentId={profile?.data?.student_id}
-        />
-      )}
+      <LeadersList
+        students={data?.data}
+        studentId={profile?.data?.student_id}
+        isLoading={isLoading || isLoadingProfile}
+      />
     </>
   );
 };

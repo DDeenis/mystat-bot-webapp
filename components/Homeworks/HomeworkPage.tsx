@@ -4,46 +4,37 @@ import {
 } from "mystat-api/dist/types";
 import React, { useEffect } from "react";
 import { homeworkTypes, homeworkVariants } from "../../utils/homework";
-import { trpc } from "../../utils/trpc";
-import { BackButton } from "../BackButton/BackButton";
 import { Multiselect } from "../Multiselect/Multiselect";
+import { EmptyState, LoadingState } from "../PageStates/PageStates";
 import styles from "./HomeworkPage.module.css";
 import { HomeworksList } from "./HomeworksList";
 
 type Props = {
-  // homeworks: any[]
+  homeworks?: any[];
   hwStatus: MystatHomeworkStatus;
   hwType: MystatHomeworkType;
   page: number;
+  isLoading?: boolean;
   onStatusChange: (val: MystatHomeworkStatus) => void;
   onTypeChange: (val: MystatHomeworkType) => void;
   onPageChange: (val: number) => void;
 };
 
 export const HomeworkPage: React.FC<Props> = ({
+  homeworks,
   hwStatus,
   hwType,
   page,
+  isLoading,
   onStatusChange,
   onTypeChange,
   onPageChange,
 }) => {
-  const { data, isLoading } = trpc.useQuery(
-    ["mystat.homework", { hwStatus, hwType, page }],
-    { keepPreviousData: true }
-  );
-
-  useEffect(() => {
-    onPageChange(1);
-  }, [hwStatus, hwType]);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [page]);
+  const hasData = homeworks !== undefined;
+  const isDataEmpty = homeworks?.length === 0;
 
   return (
     <div className={styles.hwContainer}>
-      <BackButton />
       <div className={styles.element}>
         <Multiselect<MystatHomeworkType>
           variants={homeworkTypes}
@@ -58,18 +49,18 @@ export const HomeworkPage: React.FC<Props> = ({
           onSelect={onStatusChange}
         />
       </div>
-      {Boolean(data?.data) && (
+      {hasData && (
         <HomeworksList
-          items={data?.data}
+          items={homeworks}
           status={hwStatus}
           page={page}
           onPageChange={onPageChange}
         />
       )}
-      {isLoading && <p className={styles.empty}>Загрузка...</p>}
-      {data?.data?.length === 0 && !isLoading && (
-        <p className={styles.empty}>Нет заданий этого типа</p>
-      )}
+      <LoadingState visible={isLoading} />
+      <EmptyState visible={isDataEmpty && !isLoading}>
+        Нет заданий этого типа
+      </EmptyState>
     </div>
   );
 };

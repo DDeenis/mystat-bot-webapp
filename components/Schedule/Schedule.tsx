@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./styles/Schedule.module.css";
 import { ScheduleItem } from "./ScheduleItem";
+import { EmptyState, LoadingState } from "../PageStates/PageStates";
 
 type Props = {
   items: any[];
@@ -10,11 +11,10 @@ type Props = {
 export const Schedule = ({ items, isLoading }: Props) => {
   return (
     <div className={styles.scheduleGrid}>
-      {/* TODO: add loader skeleton */}
-      {isLoading && <p className={styles.noElements}>Загрузка...</p>}
-      {items?.length === 0 && !isLoading && (
-        <p className={styles.noElements}>Нет пар</p>
-      )}
+      <LoadingState visible={isLoading} />
+      <EmptyState visible={items?.length === 0 && !isLoading}>
+        Нет пар
+      </EmptyState>
       {!isLoading &&
         items.map((item, i) => <ScheduleItem item={item} key={i} />)}
     </div>
