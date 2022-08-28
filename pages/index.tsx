@@ -27,9 +27,6 @@ const LoginPage: NextPage = () => {
         res.logged ? push(paths.home) : push(paths.error);
       })
       .catch((e) => {
-        window.Telegram.WebApp.sendData(
-          "Авторизация не удалась, убедитесь что вы авторизованы в боте. Так же веб версия пока что не работает в telegram web."
-        );
         console.error(e);
       });
   }, []);

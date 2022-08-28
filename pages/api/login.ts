@@ -25,7 +25,6 @@ export default async function handler(
       password: user.password,
     });
 
-    // res.setHeader("Set-Cookie", `chatId=${req.body}`);
     res.status(200).json({ logged: Boolean(user) });
     return;
   }

@@ -3,8 +3,9 @@ import React from "react";
 import styles from "./InfoCard.module.css";
 
 type Props = {
-  title: string;
+  title?: string;
   children?: React.ReactNode;
+  ghost?: boolean;
 };
 
 type Extentions = {
@@ -13,10 +14,18 @@ type Extentions = {
   Cell: typeof CardCell;
 };
 
-export const InfoCard: React.FC<Props> & Extentions = ({ title, children }) => {
+export const InfoCard: React.FC<Props> & Extentions = ({
+  title,
+  ghost,
+  children,
+}) => {
   return (
-    <div className={styles.container}>
-      <p className={styles.subject}>{title}</p>
+    <div
+      className={clsx(styles.container, {
+        [styles.cardGhost]: ghost,
+      })}
+    >
+      {title && <p className={styles.subject}>{title}</p>}
       <div className={styles.elementsContainer}>{children}</div>
     </div>
   );

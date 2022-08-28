@@ -67,3 +67,8 @@
   font-weight: 500;
   color: var(--color-primary);
 }
+
+.containerActive .position,
+.containerActive .studentInfo {
+  background-color: var(--bg-secondary);
+}

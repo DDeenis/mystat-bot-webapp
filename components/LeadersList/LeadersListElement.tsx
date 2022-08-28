@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Image from "next/image";
 import React from "react";
 import { IconStar } from "../Icons/Icons";
@@ -5,13 +6,18 @@ import styles from "./LeadersListElement.module.css";
 
 type Props = {
   student: any;
+  isActive?: boolean;
 };
 
-export const LeadersListElement = ({ student }: Props) => {
+export const LeadersListElement = ({ student, isActive }: Props) => {
   const studentName = student.full_name.split(" ").slice(0, 2).join(" ");
 
   return (
-    <div className={styles.container}>
+    <div
+      className={clsx(styles.container, {
+        [styles.containerActive]: isActive,
+      })}
+    >
       <div className={styles.position}>{student.position}</div>
       <div className={styles.studentInfo}>
         <div className={styles.studentName}>

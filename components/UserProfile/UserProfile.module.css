@@ -1,0 +1,55 @@
+.container {
+  margin-top: 0.5rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.avatar {
+  border-radius: var(--border-radius-full);
+}
+
+.name {
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--text-base);
+}
+
+.entryTitle {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.pointsInfoContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pointsInfo {
+  display: flex;
+}
+
+.pointsInfo :first-child {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
+
+.pointsInfo :last-child {
+  color: var(--color-secondary);
+  font-size: var(--text-sm);
+}

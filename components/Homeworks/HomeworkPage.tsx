@@ -11,6 +11,7 @@ import styles from "./HomeworkPage.module.css";
 import { HomeworksList } from "./HomeworksList";
 
 type Props = {
+  // homeworks: any[]
   hwStatus: MystatHomeworkStatus;
   hwType: MystatHomeworkType;
   page: number;
@@ -27,7 +28,7 @@ export const HomeworkPage: React.FC<Props> = ({
   onTypeChange,
   onPageChange,
 }) => {
-  const { data, isLoading, remove } = trpc.useQuery(
+  const { data, isLoading } = trpc.useQuery(
     ["mystat.homework", { hwStatus, hwType, page }],
     { keepPreviousData: true }
   );

@@ -79,8 +79,11 @@ button {
 .main-container {
   width: 100%;
   min-height: 100vh;
-  display: grid;
-  grid-auto-flow: row;
+  display: flex;
+  flex-direction: column;
   padding: 0.5rem;
-  gap: 0.5rem;
+}
+
+.main-container > *:not(:last-child) {
+  margin-bottom: 0.5rem;
 }

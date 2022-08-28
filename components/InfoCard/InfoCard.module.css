@@ -42,3 +42,19 @@
 .elementsContainer > .cardRow:not(:last-child) {
   border-bottom: var(--border-secondary);
 }
+
+.cardGhost.container {
+  border: none;
+}
+
+.cardGhost .subject {
+  background-color: transparent;
+}
+
+.cardGhost .elementsContainer,
+.cardGhost .cardElement,
+.cardGhost .cardRow,
+.cardGhost .cardCell {
+  background-color: transparent;
+  border: none !important;
+}

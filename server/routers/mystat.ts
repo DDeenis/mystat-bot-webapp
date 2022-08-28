@@ -75,6 +75,11 @@ export const mystatRouter = createRouter()
 
       return ctx.user?.getGroupLeaders();
     },
+  })
+  .query("profileSettings", {
+    async resolve({ ctx }) {
+      return ctx.user?.getUserSettings();
+    },
   });
 
 export const UserRouter = typeof mystatRouter;

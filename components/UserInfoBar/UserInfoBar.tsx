@@ -21,6 +21,7 @@ export const UserInfoBar = ({ userInfo }: Props) => {
           height={25}
           objectFit={"cover"}
           className={styles.avatar}
+          unoptimized
         />
         <span className={styles.userName}>{userName}</span>
       </div>
