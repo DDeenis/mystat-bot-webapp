@@ -1,6 +1,5 @@
 import { MystatHomeworkStatus } from "mystat-api/dist/types";
 import React from "react";
-import { Pagination } from "../Pagination/Pagination";
 import { HomeworkActive } from "./HomeworkItems/HomeworkActive";
 import { HomeworkChecked } from "./HomeworkItems/HomeworkChecked";
 import { HomeworkOverdue } from "./HomeworkItems/HomeworkOverdue";
@@ -18,11 +17,9 @@ const homeworkItems = {
 type Props = {
   items: any[];
   status: MystatHomeworkStatus;
-  page: number;
-  onPageChange: (page: number) => void;
 };
 
-export const HomeworksList = ({ items, status, page, onPageChange }: Props) => {
+export const HomeworksList = ({ items, status }: Props) => {
   return (
     <>
       <div className={styles.list}>
@@ -33,9 +30,6 @@ export const HomeworksList = ({ items, status, page, onPageChange }: Props) => {
           })
         )}
       </div>
-      {items.length !== 0 && (
-        <Pagination page={page} maxPages={10} onPageChange={onPageChange} />
-      )}
     </>
   );
 };

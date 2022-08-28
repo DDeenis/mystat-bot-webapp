@@ -6,6 +6,7 @@ import React, { useEffect } from "react";
 import { homeworkTypes, homeworkVariants } from "../../utils/homework";
 import { Multiselect } from "../Multiselect/Multiselect";
 import { EmptyState, LoadingState } from "../PageStates/PageStates";
+import { Pagination } from "../Pagination/Pagination";
 import styles from "./HomeworkPage.module.css";
 import { HomeworksList } from "./HomeworksList";
 
@@ -49,18 +50,14 @@ export const HomeworkPage: React.FC<Props> = ({
           onSelect={onStatusChange}
         />
       </div>
-      {hasData && (
-        <HomeworksList
-          items={homeworks}
-          status={hwStatus}
-          page={page}
-          onPageChange={onPageChange}
-        />
-      )}
+      {hasData && <HomeworksList items={homeworks} status={hwStatus} />}
       <LoadingState visible={isLoading} />
       <EmptyState visible={isDataEmpty && !isLoading}>
         Нет заданий этого типа
       </EmptyState>
+      {!isLoading && !isDataEmpty && (
+        <Pagination page={page} maxPages={30} onPageChange={onPageChange} />
+      )}
     </div>
   );
 };
