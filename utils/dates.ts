@@ -54,6 +54,10 @@ export const formatExamDate = (dateStr: string) => {
   )}\n${date.getFullYear()}`;
 };
 
+export const formatReviewsDate = (dateStr: string) => {
+  return formatNewsDate(dateStr);
+};
+
 export const isDatesEqual = (first: Date, second: Date) => {
   return (
     first.getFullYear() === second.getFullYear() &&

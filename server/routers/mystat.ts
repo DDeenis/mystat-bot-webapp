@@ -80,6 +80,11 @@ export const mystatRouter = createRouter()
     async resolve({ ctx }) {
       return ctx.user?.getUserSettings();
     },
+  })
+  .query("reviews", {
+    async resolve({ ctx }) {
+      return ctx.user?.getReviews();
+    },
   });
 
 export const UserRouter = typeof mystatRouter;
