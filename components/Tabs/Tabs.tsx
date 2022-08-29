@@ -24,6 +24,7 @@ export const Tabs = ({ list, selectedTabIndex, children }: Props) => {
       <Multiselect
         variants={listVariants}
         onSelect={setCurrentTab}
+        selectedVariant={currentTab}
         variantsAsTabs
       />
       <div className={styles.tabContainer}>{childrenArray[currentTab]}</div>

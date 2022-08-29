@@ -30,7 +30,7 @@ const Home: NextPage = () => {
         <ActionButton path={paths.info}>Информация о себе</ActionButton>
         <ActionButton path={paths.reviews}>Отзывы</ActionButton>
         <ActionButton path={paths.settings}>
-          Настройки и обратная связь
+          Настройки и иноформация о сайте
         </ActionButton>
       </ActionsSection>
     </>
