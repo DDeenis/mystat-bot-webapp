@@ -4,6 +4,10 @@ export default function Document() {
   return (
     <Html>
       <Head>
+        <script
+          async
+          src="https://telegram.org/js/telegram-web-app.js"
+        ></script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -18,10 +22,6 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <script
-          async
-          src="https://telegram.org/js/telegram-web-app.js"
-        ></script>
       </body>
     </Html>
   );
