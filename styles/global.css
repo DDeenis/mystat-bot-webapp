@@ -30,7 +30,6 @@ button {
   --bg-tertiary: #ffb600;
   --bg-quaternary: #ededed;
   --bg-quinary: #fdfcff;
-  --bg-shade: #f0f0f0;
   --bg-error: #ea4335;
   --bg-disabled: #2632383d;
 
@@ -40,11 +39,13 @@ button {
   --color-light: #263238;
 
   /* TODO: make themes */
-  /* --bg-default: #e5eaff;
-  --bg-primary: #fffccc;
-  --bg-secondary: #d9f5ff;
-  --bg-shade: #ffe7cc;
-  --color-primary: #000; */
+  /* --bg-default: #cbf2e3;
+  --bg-main: #7ab4bf;
+  --bg-primary: #e3c770;
+  --bg-secondary: #fecd70;
+  --bg-tertiary: #ffae6d;
+  --bg-quaternary: #f3e0b5;
+  --bg-quinary: #f2edbf; */
 
   --icon-primary: #fff;
   --icon-light: #979797;

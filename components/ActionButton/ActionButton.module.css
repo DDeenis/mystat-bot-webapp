@@ -10,13 +10,9 @@
 }
 
 .buttonDanger {
-  background-color: hsl(0, 76%, 52%);
+  background-color: var(--bg-error);
 }
 
 .button:hover {
   filter: brightness(80%);
-}
-
-.buttonDanger:hover {
-  background-color: hsl(0, 70%, 45%);
 }
