@@ -1,6 +1,6 @@
 import * as trpc from "@trpc/server";
 import * as trpcNext from "@trpc/server/adapters/next";
-import { getUserByChatId } from "./database/database";
+import { getUserByChatId } from "./database/users";
 import userStore from "./store/userStore";
 
 // TODO: remove this?

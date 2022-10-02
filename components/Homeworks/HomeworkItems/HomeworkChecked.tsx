@@ -41,7 +41,7 @@ export const HomeworkChecked = ({ item }: Props) => {
       {Boolean(item.comment) && (
         <InfoCard.Element>{item.comment}</InfoCard.Element>
       )}
-      <InfoCard.Element>
+      <InfoCard.Button>
         <a
           href={item.file_path}
           rel="noopener noreferrer"
@@ -49,8 +49,8 @@ export const HomeworkChecked = ({ item }: Props) => {
         >
           Скачать задание
         </a>
-      </InfoCard.Element>
-      <InfoCard.Element>
+      </InfoCard.Button>
+      <InfoCard.Button disabled={!Boolean(item.homework_stud.file_path)}>
         <a
           href={item.homework_stud.file_path}
           rel="noopener noreferrer"
@@ -58,7 +58,7 @@ export const HomeworkChecked = ({ item }: Props) => {
         >
           Скачать загруженный файл
         </a>
-      </InfoCard.Element>
+      </InfoCard.Button>
     </InfoCard>
   );
 };

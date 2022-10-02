@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getUserByChatId } from "../../server/database/database";
+import { getUserByChatId } from "../../server/database/users";
 import userStore from "../../server/store/userStore";
 
 type ResponseData = {

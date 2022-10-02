@@ -22,6 +22,11 @@
   max-width: 100%;
 }
 
+.newsContent * {
+  /* !important because of inline styles */
+  background-color: inherit !important;
+}
+
 .newsContent img {
   max-width: 100%;
   object-fit: contain;

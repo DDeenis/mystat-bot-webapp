@@ -1,14 +1,21 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useState } from "react";
 import { formatHomeworkDate } from "../../../utils/dates";
 import { InfoCard } from "../../InfoCard/InfoCard";
+import { HomeworkUploadModal } from "../HomeworkUploadModal";
 import styles from "./HomeworkItem.module.css";
 
 type Props = {
   item: any;
+  upload: (answerText: string) => void;
 };
 
-export const HomeworkActive = ({ item }: Props) => {
+export const HomeworkActive = ({ item, upload }: Props) => {
+  const [isOpen, setOpen] = useState(false);
+
+  const onOpen = () => setOpen(true);
+  const onClose = () => setOpen(false);
+
   return (
     <InfoCard title={item.name_spec}>
       <InfoCard.Row>
@@ -28,7 +35,7 @@ export const HomeworkActive = ({ item }: Props) => {
       {Boolean(item.comment) && (
         <InfoCard.Element>{item.comment}</InfoCard.Element>
       )}
-      <InfoCard.Element>
+      <InfoCard.Button>
         <a
           href={item.file_path}
           rel="noopener noreferrer"
@@ -36,7 +43,13 @@ export const HomeworkActive = ({ item }: Props) => {
         >
           Скачать задание
         </a>
-      </InfoCard.Element>
+      </InfoCard.Button>
+      <InfoCard.Button onClick={onOpen}>Загрузить задание</InfoCard.Button>
+      <HomeworkUploadModal
+        isOpen={isOpen}
+        onClose={onClose}
+        onConfirm={upload}
+      />
     </InfoCard>
   );
 };

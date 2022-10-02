@@ -12,10 +12,22 @@ const Homework: NextPage = () => {
   const [page, setPage] = useState(1);
   const [hwStatus, setHwStatus] = useState(MystatHomeworkStatus.Active);
   const [hwType, setHwType] = useState(MystatHomeworkType.Homework);
-  const { data, isLoading } = trpc.useQuery([
+  const { data, isLoading, refetch } = trpc.useQuery([
     "mystat.homework",
     { hwStatus, hwType, page },
   ]);
+  const { mutate: updateHw } = trpc.useMutation(["mystat.uploadHw"]);
+  const { mutate: deleteHw } = trpc.useMutation(["mystat.deleteHw"]);
+
+  const uploadHomework = (id: number, answerText: string) => {
+    updateHw({ id, answerText });
+    refetch();
+  };
+
+  const deleteHomework = (id: number) => {
+    deleteHw({ id });
+    refetch();
+  };
 
   useEffect(() => {
     setPage(1);
@@ -37,6 +49,8 @@ const Homework: NextPage = () => {
         onStatusChange={setHwStatus}
         onTypeChange={setHwType}
         onPageChange={setPage}
+        uploadHomework={uploadHomework}
+        deleteHomework={deleteHomework}
       />
     </>
   );

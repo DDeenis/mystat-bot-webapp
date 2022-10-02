@@ -24,10 +24,10 @@ export const ExamsListElement = ({ exam }: Props) => {
           [styles.markHigh]: mark >= 9,
           [styles.markMedium]: mark <= 8 && mark >= 6,
           [styles.markLow]: mark <= 5,
-          [styles.markNone]: mark === -1,
+          [styles.markNone]: mark === 0,
         })}
       >
-        {exam.mark ?? "?"}
+        {exam.mark > 0 ? exam.mark : "?"}
       </div>
     </div>
   );

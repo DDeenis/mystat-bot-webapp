@@ -12,7 +12,7 @@ const NewsDetailsPage: NextPage = () => {
   const newsId = id as string;
   const { data, isLoading } = trpc.useQuery([
     "mystat.newsDetails",
-    { id: newsId },
+    { id: parseInt(newsId) },
   ]);
 
   return (

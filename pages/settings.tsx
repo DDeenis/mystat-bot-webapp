@@ -2,12 +2,15 @@ import { NextPage } from "next";
 import React from "react";
 import { BackButton } from "../components/BackButton/BackButton";
 import { Settings } from "../components/Settings/Settings";
+import { trpc } from "../utils/trpc";
 
 const SettingsPage: NextPage = () => {
+  const { data, isLoading } = trpc.useQuery(["theme.getAll"]);
+
   return (
     <>
       <BackButton />
-      <Settings />
+      <Settings themes={data} isLoading={isLoading} />
     </>
   );
 };

@@ -6,9 +6,11 @@ import styles from "./HomeworkItem.module.css";
 
 type Props = {
   item: any;
+  upload: (answerText: string) => void;
+  deleteItem: () => void;
 };
 
-export const HomeworkUploaded = ({ item }: Props) => {
+export const HomeworkUploaded = ({ item, deleteItem }: Props) => {
   return (
     <InfoCard title={item.name_spec}>
       <InfoCard.Row>
@@ -33,7 +35,7 @@ export const HomeworkUploaded = ({ item }: Props) => {
       {Boolean(item.comment) && (
         <InfoCard.Element>{item.comment}</InfoCard.Element>
       )}
-      <InfoCard.Element>
+      <InfoCard.Button>
         <a
           href={item.file_path}
           rel="noopener noreferrer"
@@ -41,8 +43,8 @@ export const HomeworkUploaded = ({ item }: Props) => {
         >
           Скачать задание
         </a>
-      </InfoCard.Element>
-      <InfoCard.Element>
+      </InfoCard.Button>
+      <InfoCard.Button disabled={!Boolean(item.homework_stud.file_path)}>
         <a
           href={item.homework_stud.file_path}
           rel="noopener noreferrer"
@@ -50,7 +52,10 @@ export const HomeworkUploaded = ({ item }: Props) => {
         >
           Скачать загруженный файл
         </a>
-      </InfoCard.Element>
+      </InfoCard.Button>
+      <InfoCard.Button warning onClick={deleteItem}>
+        Удалить задание
+      </InfoCard.Button>
     </InfoCard>
   );
 };

@@ -21,7 +21,7 @@ export default function Document() {
       </Head>
       <body>
         <Main />
-        <NextScript crossOrigin="use-credentials" />
+        <NextScript />
       </body>
     </Html>
   );

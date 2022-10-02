@@ -22,7 +22,10 @@
 .cardElement {
   padding: 0.5rem;
   font-size: var(--text-sm);
-  color: var(--text-secondary);
+  color: var(--color-secondary);
+  word-break: break-all;
+  hyphens: auto;
+  white-space: pre-line;
 }
 
 .cardRow {
@@ -32,6 +35,7 @@
 
 .cardCell {
   width: 100%;
+  word-break: normal;
 }
 
 .cardRow > .cardCell:not(:last-child) {
@@ -57,4 +61,33 @@
 .cardGhost .cardCell {
   background-color: transparent;
   border: none !important;
+}
+
+.button {
+  background-color: var(--bg-secondary);
+  color: var(--color-primary);
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+
+.button_disabled {
+  background-color: var(--bg-disabled);
+  cursor: auto;
+}
+
+.button_warning {
+  background-color: var(--bg-error);
+}
+
+.button:hover {
+  filter: brightness(80%);
+}
+
+.button_disabled:hover {
+  filter: none;
+}
+
+.elementsContainer > .button:not(:last-child) {
+  border-bottom: var(--border-light);
 }

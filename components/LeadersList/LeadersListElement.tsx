@@ -10,6 +10,8 @@ type Props = {
 };
 
 export const LeadersListElement = ({ student, isActive }: Props) => {
+  if (!student || !student.full_name) return null;
+
   const studentName = student.full_name.split(" ").slice(0, 2).join(" ");
 
   return (

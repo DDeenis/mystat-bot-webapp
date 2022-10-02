@@ -9,8 +9,10 @@ type Props = {
 export const ActionsSection = ({ header, children }: Props) => {
   return (
     <section className={styles.mainMenuActions}>
-      <div className={styles.mainMenuActions_header}>{header}</div>
-      <div className={styles.mainMenuActions_actions}>{children}</div>
+      <div className={styles.mainMenuActions_container}>
+        <div className={styles.mainMenuActions_header}>{header}</div>
+        <div className={styles.mainMenuActions_actions}>{children}</div>
+      </div>
     </section>
   );
 };

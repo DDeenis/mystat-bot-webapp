@@ -14,8 +14,7 @@
   color: var(--color-primary);
   font-weight: 700;
   text-align: center;
-  border-radius: var(--border-radius-lg) var(--border-radius-lg)
-    var(--border-radius-xs) var(--border-radius-xs);
+  border-radius: var(--border-radius-xs);
   margin-bottom: 0.5rem;
 }
 
@@ -25,10 +24,16 @@
   gap: 0.5rem;
 }
 
+.mainMenuActions_container {
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
 .mainMenuActions_actions > :last-child:nth-child(odd) {
   grid-column: span 2;
-  border-radius: 3px 3px 10px 10px;
 }
+
+/* 
 
 .mainMenuActions_actions > :last-child {
   border-bottom-right-radius: 20px;
@@ -36,4 +41,4 @@
 
 .mainMenuActions_actions > :nth-last-child(2):nth-child(odd) {
   border-bottom-left-radius: 20px;
-}
+} */

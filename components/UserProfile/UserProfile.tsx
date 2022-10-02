@@ -9,7 +9,6 @@ type Props = {
 };
 
 export const UserProfile = ({ profileInfo }: Props) => {
-  // console.log(profileInfo);
   const [gems, coins] = profileInfo.gaming_points;
 
   return (

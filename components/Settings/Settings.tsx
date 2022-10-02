@@ -1,11 +1,21 @@
+import clsx from "clsx";
 import React from "react";
+import {
+  applyTheme,
+  setLocalTheme,
+  Theme,
+  ThemeInfo,
+} from "../../utils/themes";
+import { EmptyState, LoadingState } from "../PageStates/PageStates";
 import { Tabs } from "../Tabs/Tabs";
 import styles from "./Settings.module.css";
 
-// Currently empty
-type Props = {};
+type Props = {
+  themes?: ThemeInfo[];
+  isLoading: boolean;
+};
 
-export const Settings = (props: Props) => {
+export const Settings = ({ themes, isLoading }: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.appInfo}>
@@ -47,12 +57,64 @@ export const Settings = (props: Props) => {
         </p>
       </div>
       <div className={styles.appInfo}>
-        <p className={styles.title}>Темы (в разработке)</p>
+        <p className={styles.title}>Темы</p>
         <Tabs list={["Выбрать тему", "Создать тему"]}>
-          <div></div>
-          <div></div>
+          <div className={styles.themesGrid}>
+            <div className={styles.themeEntry_state}>
+              <LoadingState visible={isLoading} />
+              <EmptyState visible={themes?.length === 0 && !isLoading}>
+                Нет тем
+              </EmptyState>
+            </div>
+            {themes !== undefined &&
+              themes.map((t, i) => <ThemeEntry themeInfo={t} key={i} />)}
+          </div>
+          <div>WIP</div>
         </Tabs>
       </div>
     </div>
+  );
+};
+
+interface ThemeEntryProps {
+  themeInfo: ThemeInfo;
+  isCurrent?: boolean;
+}
+
+const ThemeEntry = ({ themeInfo, isCurrent }: ThemeEntryProps) => {
+  const apply = () => {
+    applyTheme(themeInfo.theme);
+    setLocalTheme(themeInfo.id);
+  };
+
+  return (
+    <button
+      className={clsx(
+        styles.themeEntry,
+        isCurrent && styles.themeEntry_current
+      )}
+      onClick={apply}
+    >
+      <div
+        className={styles.themeEntryColor}
+        style={{ backgroundColor: `rgb(${themeInfo.theme.primary})` }}
+      />
+      <div
+        className={styles.themeEntryColor}
+        style={{ backgroundColor: `rgb(${themeInfo.theme.secondary})` }}
+      />
+      <div
+        className={styles.themeEntryColor}
+        style={{ backgroundColor: `rgb(${themeInfo.theme.tertiary})` }}
+      />
+      <div
+        className={styles.themeEntryColor}
+        style={{ backgroundColor: `rgb(${themeInfo.theme.quaternary})` }}
+      />
+      <div
+        className={styles.themeEntryColor}
+        style={{ backgroundColor: `rgb(${themeInfo.theme.quinary})` }}
+      />
+    </button>
   );
 };

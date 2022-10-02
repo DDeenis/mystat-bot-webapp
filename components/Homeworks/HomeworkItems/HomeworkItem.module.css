@@ -13,3 +13,8 @@
 .creationTimeUploaded {
   color: var(--bg-tertiary);
 }
+
+.filePath {
+  color: inherit;
+  text-decoration: none;
+}

@@ -23,20 +23,35 @@ button {
 }
 
 :root {
-  --bg-default: #fff;
-  --bg-main: #263238;
-  --bg-primary: #4c8bf5;
-  --bg-secondary: #38c05d;
-  --bg-tertiary: #ffb600;
-  --bg-quaternary: #ededed;
-  --bg-quinary: #fdfcff;
-  --bg-error: #ea4335;
-  --bg-disabled: #2632383d;
+  --default: 255, 255, 255;
+  --main: 38, 50, 56;
+  --primary: 76, 139, 245;
+  --secondary: 56, 192, 93;
+  --tertiary: 255, 182, 0;
+  --quaternary: 237, 237, 237;
+  --quinary: 253, 252, 255;
+  --error: 234, 67, 53;
+  --disabled: 38, 50, 56;
 
-  --color-primary: #fff;
-  --color-secondary: #000;
-  --color-tertiary: #acacac;
-  --color-light: #263238;
+  --c-primary: 255, 255, 255;
+  --c-secondary: 0, 0, 0;
+  --c-tertiary: 172, 172, 172;
+  --c-light: 38, 50, 56;
+
+  --bg-default: rgb(var(--default));
+  --bg-main: rgb(var(--main));
+  --bg-primary: rgb(var(--primary));
+  --bg-secondary: rgb(var(--secondary));
+  --bg-tertiary: rgb(var(--tertiary));
+  --bg-quaternary: rgb(var(--quaternary));
+  --bg-quinary: rgb(var(--quinary));
+  --bg-error: rgb(var(--error));
+  --bg-disabled: rgba(var(--disabled), 0.239);
+
+  --color-primary: rgb(var(--c-primary));
+  --color-secondary: rgb(var(--c-secondary));
+  --color-tertiary: rgb(var(--c-tertiary));
+  --color-light: rgb(var(--c-light));
 
   /* TODO: make themes */
   /* --bg-default: #cbf2e3;
@@ -47,13 +62,10 @@ button {
   --bg-quaternary: #f3e0b5;
   --bg-quinary: #f2edbf; */
 
-  --icon-primary: #fff;
-  --icon-light: #979797;
-
   --stroke-light: rgba(255, 255, 255, 0.54);
   --stroke-dark: rgba(38, 50, 56, 0.24);
-  --stroke-primary: rgba(76, 139, 245, 0.54);
-  --stroke-secondary: rgba(56, 192, 93, 0.54);
+  --stroke-primary: rgba(var(--primary), 0.54);
+  --stroke-secondary: rgba(var(--secondary), 0.54);
 
   --border-light: 1px solid var(--stroke-light);
   --border-dark: 1px solid var(--stroke-dark);

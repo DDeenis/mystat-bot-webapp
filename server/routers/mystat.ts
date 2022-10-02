@@ -48,7 +48,7 @@ export const mystatRouter = createRouter()
   })
   .query("newsDetails", {
     input: z.object({
-      id: z.string(),
+      id: z.number(),
     }),
     async resolve({ ctx, input: { id } }) {
       return ctx.user?.getNewsDetails(id);
@@ -85,6 +85,23 @@ export const mystatRouter = createRouter()
     async resolve({ ctx }) {
       return ctx.user?.getReviews();
     },
+  })
+  .mutation("uploadHw", {
+    input: z.object({
+      id: z.number(),
+      answerText: z.string(),
+    }),
+    async resolve({ ctx, input: { id, answerText } }) {
+      return ctx.user?.uploadHomework(id, answerText);
+    },
+  })
+  .mutation("deleteHw", {
+    input: z.object({
+      id: z.number(),
+    }),
+    async resolve({ ctx, input: { id } }) {
+      return ctx.user?.deleteHomework(id);
+    },
   });
 
-export const UserRouter = typeof mystatRouter;
+export type UserRouter = typeof mystatRouter;

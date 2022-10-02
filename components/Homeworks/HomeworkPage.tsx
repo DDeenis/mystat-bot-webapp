@@ -19,6 +19,8 @@ type Props = {
   onStatusChange: (val: MystatHomeworkStatus) => void;
   onTypeChange: (val: MystatHomeworkType) => void;
   onPageChange: (val: number) => void;
+  uploadHomework: (id: number, answerText: string) => void;
+  deleteHomework: (id: number) => void;
 };
 
 export const HomeworkPage: React.FC<Props> = ({
@@ -30,6 +32,8 @@ export const HomeworkPage: React.FC<Props> = ({
   onStatusChange,
   onTypeChange,
   onPageChange,
+  uploadHomework,
+  deleteHomework,
 }) => {
   const hasData = homeworks !== undefined;
   const isDataEmpty = homeworks?.length === 0;
@@ -50,7 +54,14 @@ export const HomeworkPage: React.FC<Props> = ({
           onSelect={onStatusChange}
         />
       </div>
-      {hasData && <HomeworksList items={homeworks} status={hwStatus} />}
+      {hasData && (
+        <HomeworksList
+          items={homeworks}
+          status={hwStatus}
+          uploadHomework={uploadHomework}
+          deleteHomework={deleteHomework}
+        />
+      )}
       <LoadingState visible={isLoading} />
       <EmptyState visible={isDataEmpty && !isLoading}>
         Нет заданий этого типа
