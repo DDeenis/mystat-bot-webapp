@@ -44,6 +44,7 @@
   border-radius: var(--border-radius-lg);
   border: none;
   color: var(--color-primary);
+  cursor: pointer;
 }
 
 .btnSend {

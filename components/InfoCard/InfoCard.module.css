@@ -69,6 +69,7 @@
   cursor: pointer;
   border: none;
   width: 100%;
+  word-break: normal;
 }
 
 .button_disabled {
