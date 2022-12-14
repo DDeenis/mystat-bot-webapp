@@ -6,8 +6,29 @@ import { paths } from "../utils/routes";
 // for development only
 const fallbackId = undefined;
 
+const handleLogin = (
+  userId: number,
+  onSuccess: () => void,
+  onError: () => void
+) => {
+  fetch("/api/login", {
+    body: JSON.stringify(userId),
+    method: "POST",
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      // Set-Cookie header not working, so need to set in browser
+      document.cookie = `chatId=${userId}`;
+
+      res.logged ? onSuccess() : onError();
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+};
+
 const LoginPage: NextPage = () => {
-  const { push } = useRouter();
+  const { push, reload } = useRouter();
 
   useEffect(() => {
     if (!window) return;
@@ -15,20 +36,15 @@ const LoginPage: NextPage = () => {
     const userId =
       window.Telegram?.WebApp.initDataUnsafe.user?.id ?? fallbackId;
 
-    fetch("/api/login", {
-      body: JSON.stringify(userId),
-      method: "POST",
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        // Set-Cookie header not working, so need to set in browser
-        document.cookie = `chatId=${userId}`;
+    if (!userId) {
+      reload();
+    }
 
-        res.logged ? push(paths.home) : push(paths.error);
-      })
-      .catch((e) => {
-        console.error(e);
-      });
+    handleLogin(
+      userId,
+      () => push(paths.home),
+      () => push(paths.error)
+    );
   }, []);
 
   // TODO: add loader
