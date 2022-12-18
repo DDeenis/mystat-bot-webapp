@@ -35,8 +35,8 @@ export async function createContext(opts?: trpcNext.CreateNextContextOptions) {
     user,
   };
 }
-type Context = trpc.inferAsyncReturnType<typeof createContext>;
+export type UserContext = trpc.inferAsyncReturnType<typeof createContext>;
 
 export function createRouter() {
-  return trpc.router<Context>();
+  return trpc.router<UserContext>();
 }

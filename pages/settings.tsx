@@ -5,7 +5,7 @@ import { Settings } from "../components/Settings/Settings";
 import { trpc } from "../utils/trpc";
 
 const SettingsPage: NextPage = () => {
-  const { data, isLoading } = trpc.useQuery(["theme.getAll"]);
+  const { data, isLoading } = trpc.theme.getAll.useQuery();
 
   return (
     <>

@@ -12,12 +12,13 @@ const Homework: NextPage = () => {
   const [page, setPage] = useState(1);
   const [hwStatus, setHwStatus] = useState(MystatHomeworkStatus.Active);
   const [hwType, setHwType] = useState(MystatHomeworkType.Homework);
-  const { data, isLoading, refetch } = trpc.useQuery([
-    "mystat.homework",
-    { hwStatus, hwType, page },
-  ]);
-  const { mutate: updateHw } = trpc.useMutation(["mystat.uploadHw"]);
-  const { mutate: deleteHw } = trpc.useMutation(["mystat.deleteHw"]);
+  const { data, isLoading, refetch } = trpc.mystat.homework.useQuery({
+    hwStatus,
+    hwType,
+    page,
+  });
+  const { mutate: updateHw } = trpc.mystat.uploadHw.useMutation();
+  const { mutate: deleteHw } = trpc.mystat.deleteHw.useMutation();
 
   const uploadHomework = (id: number, answerText: string) => {
     updateHw({ id, answerText });

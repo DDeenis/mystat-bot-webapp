@@ -7,13 +7,9 @@ import { trpc } from "../utils/trpc";
 
 const GroupAndStreamPage = () => {
   const [listFor, setListFor] = useState<LeadersVariantsType>("group");
-  const { data, isLoading } = trpc.useQuery([
-    "mystat.leaders",
-    { list: listFor },
-  ]);
-  const { data: profile, isLoading: isLoadingProfile } = trpc.useQuery([
-    "mystat.profile",
-  ]);
+  const { data, isLoading } = trpc.mystat.leaders.useQuery({ list: listFor });
+  const { data: profile, isLoading: isLoadingProfile } =
+    trpc.mystat.profile.useQuery();
 
   return (
     <>

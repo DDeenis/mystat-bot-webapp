@@ -6,7 +6,7 @@ import { paths } from "../utils/routes";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  const { data } = trpc.useQuery(["mystat.profile"]);
+  const { data } = trpc.mystat.profile.useQuery();
 
   return (
     <>

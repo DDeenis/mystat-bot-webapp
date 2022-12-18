@@ -1,4 +1,4 @@
-import { MystatHomeworkStatus } from "mystat-api/dist/types";
+import { MystatHomework, MystatHomeworkStatus } from "mystat-api/dist/types";
 import React from "react";
 import { HomeworkActive } from "./HomeworkItems/HomeworkActive";
 import { HomeworkChecked } from "./HomeworkItems/HomeworkChecked";
@@ -15,7 +15,7 @@ const homeworkItems = {
 };
 
 type Props = {
-  items: any[];
+  items: MystatHomework[];
   status: MystatHomeworkStatus;
   uploadHomework: (id: number, answerText: string) => void;
   deleteHomework: (id: number) => void;

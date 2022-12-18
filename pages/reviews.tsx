@@ -6,7 +6,7 @@ import { ReviewsList } from "../components/Reviews/ReviewsList";
 import { trpc } from "../utils/trpc";
 
 const ReviewsPage: NextPage = () => {
-  const { data, isLoading } = trpc.useQuery(["mystat.reviews"]);
+  const { data, isLoading } = trpc.mystat.reviews.useQuery();
 
   return (
     <>

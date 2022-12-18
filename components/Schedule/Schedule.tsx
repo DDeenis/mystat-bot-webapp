@@ -2,9 +2,10 @@ import React from "react";
 import styles from "./styles/Schedule.module.css";
 import { ScheduleItem } from "./ScheduleItem";
 import { EmptyState, LoadingState } from "../PageStates/PageStates";
+import { MystatScheduleEntry } from "mystat-api/dist/types";
 
 type Props = {
-  items: any[];
+  items?: MystatScheduleEntry[];
   isLoading?: boolean;
 };
 
@@ -16,7 +17,7 @@ export const Schedule = ({ items, isLoading }: Props) => {
         Нет пар
       </EmptyState>
       {!isLoading &&
-        items.map((item, i) => <ScheduleItem item={item} key={i} />)}
+        items?.map((item, i) => <ScheduleItem item={item} key={i} />)}
     </div>
   );
 };

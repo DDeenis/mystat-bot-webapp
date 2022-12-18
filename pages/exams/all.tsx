@@ -4,7 +4,7 @@ import { ExamsList } from "../../components/Exams/ExamsList";
 import { trpc } from "../../utils/trpc";
 
 const AllExamsPage = () => {
-  const { data, isLoading } = trpc.useQuery(["mystat.allExams"]);
+  const { data, isLoading } = trpc.mystat.allExams.useQuery();
 
   return (
     <>

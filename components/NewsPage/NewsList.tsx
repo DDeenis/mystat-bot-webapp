@@ -1,10 +1,11 @@
+import { MystatNewsEntry } from "mystat-api/dist/types";
 import React from "react";
 import { EmptyState, LoadingState } from "../PageStates/PageStates";
 import { NewsListElement } from "./NewsListElement";
 import styles from "./styles/NewsList.module.css";
 
 type Props = {
-  news?: any[];
+  news?: MystatNewsEntry[];
   isLoading?: boolean;
 };
 

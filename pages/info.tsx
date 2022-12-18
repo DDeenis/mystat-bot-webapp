@@ -6,10 +6,9 @@ import { UserProfile } from "../components/UserProfile/UserProfile";
 import { trpc } from "../utils/trpc";
 
 const UserInfoPage: NextPage = () => {
-  const { data, isLoading } = trpc.useQuery(["mystat.profile"]);
-  const { data: dataSettings, isLoading: isLoadingSettings } = trpc.useQuery([
-    "mystat.profileSettings",
-  ]);
+  const { data, isLoading } = trpc.mystat.profile.useQuery();
+  const { data: dataSettings, isLoading: isLoadingSettings } =
+    trpc.mystat.profileSettings.useQuery();
 
   return (
     <>

@@ -1,15 +1,16 @@
 import clsx from "clsx";
+import { MystatHomework } from "mystat-api/dist/types";
 import React from "react";
 import { formatHomeworkDate } from "../../../utils/dates";
 import { InfoCard } from "../../InfoCard/InfoCard";
 import styles from "./HomeworkItem.module.css";
 
 type Props = {
-  item: any;
+  item: MystatHomework;
 };
 
 export const HomeworkChecked = ({ item }: Props) => {
-  const mark = item.homework_stud.mark;
+  const mark = item.homework_stud.mark ?? 0;
 
   return (
     <InfoCard title={item.name_spec}>

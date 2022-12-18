@@ -1,10 +1,11 @@
+import { MystatProfileInfo } from "mystat-api/dist/types";
 import Image from "next/image";
 import React from "react";
 import { IconCoin, IconGem } from "../Icons/Icons";
 import styles from "./UserInfoBar.module.css";
 
 type Props = {
-  userInfo: any;
+  userInfo: MystatProfileInfo;
 };
 
 export const UserInfoBar = ({ userInfo }: Props) => {
@@ -19,7 +20,7 @@ export const UserInfoBar = ({ userInfo }: Props) => {
           alt={userInfo.full_name}
           width={25}
           height={25}
-          objectFit={"cover"}
+          style={{ objectFit: "cover" }}
           className={styles.avatar}
           unoptimized
         />

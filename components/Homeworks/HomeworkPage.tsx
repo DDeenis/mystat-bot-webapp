@@ -1,4 +1,5 @@
 import {
+  MystatHomework,
   MystatHomeworkStatus,
   MystatHomeworkType,
 } from "mystat-api/dist/types";
@@ -11,7 +12,7 @@ import styles from "./HomeworkPage.module.css";
 import { HomeworksList } from "./HomeworksList";
 
 type Props = {
-  homeworks?: any[];
+  homeworks?: MystatHomework[];
   hwStatus: MystatHomeworkStatus;
   hwType: MystatHomeworkType;
   page: number;

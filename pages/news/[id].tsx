@@ -10,10 +10,9 @@ const NewsDetailsPage: NextPage = () => {
   const router = useRouter();
   const { id } = router.query;
   const newsId = id as string;
-  const { data, isLoading } = trpc.useQuery([
-    "mystat.newsDetails",
-    { id: parseInt(newsId) },
-  ]);
+  const { data, isLoading } = trpc.mystat.newsDetails.useQuery({
+    id: parseInt(newsId),
+  });
 
   return (
     <>

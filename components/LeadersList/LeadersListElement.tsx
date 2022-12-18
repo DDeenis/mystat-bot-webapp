@@ -1,11 +1,12 @@
 import clsx from "clsx";
+import { MystatStudentInfo } from "mystat-api/dist/types";
 import Image from "next/image";
 import React from "react";
 import { IconStar } from "../Icons/Icons";
 import styles from "./LeadersListElement.module.css";
 
 type Props = {
-  student: any;
+  student: MystatStudentInfo;
   isActive?: boolean;
 };
 
@@ -28,7 +29,7 @@ export const LeadersListElement = ({ student, isActive }: Props) => {
             alt={student.full_name}
             width={25}
             height={25}
-            objectFit={"cover"}
+            style={{ objectFit: "cover" }}
             className={styles.avatar}
             loading={"lazy"}
             unoptimized

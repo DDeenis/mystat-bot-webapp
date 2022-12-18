@@ -12,10 +12,9 @@ type Props = {
 
 export const SchedulePage = ({ defaultDate = new Date() }: Props) => {
   const [date, setDate] = useState(defaultDate);
-  const { data, isLoading } = trpc.useQuery([
-    "mystat.schedule",
-    { date: date.toDateString() },
-  ]);
+  const { data, isLoading } = trpc.mystat.schedule.useQuery({
+    date: date.toDateString(),
+  });
 
   return (
     <>

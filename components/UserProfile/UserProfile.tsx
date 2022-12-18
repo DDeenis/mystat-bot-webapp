@@ -1,3 +1,7 @@
+import {
+  MystatProfileInfo,
+  MystatProfileSettings,
+} from "mystat-api/dist/types";
 import Image from "next/image";
 import React from "react";
 import { IconCoin, IconGem, IconStar } from "../Icons/Icons";
@@ -5,7 +9,7 @@ import { InfoCard } from "../InfoCard/InfoCard";
 import styles from "./UserProfile.module.css";
 
 type Props = {
-  profileInfo: any;
+  profileInfo: MystatProfileInfo & MystatProfileSettings;
 };
 
 export const UserProfile = ({ profileInfo }: Props) => {
@@ -19,7 +23,7 @@ export const UserProfile = ({ profileInfo }: Props) => {
           alt={profileInfo.full_name}
           width={150}
           height={150}
-          objectFit={"cover"}
+          style={{ objectFit: "cover" }}
           className={styles.avatar}
           unoptimized
         />

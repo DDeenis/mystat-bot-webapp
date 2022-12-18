@@ -1,9 +1,10 @@
+import { MystatNewsDetails } from "mystat-api/dist/types";
 import React from "react";
 import { formatNewsDate } from "../../utils/dates";
 import styles from "./styles/NewsDetails.module.css";
 
 type Props = {
-  news: any;
+  news: MystatNewsDetails;
 };
 
 export const NewsDetails = ({ news }: Props) => {

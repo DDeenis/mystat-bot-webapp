@@ -1,10 +1,11 @@
 import clsx from "clsx";
+import { MystatExam } from "mystat-api/dist/types";
 import React from "react";
 import { formatExamDate } from "../../utils/dates";
 import styles from "./ExamsListElement.module.css";
 
 type Props = {
-  exam: any;
+  exam: MystatExam;
 };
 
 export const ExamsListElement = ({ exam }: Props) => {

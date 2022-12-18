@@ -1,10 +1,11 @@
+import { MystatExam } from "mystat-api/dist/types";
 import React from "react";
 import { EmptyState, LoadingState } from "../PageStates/PageStates";
 import styles from "./ExamsList.module.css";
 import { ExamsListElement } from "./ExamsListElement";
 
 type Props = {
-  exams?: any[];
+  exams?: MystatExam[];
   isLoading?: boolean;
 };
 

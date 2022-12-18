@@ -1,11 +1,12 @@
 import clsx from "clsx";
+import { MystatHomework } from "mystat-api/dist/types";
 import React from "react";
 import { formatHomeworkDate } from "../../../utils/dates";
 import { InfoCard } from "../../InfoCard/InfoCard";
 import styles from "./HomeworkItem.module.css";
 
 type Props = {
-  item: any;
+  item: MystatHomework;
   upload: (answerText: string) => void;
   deleteItem: () => void;
 };

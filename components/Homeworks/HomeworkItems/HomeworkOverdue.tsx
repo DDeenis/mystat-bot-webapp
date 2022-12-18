@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { MystatHomework } from "mystat-api/dist/types";
 import React, { useState } from "react";
 import { formatHomeworkDate } from "../../../utils/dates";
 import { InfoCard } from "../../InfoCard/InfoCard";
@@ -6,7 +7,7 @@ import { HomeworkUploadModal } from "../HomeworkUploadModal";
 import styles from "./HomeworkItem.module.css";
 
 type Props = {
-  item: any;
+  item: MystatHomework;
   upload: (answerText: string) => void;
 };
 
