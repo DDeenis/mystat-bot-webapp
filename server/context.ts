@@ -1,7 +1,7 @@
 import * as trpc from "@trpc/server";
 import * as trpcNext from "@trpc/server/adapters/next";
 import { getUserByChatId } from "./database/users";
-import userStore from "./store/userStore";
+import MystatAPI from "mystat-api";
 
 // TODO: remove this?
 export async function createContext(opts?: trpcNext.CreateNextContextOptions) {
@@ -13,15 +13,9 @@ export async function createContext(opts?: trpcNext.CreateNextContextOptions) {
     if (chatIdRaw) {
       const chatId = parseInt(chatIdRaw);
 
-      if (!userStore.has(chatId)) {
-        const userFromDb = await getUserByChatId(chatId);
-
-        if (userFromDb) {
-          userStore.set(chatId, { ...userFromDb });
-        }
-      }
-
-      const user = userStore.get(chatId);
+      const userFromDb = await getUserByChatId({ chatId });
+      if (!userFromDb) return;
+      const user = new MystatAPI(userFromDb);
 
       return user;
     }

@@ -13,7 +13,8 @@ export const ReviewsListElement = ({ review }: Props) => {
       <h3 className={styles.spec}>{review.spec}</h3>
       <blockquote className={styles.review}>{review.message}</blockquote>
       <figcaption className={styles.caption}>
-        {review.teacher} ({formatReviewsDate(review.date)})
+        {review.teacher} (
+        <time dateTime={review.date}>{formatReviewsDate(review.date)}</time>)
       </figcaption>
     </figure>
   );

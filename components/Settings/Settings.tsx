@@ -1,21 +1,16 @@
+"use client";
 import clsx from "clsx";
 import React from "react";
-import {
-  applyTheme,
-  setLocalTheme,
-  Theme,
-  ThemeInfo,
-} from "../../utils/themes";
-import { EmptyState, LoadingState } from "../PageStates/PageStates";
+import { applyTheme, setLocalTheme, ThemeInfo } from "../../utils/themes";
+import { EmptyState } from "../PageStates/PageStates";
 import { Tabs } from "../Tabs/Tabs";
 import styles from "./Settings.module.css";
 
 type Props = {
-  themes?: ThemeInfo[];
-  isLoading: boolean;
+  themes: ThemeInfo[];
 };
 
-export const Settings = ({ themes, isLoading }: Props) => {
+export const Settings = ({ themes }: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.appInfo}>
@@ -61,10 +56,7 @@ export const Settings = ({ themes, isLoading }: Props) => {
         <Tabs list={["Выбрать тему", "Создать тему"]}>
           <div className={styles.themesGrid}>
             <div className={styles.themeEntry_state}>
-              <LoadingState visible={isLoading} />
-              <EmptyState visible={themes?.length === 0 && !isLoading}>
-                Нет тем
-              </EmptyState>
+              <EmptyState visible={themes?.length === 0}>Нет тем</EmptyState>
             </div>
             {themes !== undefined &&
               themes.map((t, i) => <ThemeEntry themeInfo={t} key={i} />)}

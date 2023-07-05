@@ -1,3 +1,4 @@
+"use client";
 import clsx from "clsx";
 import React from "react";
 import styles from "./Multiselect.module.css";
@@ -14,12 +15,12 @@ type Props<TValue> = {
   variantsAsTabs?: boolean;
 };
 
-export const Multiselect = <TValue = string,>({
+export function Multiselect<TValue>({
   variants,
   selectedVariant,
   onSelect,
   variantsAsTabs,
-}: Props<TValue>) => {
+}: Props<TValue>) {
   const createOnClick = (variant: TValue) => () => onSelect(variant);
 
   return (
@@ -42,4 +43,4 @@ export const Multiselect = <TValue = string,>({
       ))}
     </div>
   );
-};
+}

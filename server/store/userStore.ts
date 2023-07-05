@@ -18,10 +18,10 @@ export class UserStore {
     return this.users.get(chatId);
   }
 
-  set(chatId: ChatId, userData: MystatUserData) {
-    const api = new MystatAPI(userData);
-    api._updateAccessToken();
-    this.users.set(chatId, api);
+  set(chatId: ChatId, userData: MystatAPI) {
+    // const api = new MystatAPI(userData);
+    // api._updateAccessToken();
+    this.users.set(chatId, userData);
   }
 
   has(chatId: ChatId) {
@@ -33,6 +33,4 @@ export class UserStore {
   }
 }
 
-const userStore = new UserStore();
-
-export default userStore;
+export const userCache = new UserStore();

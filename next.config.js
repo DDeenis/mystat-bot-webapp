@@ -3,7 +3,16 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["mystatfiles.itstep.org"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "itstep.org",
+      },
+    ],
+    domains: ["itstep.org"],
+  },
+  experimental: {
+    serverActions: true,
   },
 };
 

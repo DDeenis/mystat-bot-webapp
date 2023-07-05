@@ -5,17 +5,13 @@ import { NewsListElement } from "./NewsListElement";
 import styles from "./styles/NewsList.module.css";
 
 type Props = {
-  news?: MystatNewsEntry[];
-  isLoading?: boolean;
+  news: MystatNewsEntry[];
 };
 
-export const NewsList = ({ news, isLoading }: Props) => {
+export const NewsList = ({ news }: Props) => {
   return (
     <div className={styles.container}>
-      <LoadingState visible={isLoading} />
-      <EmptyState visible={news?.length === 0 && !isLoading}>
-        Нет новостей
-      </EmptyState>
+      <EmptyState visible={news?.length === 0}>Нет новостей</EmptyState>
       {news !== undefined &&
         news.map((n) => <NewsListElement item={n} key={n.id_bbs} />)}
     </div>
