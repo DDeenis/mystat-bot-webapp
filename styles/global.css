@@ -6,7 +6,7 @@
 
 body {
   font-family: var(--font-family-primary);
-  background-color: var(--bg-default);
+  background-color: var(--bg-secondary);
   margin: 0;
 }
 
@@ -23,63 +23,38 @@ button {
 }
 
 :root {
-  --default: 255, 255, 255;
-  --main: 38, 50, 56;
-  --primary: 76, 139, 245;
-  --secondary: 56, 192, 93;
-  --tertiary: 255, 182, 0;
-  --quaternary: 237, 237, 237;
-  --quinary: 253, 252, 255;
-  --error: 234, 67, 53;
-  --disabled: 38, 50, 56;
+  color-scheme: var(--tg-color-scheme);
+  --bg-main: rgb(38, 50, 56);
+  --bg-primary: var(--tg-theme-bg-color, rgb(76, 139, 245));
+  --bg-secondary: var(--tg-theme-secondary-bg-color, rgb(255, 255, 255));
+  --bg-tertiary: rgb(255, 182, 0);
+  --bg-error: rgb(234, 67, 53);
+  /* TODO: fix */
+  --bg-disabled: color-mix(
+    in srgb,
+    var(--tg-theme-secondary-bg-color),
+    transparent 23.9%
+  );
 
-  --c-primary: 255, 255, 255;
-  --c-secondary: 0, 0, 0;
-  --c-tertiary: 172, 172, 172;
-  --c-light: 38, 50, 56;
+  --button-bg: var(--tg-theme-button-color, var(--bg-primary));
+  --button-text: var(--tg-theme-button-text-color, rgb(255, 255, 255));
+  --button-border: 1px solid var(--button-bg);
 
-  --bg-default: rgb(var(--default));
-  --bg-main: rgb(var(--main));
-  --bg-primary: rgb(var(--primary));
-  --bg-secondary: rgb(var(--secondary));
-  --bg-tertiary: rgb(var(--tertiary));
-  --bg-quaternary: rgb(var(--quaternary));
-  --bg-quinary: rgb(var(--quinary));
-  --bg-error: rgb(var(--error));
-  --bg-disabled: rgba(var(--disabled), 0.239);
-
-  --color-primary: rgb(var(--c-primary));
-  --color-secondary: rgb(var(--c-secondary));
-  --color-tertiary: rgb(var(--c-tertiary));
-  --color-light: rgb(var(--c-light));
+  --link-color: var(--tg-theme-link-color);
 
   /* TODO: make themes */
-  /* --bg-default: #cbf2e3;
-  --bg-main: #7ab4bf;
-  --bg-primary: #e3c770;
-  --bg-secondary: #fecd70;
-  --bg-tertiary: #ffae6d;
-  --bg-quaternary: #f3e0b5;
-  --bg-quinary: #f2edbf; */
 
-  --stroke-light: rgba(255, 255, 255, 0.54);
-  --stroke-dark: rgba(38, 50, 56, 0.24);
-  --stroke-primary: rgba(var(--primary), 0.54);
-  --stroke-secondary: rgba(var(--secondary), 0.54);
+  --stroke-primary: var(--tg-theme-bg-color);
+  --stroke-secondary: var(--tg-theme-secondary-bg-color);
 
-  --border-light: 1px solid var(--stroke-light);
-  --border-dark: 1px solid var(--stroke-dark);
   --border-primary: 1px solid var(--stroke-primary);
   --border-secondary: 1px solid var(--stroke-secondary);
-  --border-disabled: 1px dashed var(--stroke-dark);
 
   --border-radius-xs: 3px;
   --border-radius-sm: 6px;
   --border-radius-md: 12px;
   --border-radius-lg: 20px;
   --border-radius-full: 100%;
-
-  /* --font-family-primary: "Roboto", sans-serif; */
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;

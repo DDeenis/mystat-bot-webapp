@@ -9,14 +9,12 @@
 
 .title {
   font-size: var(--text-lg);
-  color: var(--color-secondary);
   font-weight: 500;
   text-align: center;
 }
 
 .info {
   font-size: var(--text-base);
-  color: var(--color-secondary);
 }
 
 .appInfo {
@@ -25,35 +23,4 @@
 
 .appInfo > :first-child {
   margin-bottom: 0.5rem;
-}
-
-.themesGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.themeEntry {
-  display: flex;
-  width: 100%;
-  border: none;
-  border-radius: var(--border-radius-sm);
-  overflow: hidden;
-  padding: 0;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-.themeEntry_state {
-  grid-column: span 2;
-}
-
-.themeEntry_current {
-  border: var(--border-primary);
-  border-width: 2px;
-}
-
-.themeEntryColor {
-  width: 100%;
-  min-height: 160px;
 }

@@ -1,7 +1,7 @@
 .container {
   position: fixed;
   inset: 0;
-  background-color: var(--bg-default);
+  background-color: var(--bg-secondary);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@
   width: 100%;
   min-height: 250px;
   resize: vertical;
-  border: var(--border-dark);
+  border: var(--border-secondary);
   border-radius: var(--border-radius-sm);
   margin: 1rem 0;
   font-family: inherit;

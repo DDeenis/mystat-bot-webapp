@@ -1,5 +1,5 @@
 .container {
-  border: var(--border-secondary);
+  border: var(--border-primary);
   border-radius: var(--border-radius-sm);
   display: flex;
   flex-direction: column;
@@ -16,14 +16,12 @@
 }
 
 .elementsContainer {
-  background-color: var(--bg-quinary);
+  background-color: var(--bg-primary);
 }
 
 .cardElement {
   padding: 0.5rem;
   font-size: var(--text-sm);
-  color: var(--color-secondary);
-  word-break: break-all;
   hyphens: auto;
   white-space: pre-line;
 }
@@ -35,7 +33,6 @@
 
 .cardCell {
   width: 100%;
-  word-break: normal;
 }
 
 .cardRow > .cardCell:not(:last-child) {
@@ -65,7 +62,6 @@
 
 .button {
   background-color: var(--bg-secondary);
-  color: var(--color-primary);
   cursor: pointer;
   border: none;
   width: 100%;
@@ -90,5 +86,5 @@
 }
 
 .elementsContainer > .button:not(:last-child) {
-  border-bottom: var(--border-light);
+  border-bottom: var(--border-primary);
 }

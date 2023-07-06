@@ -8,15 +8,15 @@
   width: max-content;
   padding: 0.5rem 0.75rem;
   border-radius: var(--border-radius-lg);
-  background-color: var(--bg-primary);
-  color: var(--color-primary);
+  border: var(--button-border);
+  background-color: var(--bg-secondary);
+  color: var(--button-text);
   cursor: pointer;
-  box-shadow: inset 0px 0px 0px 2px var(--stroke-dark);
   margin: 0 0.25rem 0.35rem 0;
 }
 
 .variant__selected {
-  background-color: var(--bg-secondary);
+  background-color: var(--button-bg);
 }
 
 .variant.variant__asTabs {

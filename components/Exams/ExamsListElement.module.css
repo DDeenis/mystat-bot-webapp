@@ -5,7 +5,7 @@
   justify-content: space-between;
   border: var(--border-primary);
   border-radius: var(--border-radius-md);
-  background-color: var(--bg-quinary);
+  background-color: var(--bg-secondary);
   overflow: hidden;
   --section-padding: 0.5rem;
   --section-width: 35px;
@@ -17,7 +17,6 @@
   justify-content: center;
   align-items: center;
   font-weight: 500;
-  color: var(--color-primary);
 }
 
 .dateSection {
@@ -39,7 +38,7 @@
 
 .markSection {
   padding: var(--section-padding);
-  background-color: var(--bg-secondary);
+  background-color: var(--button-bg);
   font-size: var(--text-base);
 }
 
@@ -53,7 +52,7 @@
 }
 
 .markHigh {
-  background-color: var(--bg-secondary);
+  background-color: var(--button-bg);
 }
 
 .markMedium {

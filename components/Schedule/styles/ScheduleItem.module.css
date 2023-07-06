@@ -1,6 +1,5 @@
 .timeLabel {
   text-align: center;
-  color: var(--bg-primary);
   font-weight: 500;
   font-size: var(--text-base);
 }

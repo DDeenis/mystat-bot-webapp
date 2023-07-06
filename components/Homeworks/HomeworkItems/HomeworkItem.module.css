@@ -2,10 +2,6 @@
   text-align: center;
 }
 
-.creationTime {
-  color: var(--bg-secondary);
-}
-
 .completionTime {
   color: var(--bg-error);
 }

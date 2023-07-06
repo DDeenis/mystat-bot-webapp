@@ -1,14 +1,14 @@
 .container {
   width: 100%;
   padding: 1rem;
-  border: var(--border-dark);
+  border: var(--border-primary);
   border-radius: var(--border-radius-lg);
-  background-color: var(--bg-quaternary);
+  background-color: var(--bg-secondary);
+  color: initial;
   cursor: pointer;
 }
 
 .theme {
-  color: var(--color-light);
   font-size: var(--text-lg);
   font-weight: 500;
 }
@@ -16,7 +16,7 @@
 .date {
   padding: 0.25rem 0.5rem;
   width: max-content;
-  background-color: var(--bg-default);
+  background-color: var(--bg-primary);
   border-radius: var(--border-radius-lg);
   font-size: var(--text-sm);
   margin-top: 0.5rem;
