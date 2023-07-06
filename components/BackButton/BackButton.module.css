@@ -11,6 +11,7 @@
   padding: 0.45rem 0;
   margin-bottom: 0.5rem;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .button:hover {

@@ -24,13 +24,8 @@ export const getAllThemes = async (): Promise<ThemeInfo[] | undefined> => {
 
 export const upsertTheme = async (theme: ThemeInfo, themeId?: number) => {
   if (!themeId) {
-    await supabase
-      .from(themesTable)
-      .insert({ theme: theme }, { returning: "minimal" });
+    await supabase.from(themesTable).insert({ theme: theme });
   }
 
-  await supabase
-    .from(themesTable)
-    .update({ theme: theme }, { returning: "minimal" })
-    .eq("id", themeId);
+  await supabase.from(themesTable).update({ theme: theme }).eq("id", themeId);
 };

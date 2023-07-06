@@ -24,6 +24,7 @@ export const UserProfile = ({ profileInfo }: Props) => {
           width={150}
           height={150}
           style={{ objectFit: "cover" }}
+          priority={true}
           className={styles.avatar}
           unoptimized
         />

@@ -14,10 +14,19 @@ export const paths = {
     allNews: "news",
     newsDetails: (id: number) => `${paths.news.allNews}/${id}`,
   },
-  group: "group",
+  leaders: {
+    group: "leaders/group",
+    stream: "leaders/stream",
+  },
   info: "info",
   settings: "settings",
   about: "about",
   error: "error",
   reviews: "reviews",
+};
+
+export const getLastRouteSegment = (pathname: string) => {
+  const index = pathname.lastIndexOf("/");
+  if (index === -1 || pathname.length <= 1) return pathname;
+  return pathname.substring(index + 1);
 };

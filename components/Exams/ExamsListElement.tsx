@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const ExamsListElement = ({ exam }: Props) => {
-  const mark = exam.mark ?? -1;
+  const mark = exam.mark ?? 0;
 
   return (
     <div className={styles.container}>

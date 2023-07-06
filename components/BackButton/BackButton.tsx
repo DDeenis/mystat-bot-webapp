@@ -1,4 +1,5 @@
-import { useRouter } from "next/router";
+"use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { IconArrowLeft } from "../Icons/Icons";
 import styles from "./BackButton.module.css";
@@ -11,9 +12,9 @@ export const BackButton = ({ children = "Назад" }: Props) => {
   const { back } = useRouter();
 
   return (
-    <button onClick={back} className={styles.button}>
+    <a href="#" onClick={back} className={styles.button}>
       <IconArrowLeft />
       <p className={styles.text}>{children}</p>
-    </button>
+    </a>
   );
 };

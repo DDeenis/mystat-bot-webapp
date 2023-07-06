@@ -7,15 +7,13 @@ import { LeadersListElement } from "./LeadersListElement";
 type Props = {
   students?: MystatStudentInfo[];
   studentId?: number;
-  isLoading?: boolean;
 };
 
-export const LeadersList = ({ students, studentId, isLoading }: Props) => {
+export const LeadersList = ({ students, studentId }: Props) => {
   return (
     <>
       <div className={styles.container}>
-        <LoadingState visible={isLoading} />
-        <EmptyState visible={students?.length === 0 && !isLoading} />
+        <EmptyState visible={students?.length === 0} />
         {students !== undefined &&
           students.map((s) => (
             <LeadersListElement
