@@ -40,7 +40,7 @@ export const Pagination = ({ page, maxPages, onPageChange }: Props) => {
       />
       <div className={styles.pagesContainer}>
         {visiblePages.map((p) => (
-          <span
+          <button
             className={clsx(styles.page, {
               [styles.page_selected]: p === page,
             })}
@@ -48,7 +48,7 @@ export const Pagination = ({ page, maxPages, onPageChange }: Props) => {
             key={p}
           >
             {p}
-          </span>
+          </button>
         ))}
       </div>
       <button
