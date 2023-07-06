@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import { paths } from "../utils/routes";
 
 // for development only
@@ -31,34 +31,36 @@ const handleLogin = (
 
 export default function Page() {
   const { push, refresh } = useRouter();
-  const attempts = useRef(1);
+  const [attempts, setAttempts] = useState(1);
 
   useEffect(() => {
-    if (!window) return;
+    const intervalId = setInterval(() => {
+      if (!window) return;
 
-    const userId =
-      window.Telegram?.WebApp.initDataUnsafe.user?.id ?? fallbackId;
+      const userId =
+        window.Telegram?.WebApp.initDataUnsafe.user?.id ?? fallbackId;
 
-    if (!userId) {
-      refresh();
-      attempts.current += 1;
-    }
+      if (!userId) {
+        setAttempts((curr) => curr + 1);
+        return;
+      }
 
-    handleLogin(
-      userId,
-      () => push(paths.home),
-      () => push(paths.error)
-    );
+      clearInterval(intervalId);
+      handleLogin(
+        userId,
+        () => push(paths.home),
+        () => push(paths.error)
+      );
+    }, 1000);
+    return () => clearInterval(intervalId);
   }, []);
 
-  if (attempts.current >= maxAttempts) {
+  if (attempts >= maxAttempts) {
     push(paths.error);
   }
 
   // TODO: add loader
   return (
-    <div className="login-page">
-      Выполняется вход... (Попытка №{attempts.current})
-    </div>
+    <div className="login-page">Выполняется вход... (Попытка №{attempts})</div>
   );
 }
