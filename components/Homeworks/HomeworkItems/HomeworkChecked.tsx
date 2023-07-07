@@ -51,9 +51,9 @@ export const HomeworkChecked = ({ item }: Props) => {
           Скачать задание
         </a>
       </InfoCard.Button>
-      <InfoCard.Button disabled={!Boolean(item.homework_stud.file_path)}>
+      <InfoCard.Button disabled={!Boolean(item.homework_stud?.file_path)}>
         <a
-          href={item.homework_stud.file_path}
+          href={item.homework_stud?.file_path}
           rel="noopener noreferrer"
           className={styles.filePath}
         >
