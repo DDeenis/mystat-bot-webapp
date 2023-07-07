@@ -1,11 +1,11 @@
 import clsx from "clsx";
-import { MystatScheduleEntry } from "mystat-api/dist/types";
+import { ScheduleEntry } from "mystat-api";
 import React from "react";
 import { InfoCard } from "../InfoCard/InfoCard";
 import styles from "./styles/ScheduleItem.module.css";
 
 type Props = {
-  item: MystatScheduleEntry;
+  item: ScheduleEntry;
 };
 
 export const ScheduleItem = ({ item }: Props) => {

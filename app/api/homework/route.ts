@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getUserByChatId } from "../../../server/database/users";
 import { cookies } from "next/headers";
-import MystatAPI from "mystat-api";
+import { createClient } from "mystat-api";
 
 const requestSchema = z.object({
   hwStatus: z.number().min(0).max(5),
@@ -23,9 +23,13 @@ const getUser = async () => {
     return;
   }
 
-  const api = new MystatAPI(user);
-  await api._updateAccessToken();
-  return api;
+  const apiClient = await createClient({
+    loginData: user,
+    language: "ru",
+    cache: true,
+  });
+
+  return apiClient;
 };
 
 export async function GET(req: Request) {
@@ -50,16 +54,19 @@ export async function GET(req: Request) {
 
   const { data } = requestValidationData;
 
-  const user = await getUser();
+  const mystat = await getUser();
 
-  if (!user) {
+  if (!mystat) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 403 });
   }
 
-  return NextResponse.json(
-    await user.getHomeworkList(data.hwStatus, data.page, data.hwType),
-    { status: 200 }
+  const res = await mystat.getHomeworkList(
+    data.page,
+    data.hwStatus,
+    data.hwType
   );
+
+  return NextResponse.json(res, { status: 200 });
 }
 
 const uploadSchema = z.object({
@@ -86,9 +93,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 403 });
   }
 
-  return NextResponse.json(user.uploadHomework(data.id, data.answerText), {
-    status: 201,
-  });
+  return NextResponse.json(
+    user.uploadHomework({ homeworkId: data.id, answerText: data.answerText }),
+    {
+      status: 201,
+    }
+  );
 }
 
 const deleteSchema = z.object({

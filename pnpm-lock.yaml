@@ -18,8 +18,8 @@ dependencies:
     specifier: ^0.1.13
     version: 0.1.13
   mystat-api:
-    specifier: ^3.1.4
-    version: 3.1.4(encoding@0.1.13)
+    specifier: ^4.0.0
+    version: 4.0.0
   next:
     specifier: ^13.4.7
     version: 13.4.7(react-dom@18.2.0)(react@18.2.0)
@@ -1639,12 +1639,8 @@ packages:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: true
 
-  /mystat-api@3.1.4(encoding@0.1.13):
-    resolution: {integrity: sha512-9qcB2gusIzhpDFkVxVQezb5LNo4kKdLq4R7ydWF537kdy35W+FX0Nzu5mBSnRNoPRs25a6RANUU2Qgb+9u+omw==}
-    dependencies:
-      cross-fetch: 3.1.6(encoding@0.1.13)
-    transitivePeerDependencies:
-      - encoding
+  /mystat-api@4.0.0:
+    resolution: {integrity: sha512-MD3P2B9zgOa8w3CwfaOxt5WBv2rG+sS69DU6F4RYcCTVghzbwdP7M5ugMiJ1UVEqVKXnrBCv26qFZxhSLfXDBg==}
     dev: false
 
   /nanoid@3.3.6:

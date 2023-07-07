@@ -1,11 +1,11 @@
-import { MystatStudentInfo } from "mystat-api/dist/types";
+import { StudentInfo } from "mystat-api";
 import React from "react";
-import { EmptyState, LoadingState } from "../PageStates/PageStates";
+import { EmptyState } from "../PageStates/PageStates";
 import styles from "./LeadersList.module.css";
 import { LeadersListElement } from "./LeadersListElement";
 
 type Props = {
-  students?: MystatStudentInfo[];
+  students?: StudentInfo[];
   studentId?: number;
 };
 

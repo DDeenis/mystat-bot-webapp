@@ -1,11 +1,11 @@
-import { MystatNewsEntry } from "mystat-api/dist/types";
+import { NewsEntry } from "mystat-api";
 import React from "react";
 import { EmptyState, LoadingState } from "../PageStates/PageStates";
 import { NewsListElement } from "./NewsListElement";
 import styles from "./styles/NewsList.module.css";
 
 type Props = {
-  news: MystatNewsEntry[];
+  news: NewsEntry[];
 };
 
 export const NewsList = ({ news }: Props) => {

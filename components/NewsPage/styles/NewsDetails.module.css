@@ -25,6 +25,7 @@
 .newsContent * {
   /* !important because of inline styles */
   background-color: inherit !important;
+  color: initial !important;
 }
 
 .newsContent img {

@@ -1,10 +1,10 @@
-import { MystatReview } from "mystat-api/dist/types";
+import { Review } from "mystat-api";
 import React from "react";
 import styles from "./ReviewsList.module.css";
 import { ReviewsListElement } from "./ReviewsListElement";
 
 type Props = {
-  reviews: MystatReview[];
+  reviews: Review[];
 };
 
 export const ReviewsList = ({ reviews }: Props) => {

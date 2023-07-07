@@ -4,7 +4,7 @@ import styles from "./styles/SchedulePage.module.css";
 import Calendar from "react-calendar";
 import { Schedule } from "./Schedule";
 import { BackButton } from "../BackButton/BackButton";
-import { MystatResponse, MystatScheduleEntry } from "mystat-api/dist/types";
+import { ScheduleEntry } from "mystat-api";
 import "react-calendar/dist/Calendar.css";
 
 type Props = {
@@ -21,16 +21,16 @@ const toDateString = (date: Date) => {
 export const SchedulePage = ({ defaultDate = new Date() }: Props) => {
   const [date, setDate] = React.useState(defaultDate);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [schedule, setSchedule] = React.useState<MystatScheduleEntry[]>([]);
+  const [schedule, setSchedule] = React.useState<ScheduleEntry[]>([]);
 
   const fetchSchedule = async () => {
     setIsLoading(true);
     const response = await fetch(`/api/schedule?date=${toDateString(date)}`, {
       cache: "force-cache",
     });
-    const result: MystatResponse<MystatScheduleEntry[]> = await response.json();
-    if (result.success) {
-      setSchedule(result.data);
+    const result: ScheduleEntry[] = await response.json();
+    if (result) {
+      setSchedule(result);
     }
     setIsLoading(false);
   };

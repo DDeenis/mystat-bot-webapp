@@ -1,7 +1,7 @@
 import React from "react";
 import { BackButton } from "../../../components/BackButton/BackButton";
 import { ExamsList } from "../../../components/Exams/ExamsList";
-import { getFutureExams } from "../../../utils/actions";
+import { getFutureExams } from "../../../server/actions";
 
 export default async function FutureExamsPage() {
   const exams = await getFutureExams();
@@ -9,7 +9,7 @@ export default async function FutureExamsPage() {
   return (
     <>
       <BackButton />
-      <ExamsList exams={exams?.data ?? []} />
+      <ExamsList exams={exams ?? []} />
     </>
   );
 }

@@ -1,11 +1,7 @@
 "use server";
 import { cookies } from "next/headers";
-import { getUserByChatId } from "../server/database/users";
-import {
-  MystatHomeworkStatus,
-  MystatHomeworkType,
-} from "mystat-api/dist/types";
-import MystatAPI from "mystat-api";
+import { getUserByChatId } from "./database/users";
+import { createClient, HomeworkStatus, HomeworkType } from "mystat-api";
 
 const getUser = async () => {
   const chatIdStr = cookies().get("chatId");
@@ -16,9 +12,12 @@ const getUser = async () => {
 
   const userFromDb = await getUserByChatId({ chatId });
   if (!userFromDb) throw `User with id ${chatId} not registered`;
-  const api = new MystatAPI(userFromDb);
-  await api._updateAccessToken();
-  return api;
+  const apiClient = await createClient({
+    loginData: userFromDb,
+    language: "ru",
+    cache: true,
+  });
+  return apiClient;
 };
 
 export const getSchedule = async (
@@ -36,8 +35,8 @@ export const getSchedule = async (
 };
 
 export const getHomeworkList = async (
-  hwStatus: MystatHomeworkStatus,
-  hwType: MystatHomeworkType,
+  hwStatus: HomeworkStatus,
+  hwType: HomeworkType,
   page: number
 ) => {
   const user = await getUser();
@@ -46,12 +45,12 @@ export const getHomeworkList = async (
 
 export const getProfile = async () => {
   const user = await getUser();
-  return user?.getProfileInfo();
+  return user?.getUserInfo();
 };
 
 export const getAllNews = async () => {
   const user = await getUser();
-  return user?.getNews();
+  return user?.getLatestNews();
 };
 
 export const getNewsDetails = async (id: number) => {
@@ -66,7 +65,7 @@ export const getFutureExams = async () => {
 
 export const getAllExams = async () => {
   const user = await getUser();
-  return user?.getExams();
+  return user?.getAllExams();
 };
 
 export const getGroupLeaders = async () => {
@@ -97,7 +96,7 @@ export const uploadHomework = async ({
   answerText: string;
 }) => {
   const user = await getUser();
-  return user?.uploadHomework(id, answerText);
+  return user?.uploadHomework({ homeworkId: id, answerText });
 };
 
 export const deleteHomework = async (id: number) => {
@@ -108,11 +107,11 @@ export const deleteHomework = async (id: number) => {
 export const getFullProfileInfo = async () => {
   const user = await getUser();
   const [profile, settings] = await Promise.all([
-    user?.getProfileInfo(),
+    user?.getUserInfo(),
     user?.getUserSettings(),
   ]);
 
-  if (!profile?.data || !settings?.data) return;
+  if (!profile || !settings) return;
 
-  return { ...profile.data, ...settings.data };
+  return { ...profile, ...settings };
 };

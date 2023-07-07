@@ -1,7 +1,7 @@
 import React from "react";
 import { BackButton } from "../../components/BackButton/BackButton";
 import { UserProfile } from "../../components/UserProfile/UserProfile";
-import { getFullProfileInfo } from "../../utils/actions";
+import { getFullProfileInfo } from "../../server/actions";
 
 export default async function UserInfoPage() {
   const profileInfo = await getFullProfileInfo();

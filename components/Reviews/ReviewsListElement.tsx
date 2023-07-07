@@ -1,10 +1,10 @@
-import { MystatReview } from "mystat-api/dist/types";
+import { Review } from "mystat-api";
 import React from "react";
 import { formatReviewsDate } from "../../utils/dates";
 import styles from "./ReviewsListElement.module.css";
 
 type Props = {
-  review: MystatReview;
+  review: Review;
 };
 
 export const ReviewsListElement = ({ review }: Props) => {

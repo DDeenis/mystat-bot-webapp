@@ -1,6 +1,6 @@
 import React from "react";
 import { LeadersList } from "../../../components/LeadersList/LeadersList";
-import { getGroupLeaders, getProfile } from "../../../utils/actions";
+import { getGroupLeaders, getProfile } from "../../../server/actions";
 
 export default async function GroupLeadersPage() {
   const [profile, leaders] = await Promise.all([
@@ -9,9 +9,6 @@ export default async function GroupLeadersPage() {
   ]);
 
   return (
-    <LeadersList
-      students={leaders?.data ?? []}
-      studentId={profile?.data?.student_id}
-    />
+    <LeadersList students={leaders ?? []} studentId={profile?.student_id} />
   );
 }

@@ -1,17 +1,14 @@
-import {
-  MystatHomeworkStatus,
-  MystatHomeworkType,
-} from "mystat-api/dist/types";
+import { HomeworkStatus, HomeworkType } from "mystat-api";
 
 export const homeworkVariants = [
-  { title: "Текущие", value: MystatHomeworkStatus.Active },
-  { title: "Выполненные", value: MystatHomeworkStatus.Checked },
-  { title: "Загруженные", value: MystatHomeworkStatus.Uploaded },
-  { title: "Просроченные", value: MystatHomeworkStatus.Overdue },
-  { title: "Удаленные", value: MystatHomeworkStatus.Deleted },
+  { title: "Текущие", value: HomeworkStatus.Active },
+  { title: "Выполненные", value: HomeworkStatus.Checked },
+  { title: "Загруженные", value: HomeworkStatus.Uploaded },
+  { title: "Просроченные", value: HomeworkStatus.Overdue },
+  { title: "Удаленные", value: HomeworkStatus.Deleted },
 ];
 
 export const homeworkTypes = [
-  { title: "Домашние задания", value: MystatHomeworkType.Homework },
-  { title: "Лабораторные", value: MystatHomeworkType.Lab },
+  { title: "Домашние задания", value: HomeworkType.Homework },
+  { title: "Лабораторные", value: HomeworkType.Lab },
 ];

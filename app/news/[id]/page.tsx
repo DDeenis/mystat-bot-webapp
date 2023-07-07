@@ -1,6 +1,6 @@
 import React from "react";
 import { NewsDetails } from "../../../components/NewsPage/NewsDetails";
-import { getNewsDetails } from "../../../utils/actions";
+import { getNewsDetails } from "../../../server/actions";
 
 export default async function NewsDetailsPage({
   params,
@@ -13,8 +13,8 @@ export default async function NewsDetailsPage({
 
   return (
     <>
-      {newsData?.success ? (
-        <NewsDetails news={newsData.data} />
+      {newsData ? (
+        <NewsDetails news={newsData} />
       ) : (
         <div>Не удалось загрузить новость &quot;{id}&quot;</div>
       )}

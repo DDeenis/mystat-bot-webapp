@@ -2,14 +2,14 @@ import { ActionButton } from "../../components/ActionButton/ActionButton";
 import { ActionsSection } from "../../components/ActionsSection/ActionsSection";
 import { UserInfoBar } from "../../components/UserInfoBar/UserInfoBar";
 import { paths } from "../../utils/routes";
-import { getProfile } from "../../utils/actions";
+import { getProfile } from "../../server/actions";
 
 export default async function Home() {
   const profile = await getProfile();
 
   return (
     <>
-      {profile?.data && <UserInfoBar userInfo={profile.data} />}
+      {profile && <UserInfoBar userInfo={profile} />}
       <ActionsSection header={"Расписание"}>
         <ActionButton path={paths.schedule.today}>На сегодня</ActionButton>
         <ActionButton path={paths.schedule.tomorrow}>На завтра</ActionButton>

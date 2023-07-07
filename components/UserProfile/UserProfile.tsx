@@ -1,7 +1,4 @@
-import {
-  MystatProfileInfo,
-  MystatProfileSettings,
-} from "mystat-api/dist/types";
+import { UserInfo, UserSettings } from "mystat-api";
 import Image from "next/image";
 import React from "react";
 import { IconCoin, IconGem, IconStar } from "../Icons/Icons";
@@ -9,7 +6,7 @@ import { InfoCard } from "../InfoCard/InfoCard";
 import styles from "./UserProfile.module.css";
 
 type Props = {
-  profileInfo: MystatProfileInfo & MystatProfileSettings;
+  profileInfo: UserInfo & UserSettings;
 };
 
 export const UserProfile = ({ profileInfo }: Props) => {

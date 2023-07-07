@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getUserByChatId } from "../../../server/database/users";
-import MystatAPI from "mystat-api";
+import { createClient } from "mystat-api";
 
 const getUser = async () => {
   const chatIdStr = cookies().get("chatId")?.value;
@@ -17,9 +17,12 @@ const getUser = async () => {
     return;
   }
 
-  const api = new MystatAPI(user);
-  await api._updateAccessToken();
-  return api;
+  const apiClient = await createClient({
+    loginData: user,
+    language: "ru",
+    cache: true,
+  });
+  return apiClient;
 };
 
 export async function GET(req: Request) {

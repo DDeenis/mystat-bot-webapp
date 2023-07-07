@@ -1,4 +1,4 @@
-import { MystatHomework, MystatHomeworkStatus } from "mystat-api/dist/types";
+import { Homework, HomeworkStatus } from "mystat-api";
 import React from "react";
 import { HomeworkActive } from "./HomeworkItems/HomeworkActive";
 import { HomeworkChecked } from "./HomeworkItems/HomeworkChecked";
@@ -7,16 +7,16 @@ import { HomeworkUploaded } from "./HomeworkItems/HomeworkUploaded";
 import styles from "./HomeworksList.module.css";
 
 const homeworkItems = {
-  [MystatHomeworkStatus.Active]: HomeworkActive,
-  [MystatHomeworkStatus.Uploaded]: HomeworkUploaded,
-  [MystatHomeworkStatus.Checked]: HomeworkChecked,
-  [MystatHomeworkStatus.Overdue]: HomeworkOverdue,
-  [MystatHomeworkStatus.Deleted]: HomeworkActive,
+  [HomeworkStatus.Active]: HomeworkActive,
+  [HomeworkStatus.Uploaded]: HomeworkUploaded,
+  [HomeworkStatus.Checked]: HomeworkChecked,
+  [HomeworkStatus.Overdue]: HomeworkOverdue,
+  [HomeworkStatus.Deleted]: HomeworkActive,
 };
 
 type Props = {
-  items: MystatHomework[];
-  status: MystatHomeworkStatus;
+  items: Homework[];
+  status: HomeworkStatus;
   uploadHomework: (id: number, answerText: string) => void;
   deleteHomework: (id: number) => void;
 };

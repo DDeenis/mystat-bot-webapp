@@ -1,10 +1,5 @@
 "use client";
-import {
-  MystatHomework,
-  MystatHomeworkStatus,
-  MystatHomeworkType,
-  MystatResponse,
-} from "mystat-api/dist/types";
+import { Homework, HomeworkStatus, HomeworkType } from "mystat-api";
 import React, { useRef } from "react";
 import { homeworkTypes, homeworkVariants } from "../../utils/homework";
 import { Multiselect } from "../Multiselect/Multiselect";
@@ -15,10 +10,10 @@ import { HomeworksList } from "./HomeworksList";
 
 export const HomeworkPage: React.FC = () => {
   const [page, setPage] = React.useState(1);
-  const [hwStatus, setHwStatus] = React.useState(MystatHomeworkStatus.Active);
-  const [hwType, setHwType] = React.useState(MystatHomeworkType.Homework);
+  const [hwStatus, setHwStatus] = React.useState(HomeworkStatus.Active);
+  const [hwType, setHwType] = React.useState(HomeworkType.Homework);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [homework, setHomework] = React.useState<MystatHomework[]>([]);
+  const [homework, setHomework] = React.useState<Homework[]>([]);
   const loadingRef = useRef<boolean>();
 
   const fetchHomeworks = async (cache = true) => {
@@ -33,11 +28,10 @@ export const HomeworkPage: React.FC = () => {
 
     loadingRef.current = false;
 
-    const homeworkList: MystatResponse<MystatHomework[]> =
-      await response.json();
+    const homeworkList: Homework[] = await response.json();
     setIsLoading(false);
 
-    setHomework(homeworkList.data ?? []);
+    setHomework(homeworkList ?? []);
   };
 
   const updateHw = (obj: { id: number; answerText: string }) => {
@@ -81,14 +75,14 @@ export const HomeworkPage: React.FC = () => {
   return (
     <div className={styles.hwContainer}>
       <div className={styles.element}>
-        <Multiselect<MystatHomeworkType>
+        <Multiselect<HomeworkType>
           variants={homeworkTypes}
           selectedVariant={hwType}
           onSelect={setHwType}
         />
       </div>
       <div className={styles.element}>
-        <Multiselect<MystatHomeworkStatus>
+        <Multiselect<HomeworkStatus>
           variants={homeworkVariants}
           selectedVariant={hwStatus}
           onSelect={setHwStatus}

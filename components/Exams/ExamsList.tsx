@@ -1,11 +1,11 @@
-import { MystatExam } from "mystat-api/dist/types";
+import { Exam } from "mystat-api";
 import React from "react";
 import { EmptyState } from "../PageStates/PageStates";
 import styles from "./ExamsList.module.css";
 import { ExamsListElement } from "./ExamsListElement";
 
 type Props = {
-  exams: MystatExam[];
+  exams: Exam[];
 };
 
 export const ExamsList = ({ exams }: Props) => {

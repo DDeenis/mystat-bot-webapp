@@ -1,11 +1,11 @@
-import { MystatProfileInfo } from "mystat-api/dist/types";
+import { UserInfo } from "mystat-api";
 import Image from "next/image";
 import React from "react";
 import { IconCoin, IconGem } from "../Icons/Icons";
 import styles from "./UserInfoBar.module.css";
 
 type Props = {
-  userInfo: MystatProfileInfo;
+  userInfo: UserInfo;
 };
 
 export const UserInfoBar = ({ userInfo }: Props) => {

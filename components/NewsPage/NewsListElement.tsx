@@ -1,4 +1,4 @@
-import { MystatNewsEntry } from "mystat-api/dist/types";
+import { NewsEntry } from "mystat-api";
 import Link from "next/link";
 import React from "react";
 import { formatNewsDate } from "../../utils/dates";
@@ -6,7 +6,7 @@ import { paths } from "../../utils/routes";
 import styles from "./styles/NewsListElement.module.css";
 
 type Props = {
-  item: MystatNewsEntry;
+  item: NewsEntry;
 };
 
 export const NewsListElement = ({ item }: Props) => {

@@ -1,4 +1,4 @@
-import { MystatNewsDetails } from "mystat-api/dist/types";
+import { NewsDetails as MystatNewsDetails } from "mystat-api";
 import React from "react";
 import { formatNewsDate } from "../../utils/dates";
 import styles from "./styles/NewsDetails.module.css";

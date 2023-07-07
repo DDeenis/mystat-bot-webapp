@@ -2,10 +2,10 @@ import React from "react";
 import styles from "./styles/Schedule.module.css";
 import { ScheduleItem } from "./ScheduleItem";
 import { EmptyState, LoadingState } from "../PageStates/PageStates";
-import { MystatScheduleEntry } from "mystat-api/dist/types";
+import { ScheduleEntry } from "mystat-api";
 
 type Props = {
-  items?: MystatScheduleEntry[];
+  items?: ScheduleEntry[];
   isLoading?: boolean;
 };
 

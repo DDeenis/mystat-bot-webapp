@@ -1,12 +1,12 @@
 import clsx from "clsx";
-import { MystatStudentInfo } from "mystat-api/dist/types";
+import { StudentInfo } from "mystat-api";
 import Image from "next/image";
 import React from "react";
 import { IconStar } from "../Icons/Icons";
 import styles from "./LeadersListElement.module.css";
 
 type Props = {
-  student: MystatStudentInfo;
+  student: StudentInfo;
   isActive?: boolean;
 };
 
