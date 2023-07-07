@@ -26,7 +26,6 @@ const getUser = async () => {
   const apiClient = await createClient({
     loginData: user,
     language: "ru",
-    cache: true,
   });
 
   return apiClient;

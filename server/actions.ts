@@ -1,7 +1,7 @@
 "use server";
 import { cookies } from "next/headers";
 import { getUserByChatId } from "./database/users";
-import { createClient, HomeworkStatus, HomeworkType } from "mystat-api";
+import { createClient } from "mystat-api";
 
 const getUser = async () => {
   const chatIdStr = cookies().get("chatId");
@@ -14,33 +14,8 @@ const getUser = async () => {
   if (!userFromDb) throw `User with id ${chatId} not registered`;
   const apiClient = await createClient({
     loginData: userFromDb,
-    language: "ru",
-    cache: true,
   });
   return apiClient;
-};
-
-export const getSchedule = async (
-  scheduleFor: "day" | "month",
-  dateStr: string
-) => {
-  const user = await getUser();
-  const date = new Date(dateStr);
-
-  if (scheduleFor === "day") {
-    return user?.getScheduleByDate(date);
-  }
-
-  return user?.getMonthSchedule(date);
-};
-
-export const getHomeworkList = async (
-  hwStatus: HomeworkStatus,
-  hwType: HomeworkType,
-  page: number
-) => {
-  const user = await getUser();
-  return user?.getHomeworkList(hwStatus, page, hwType);
 };
 
 export const getProfile = async () => {
