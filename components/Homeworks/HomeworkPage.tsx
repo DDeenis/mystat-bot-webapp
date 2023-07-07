@@ -22,8 +22,7 @@ export const HomeworkPage: React.FC = () => {
     loadingRef.current = true;
 
     const response = await fetch(
-      `/api/homework?hwStatus=${hwStatus}&hwType=${hwType}&page=${page}`,
-      { cache: cache ? "force-cache" : "no-cache" }
+      `/api/homework?hwStatus=${hwStatus}&hwType=${hwType}&page=${page}`
     );
 
     loadingRef.current = false;

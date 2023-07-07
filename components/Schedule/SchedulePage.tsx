@@ -25,9 +25,7 @@ export const SchedulePage = ({ defaultDate = new Date() }: Props) => {
 
   const fetchSchedule = async () => {
     setIsLoading(true);
-    const response = await fetch(`/api/schedule?date=${toDateString(date)}`, {
-      cache: "force-cache",
-    });
+    const response = await fetch(`/api/schedule?date=${toDateString(date)}`);
     const result: ScheduleEntry[] = await response.json();
     if (result) {
       setSchedule(result);
