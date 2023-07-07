@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const HomeworkChecked = ({ item }: Props) => {
-  const mark = item.homework_stud.mark ?? 0;
+  const mark = item.homework_stud?.mark ?? 0;
 
   return (
     <InfoCard title={item.name_spec}>
