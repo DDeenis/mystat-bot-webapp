@@ -6,21 +6,19 @@ import styles from "./ActionButton.module.css";
 type Props = {
   path: string;
   isDanger?: boolean;
-  onClick?: () => void;
   children: string;
 };
 
-export const ActionButton = ({ path, isDanger, onClick, children }: Props) => {
+export const ActionButton = ({ path, isDanger, children }: Props) => {
   return (
-    <Link href={path}>
-      <button
-        className={clsx(styles.button, {
-          [styles.buttonDanger]: isDanger,
-        })}
-        onClick={onClick}
-      >
-        {children}
-      </button>
+    <Link
+      href={path}
+      prefetch={false}
+      className={clsx(styles.button, {
+        [styles.buttonDanger]: isDanger,
+      })}
+    >
+      {children}
     </Link>
   );
 };
