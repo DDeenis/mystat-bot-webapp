@@ -7,13 +7,14 @@ type Props = {
   path: string;
   isDanger?: boolean;
   children: string;
+  prefetch?: boolean;
 };
 
-export const ActionButton = ({ path, isDanger, children }: Props) => {
+export const ActionButton = ({ path, isDanger, prefetch, children }: Props) => {
   return (
     <Link
       href={path}
-      prefetch={false}
+      prefetch={prefetch}
       className={clsx(styles.button, {
         [styles.buttonDanger]: isDanger,
       })}

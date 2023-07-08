@@ -11,16 +11,22 @@ export default async function Home() {
     <>
       {profile && <UserInfoBar userInfo={profile} />}
       <ActionsSection header={"Расписание"}>
-        <ActionButton path={paths.schedule.today}>На сегодня</ActionButton>
-        <ActionButton path={paths.schedule.tomorrow}>На завтра</ActionButton>
+        <ActionButton prefetch={true} path={paths.schedule.today}>
+          На сегодня
+        </ActionButton>
+        <ActionButton prefetch={true} path={paths.schedule.tomorrow}>
+          На завтра
+        </ActionButton>
       </ActionsSection>
       <ActionsSection header={"Домашние задания"}>
-        <ActionButton path={paths.homework}>
+        <ActionButton prefetch={true} path={paths.homework}>
           Посмотреть домашние задания
         </ActionButton>
       </ActionsSection>
       <ActionsSection header={"Экзамены"}>
-        <ActionButton path={paths.exams.future}>Назначенные</ActionButton>
+        <ActionButton prefetch={true} path={paths.exams.future}>
+          Назначенные
+        </ActionButton>
         <ActionButton path={paths.exams.all}>Все</ActionButton>
       </ActionsSection>
       <ActionsSection header={"Разное"}>

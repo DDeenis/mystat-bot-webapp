@@ -3,6 +3,10 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getUserByChatId } from "../../../server/database/users";
 import { createClient } from "mystat-api";
+import {
+  getPersistedClient,
+  persistClient,
+} from "../../../server/database/store";
 
 const getUser = async () => {
   const chatIdStr = cookies().get("chatId")?.value;
@@ -17,10 +21,15 @@ const getUser = async () => {
     return;
   }
 
+  const persistedClient = await getPersistedClient(chatId);
+
+  if (persistedClient) return persistedClient;
+
   const apiClient = await createClient({
     loginData: user,
-    language: "ru",
   });
+  persistClient(chatId, apiClient.clientData);
+
   return apiClient;
 };
 

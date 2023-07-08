@@ -3,6 +3,10 @@ import { z } from "zod";
 import { getUserByChatId } from "../../../server/database/users";
 import { cookies } from "next/headers";
 import { createClient } from "mystat-api";
+import {
+  getPersistedClient,
+  persistClient,
+} from "../../../server/database/store";
 
 const requestSchema = z.object({
   hwStatus: z.number().min(0).max(5),
@@ -23,10 +27,17 @@ const getUser = async () => {
     return;
   }
 
+  const persistedClient = await getPersistedClient(chatId);
+
+  if (persistedClient) return persistedClient;
+
   const apiClient = await createClient({
-    loginData: user,
-    language: "ru",
+    loginData: {
+      username: user.username,
+      password: user.password,
+    },
   });
+  persistClient(chatId, apiClient.clientData);
 
   return apiClient;
 };

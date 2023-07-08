@@ -2,6 +2,7 @@
 import { cookies } from "next/headers";
 import { getUserByChatId } from "./database/users";
 import { createClient } from "mystat-api";
+import { getPersistedClient, persistClient } from "./database/store";
 
 const getUser = async () => {
   const chatIdStr = cookies().get("chatId");
@@ -12,9 +13,18 @@ const getUser = async () => {
 
   const userFromDb = await getUserByChatId({ chatId });
   if (!userFromDb) throw `User with id ${chatId} not registered`;
+
+  const persistedClient = await getPersistedClient(chatId);
+
+  if (persistedClient) return persistedClient;
+
   const apiClient = await createClient({
-    loginData: userFromDb,
+    loginData: {
+      username: userFromDb.username,
+      password: userFromDb.password,
+    },
   });
+  persistClient(chatId, apiClient.clientData);
   return apiClient;
 };
 
@@ -81,10 +91,8 @@ export const deleteHomework = async (id: number) => {
 
 export const getFullProfileInfo = async () => {
   const user = await getUser();
-  const [profile, settings] = await Promise.all([
-    user?.getUserInfo(),
-    user?.getUserSettings(),
-  ]);
+  const profile = await user?.getUserInfo();
+  const settings = await user?.getUserSettings();
 
   if (!profile || !settings) return;
 
