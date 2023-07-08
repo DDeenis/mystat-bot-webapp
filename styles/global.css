@@ -24,7 +24,6 @@ button {
 
 :root {
   color-scheme: var(--tg-color-scheme);
-  --bg-main: rgb(38, 50, 56);
   --bg-primary: var(--tg-theme-bg-color, rgb(76, 139, 245));
   --bg-secondary: var(--tg-theme-secondary-bg-color, rgb(255, 255, 255));
   --bg-tertiary: rgb(255, 182, 0);

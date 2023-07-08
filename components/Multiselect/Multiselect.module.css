@@ -10,13 +10,14 @@
   border-radius: var(--border-radius-lg);
   border: var(--button-border);
   background-color: var(--bg-secondary);
-  color: var(--button-text);
+  color: initial;
   cursor: pointer;
   margin: 0 0.25rem 0.35rem 0;
 }
 
 .variant__selected {
   background-color: var(--button-bg);
+  color: var(--button-text);
 }
 
 .variant.variant__asTabs {

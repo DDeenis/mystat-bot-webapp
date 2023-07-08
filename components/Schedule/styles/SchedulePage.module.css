@@ -71,7 +71,7 @@
 }
 
 .datepickerContainer :global(.react-calendar__tile--now) {
-  background-color: var(--bg-main);
+  background-color: var(--bg-primary);
   color: var(--color-primary);
 }
 
