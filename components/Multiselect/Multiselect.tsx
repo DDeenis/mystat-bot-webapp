@@ -13,6 +13,7 @@ type Props<TValue> = {
   selectedVariant?: TValue;
   onSelect: (selectedVariant: TValue) => void;
   variantsAsTabs?: boolean;
+  disabled?: boolean;
 };
 
 export function Multiselect<TValue>({
@@ -20,13 +21,16 @@ export function Multiselect<TValue>({
   selectedVariant,
   onSelect,
   variantsAsTabs,
+  disabled,
 }: Props<TValue>) {
-  const createOnClick = (variant: TValue) => () => onSelect(variant);
+  const createOnClick = (variant: TValue) => () =>
+    !disabled && onSelect(variant);
 
   return (
     <div
       className={clsx(styles.container, {
         [styles.container_withTabs]: variantsAsTabs,
+        [styles.disabled]: disabled,
       })}
     >
       {variants.map((variant) => (

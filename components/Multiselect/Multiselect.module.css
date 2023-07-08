@@ -30,3 +30,7 @@
   grid-auto-flow: column;
   gap: 0.35rem;
 }
+
+.disabled {
+  opacity: 0.85;
+}

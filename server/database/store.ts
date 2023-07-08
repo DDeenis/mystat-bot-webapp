@@ -16,7 +16,9 @@ export const getPersistedClient = async (chatId: number) => {
 
   if (Date.now() >= clientData.tokenExpiresAt) return;
 
-  return await createClient(clientData);
+  const apiClient = await createClient(clientData);
+
+  return apiClient;
 };
 
 export const persistClient = async (

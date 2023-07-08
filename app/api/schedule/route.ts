@@ -26,7 +26,10 @@ const getUser = async () => {
   if (persistedClient) return persistedClient;
 
   const apiClient = await createClient({
-    loginData: user,
+    loginData: {
+      username: user.username,
+      password: user.password,
+    },
   });
   persistClient(chatId, apiClient.clientData);
 

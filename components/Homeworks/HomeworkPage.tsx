@@ -78,6 +78,7 @@ export const HomeworkPage: React.FC = () => {
           variants={homeworkTypes}
           selectedVariant={hwType}
           onSelect={setHwType}
+          disabled={isLoading}
         />
       </div>
       <div className={styles.element}>
@@ -85,6 +86,7 @@ export const HomeworkPage: React.FC = () => {
           variants={homeworkVariants}
           selectedVariant={hwStatus}
           onSelect={setHwStatus}
+          disabled={isLoading}
         />
       </div>
       {hasData && (
