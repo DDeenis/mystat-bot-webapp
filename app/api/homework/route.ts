@@ -7,6 +7,7 @@ import {
   getPersistedClient,
   persistClient,
 } from "../../../server/database/store";
+import { revalidatePath } from "next/cache";
 
 const requestSchema = z.object({
   hwStatus: z.number().min(0).max(5),
@@ -70,22 +71,45 @@ export async function GET(req: Request) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 403 });
   }
 
-  const res = await mystat.getHomeworkList(
-    data.page,
-    data.hwStatus,
-    data.hwType
-  );
+  const res = await mystat.getHomeworkList({
+    page: data.page,
+    status: data.hwStatus,
+    type: data.hwType,
+  });
 
   return NextResponse.json(res, { status: 200 });
 }
 
-const uploadSchema = z.object({
-  id: z.number(),
-  answerText: z.string(),
-});
+const uploadSchema = z.union([
+  z.object({
+    id: z.number(),
+    answerText: z.string().trim().nonempty(),
+    file: z.null(),
+  }),
+  z.object({
+    id: z.number(),
+    answerText: z.null(),
+    file: z.custom<File>(),
+  }),
+  z.object({
+    id: z.number(),
+    answerText: z.string().trim().nonempty(),
+    file: z.custom<File>(),
+  }),
+]);
 
 export async function POST(req: Request) {
-  const body = await req.json();
+  const formData = await req.formData();
+  const _id = formData.get("id");
+  const _answerText = formData.get("answerText");
+  const _file = formData.get("file");
+
+  const body = {
+    id: _id ? parseInt(_id as string) : null,
+    answerText: _answerText,
+    file: _file,
+  };
+
   const requestValidationData = uploadSchema.safeParse(body);
 
   if (!requestValidationData.success) {
@@ -103,12 +127,16 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 403 });
   }
 
-  return NextResponse.json(
-    user.uploadHomework({ homeworkId: data.id, answerText: data.answerText }),
-    {
-      status: 201,
-    }
-  );
+  const result = await user.uploadHomework({
+    homeworkId: data.id,
+    ...data,
+  });
+
+  revalidatePath("/homework");
+
+  return NextResponse.json(result, {
+    status: 201,
+  });
 }
 
 const deleteSchema = z.object({
@@ -135,5 +163,6 @@ export async function DELETE(req: Request) {
   }
 
   const result = await user.deleteHomework(data.id);
-  return NextResponse.json({}, { status: 204 });
+  revalidatePath("/homework");
+  return NextResponse.json({ result }, { status: 204 });
 }

@@ -1,5 +1,4 @@
 import { env } from "../../env.mjs";
-import { supabase } from "./database";
 import { IUser } from "./types";
 
 const usersTable = "users";

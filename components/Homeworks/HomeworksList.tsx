@@ -17,18 +17,10 @@ const homeworkItems = {
 type Props = {
   items: Homework[];
   status: HomeworkStatus;
-  uploadHomework: (id: number, answerText: string) => void;
   deleteHomework: (id: number) => void;
 };
 
-export const HomeworksList = ({
-  items,
-  status,
-  uploadHomework,
-  deleteHomework,
-}: Props) => {
-  const createOnUpload = (id: number) => (answerText: string) =>
-    uploadHomework(id, answerText);
+export const HomeworksList = ({ items, status, deleteHomework }: Props) => {
   const createOnDelete = (id: number) => () => deleteHomework(id);
 
   return (
@@ -36,7 +28,6 @@ export const HomeworksList = ({
       {items.map((hw, i) =>
         React.createElement(homeworkItems[status], {
           item: hw,
-          upload: createOnUpload(hw.id),
           deleteItem: createOnDelete(hw?.homework_stud?.id),
           key: i,
         })

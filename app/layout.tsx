@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru" className={roboto.className}>
-      <Script async src="https://telegram.org/js/telegram-web-app.js" />
+      <Script src="https://telegram.org/js/telegram-web-app.js" />
       <body>
         <main className="main-container">{children}</main>
       </body>

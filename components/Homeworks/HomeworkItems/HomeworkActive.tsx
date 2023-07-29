@@ -1,22 +1,16 @@
 import clsx from "clsx";
 import { Homework } from "mystat-api";
-import React, { useState } from "react";
+import React from "react";
 import { formatHomeworkDate } from "../../../utils/dates";
 import { InfoCard } from "../../InfoCard/InfoCard";
-import { HomeworkUploadModal } from "../HomeworkUploadModal";
 import styles from "./HomeworkItem.module.css";
+import Link from "next/link";
 
 type Props = {
   item: Homework;
-  upload: (answerText: string) => void;
 };
 
-export const HomeworkActive = ({ item, upload }: Props) => {
-  const [isOpen, setOpen] = useState(false);
-
-  const onOpen = () => setOpen(true);
-  const onClose = () => setOpen(false);
-
+export const HomeworkActive = ({ item }: Props) => {
   return (
     <InfoCard title={item.name_spec}>
       <InfoCard.Row>
@@ -45,12 +39,9 @@ export const HomeworkActive = ({ item, upload }: Props) => {
           Скачать задание
         </a>
       </InfoCard.Button>
-      <InfoCard.Button onClick={onOpen}>Загрузить задание</InfoCard.Button>
-      <HomeworkUploadModal
-        isOpen={isOpen}
-        onClose={onClose}
-        onConfirm={upload}
-      />
+      <InfoCard.Button>
+        <Link href={`/homework/upload/${item.id}`}>Загрузить задание</Link>
+      </InfoCard.Button>
     </InfoCard>
   );
 };

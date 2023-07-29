@@ -45,6 +45,9 @@
   border: none;
   color: var(--color-primary);
   cursor: pointer;
+  font-size: var(--text-sm);
+  text-align: center;
+  text-decoration: none;
 }
 
 .btnSend {
@@ -81,4 +84,8 @@
 
 .closeBtn::after {
   transform: rotate(135deg);
+}
+
+.fileInput {
+  margin-bottom: 1rem;
 }

@@ -9,12 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.26.0",
+    "@supabase/supabase-js": "^2.31.0",
     "@t3-oss/env-nextjs": "^0.6.0",
     "clsx": "^1.2.1",
     "encoding": "^0.1.13",
-    "mystat-api": "^4.0.2",
-    "next": "^13.4.9",
+    "mystat-api": "^4.0.6",
+    "next": "^13.4.12",
     "react": "18.2.0",
     "react-calendar": "^3.9.0",
     "react-dom": "18.2.0",
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@types/node": "18.7.3",
-    "@types/react": "18.0.17",
+    "@types/react": "18.2.14",
     "@types/react-calendar": "^3.9.0",
     "@types/react-dom": "18.0.6",
     "eslint": "8.22.0",

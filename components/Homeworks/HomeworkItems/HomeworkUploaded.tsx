@@ -7,7 +7,6 @@ import styles from "./HomeworkItem.module.css";
 
 type Props = {
   item: Homework;
-  upload: (answerText: string) => void;
   deleteItem: () => void;
 };
 

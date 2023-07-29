@@ -1,6 +1,6 @@
+"use client";
 import clsx from "clsx";
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import styles from "./HomeworkUploadModal.module.css";
 
 type Props = {

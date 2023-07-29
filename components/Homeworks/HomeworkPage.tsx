@@ -16,7 +16,7 @@ export const HomeworkPage: React.FC = () => {
   const [homework, setHomework] = React.useState<Homework[]>([]);
   const loadingRef = useRef<boolean>();
 
-  const fetchHomeworks = async (cache = true) => {
+  const fetchHomeworks = async () => {
     if (loadingRef.current) return;
     setIsLoading(true);
     loadingRef.current = true;
@@ -33,13 +33,6 @@ export const HomeworkPage: React.FC = () => {
     setHomework(homeworkList ?? []);
   };
 
-  const updateHw = (obj: { id: number; answerText: string }) => {
-    return fetch("/api/homework", {
-      body: JSON.stringify(obj),
-      method: "POST",
-    });
-  };
-
   const deleteHw = (obj: { id: number }) => {
     return fetch("/api/homework", {
       body: JSON.stringify(obj),
@@ -47,14 +40,9 @@ export const HomeworkPage: React.FC = () => {
     });
   };
 
-  const uploadHomework = (id: number, answerText: string) => {
-    updateHw({ id, answerText });
-    fetchHomeworks(false);
-  };
-
   const deleteHomework = (id: number) => {
     deleteHw({ id });
-    fetchHomeworks(false);
+    fetchHomeworks();
   };
 
   React.useEffect(() => {
@@ -93,7 +81,6 @@ export const HomeworkPage: React.FC = () => {
         <HomeworksList
           items={homework}
           status={hwStatus}
-          uploadHomework={uploadHomework}
           deleteHomework={deleteHomework}
         />
       )}

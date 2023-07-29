@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./styles/SchedulePage.module.css";
 import Calendar from "react-calendar";
 import { Schedule } from "./Schedule";
@@ -23,7 +23,7 @@ export const SchedulePage = ({ defaultDate = new Date() }: Props) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [schedule, setSchedule] = React.useState<ScheduleEntry[]>([]);
 
-  const fetchSchedule = async () => {
+  const fetchSchedule = React.cache(async () => {
     setIsLoading(true);
     const response = await fetch(`/api/schedule?date=${toDateString(date)}`);
     const result: ScheduleEntry[] = await response.json();
@@ -31,9 +31,9 @@ export const SchedulePage = ({ defaultDate = new Date() }: Props) => {
       setSchedule(result);
     }
     setIsLoading(false);
-  };
+  });
 
-  useEffect(() => {
+  React.useEffect(() => {
     fetchSchedule();
   }, [date]);
 

@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { getUserByChatId } from "./database/users";
 import { createClient } from "mystat-api";
 import { getPersistedClient, persistClient } from "./database/store";
+import { cache } from "react";
 
 const getUser = async () => {
   const chatIdStr = cookies().get("chatId");
@@ -28,50 +29,50 @@ const getUser = async () => {
   return apiClient;
 };
 
-export const getProfile = async () => {
+export const getProfile = cache(async () => {
   const user = await getUser();
   return user?.getUserInfo();
-};
+});
 
-export const getAllNews = async () => {
+export const getAllNews = cache(async () => {
   const user = await getUser();
   return user?.getLatestNews();
-};
+});
 
-export const getNewsDetails = async (id: number) => {
+export const getNewsDetails = cache(async (id: number) => {
   const user = await getUser();
   return user?.getNewsDetails(id);
-};
+});
 
-export const getFutureExams = async () => {
+export const getFutureExams = cache(async () => {
   const user = await getUser();
   return user?.getFutureExams();
-};
+});
 
-export const getAllExams = async () => {
+export const getAllExams = cache(async () => {
   const user = await getUser();
   return user?.getAllExams();
-};
+});
 
-export const getGroupLeaders = async () => {
+export const getGroupLeaders = cache(async () => {
   const user = await getUser();
   return user?.getGroupLeaders();
-};
+});
 
-export const getStreamLeaders = async () => {
+export const getStreamLeaders = cache(async () => {
   const user = await getUser();
   return user?.getStreamLeaders();
-};
+});
 
-export const getUserSettings = async () => {
+export const getUserSettings = cache(async () => {
   const user = await getUser();
   return user?.getUserSettings();
-};
+});
 
-export const getReviews = async () => {
+export const getReviews = cache(async () => {
   const user = await getUser();
   return user?.getReviews();
-};
+});
 
 export const uploadHomework = async ({
   id,
@@ -89,7 +90,7 @@ export const deleteHomework = async (id: number) => {
   return user?.deleteHomework(id);
 };
 
-export const getFullProfileInfo = async () => {
+export const getFullProfileInfo = cache(async () => {
   const user = await getUser();
   const profile = await user?.getUserInfo();
   const settings = await user?.getUserSettings();
@@ -97,4 +98,4 @@ export const getFullProfileInfo = async () => {
   if (!profile || !settings) return;
 
   return { ...profile, ...settings };
-};
+});
