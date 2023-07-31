@@ -40,7 +40,12 @@ export const HomeworkActive = ({ item }: Props) => {
         </a>
       </InfoCard.Button>
       <InfoCard.Button>
-        <Link href={`/homework/upload/${item.id}`}>Загрузить задание</Link>
+        <Link
+          href={`/homework/upload/${item.id}`}
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
+          Загрузить задание
+        </Link>
       </InfoCard.Button>
     </InfoCard>
   );

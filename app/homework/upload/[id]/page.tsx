@@ -12,7 +12,7 @@ export default function UploadHomeworkPage({
 }) {
   const [answer, setAnswer] = React.useState<string>();
   const [file, setFile] = React.useState<File>();
-  const { back } = useRouter();
+  const { replace } = useRouter();
 
   const uploadHomework = (obj: {
     id: string;
@@ -34,7 +34,7 @@ export default function UploadHomeworkPage({
     if (answer || file) {
       uploadHomework({ id: params.id, answerText: answer, file }).then((r) => {
         if (r.ok) {
-          back();
+          replace("/homework");
         }
       });
     }
