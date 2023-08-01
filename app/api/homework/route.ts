@@ -1,47 +1,13 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { getUserByChatId } from "../../../server/database/users";
-import { headers } from "next/headers";
-import { createClient } from "mystat-api";
-import {
-  getPersistedClient,
-  persistClient,
-} from "../../../server/database/store";
 import { revalidatePath } from "next/cache";
+import { getUserApiClient } from "../../../server/actions";
 
 const requestSchema = z.object({
   hwStatus: z.number().min(0).max(5),
   hwType: z.number().min(0).max(1),
   page: z.number(),
 });
-
-const getUser = async () => {
-  const chatIdStr = headers().get("x-chat-id");
-  if (!chatIdStr) {
-    return;
-  }
-
-  const chatId = parseInt(chatIdStr);
-  const user = await getUserByChatId({ chatId });
-
-  if (!user) {
-    return;
-  }
-
-  const persistedClient = await getPersistedClient(chatId);
-
-  if (persistedClient) return persistedClient;
-
-  const apiClient = await createClient({
-    loginData: {
-      username: user.username,
-      password: user.password,
-    },
-  });
-  persistClient(chatId, apiClient.clientData);
-
-  return apiClient;
-};
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
@@ -65,7 +31,7 @@ export async function GET(req: Request) {
 
   const { data } = requestValidationData;
 
-  const mystat = await getUser();
+  const mystat = await getUserApiClient();
 
   if (!mystat) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 403 });
@@ -121,7 +87,7 @@ export async function POST(req: Request) {
 
   const { data } = requestValidationData;
 
-  const user = await getUser();
+  const user = await getUserApiClient();
 
   if (!user) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 403 });
@@ -156,7 +122,7 @@ export async function DELETE(req: Request) {
 
   const { data } = requestValidationData;
 
-  const user = await getUser();
+  const user = await getUserApiClient();
 
   if (!user) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 403 });
