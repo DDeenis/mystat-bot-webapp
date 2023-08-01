@@ -7,4 +7,7 @@ export const env = createEnv({
     SUPABASE_KEY: z.string(),
     APP_SECRET: z.string(),
   },
+  client: {
+    NEXT_PUBLIC_TEST_ID: z.string().optional(),
+  },
 });

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getUserByChatId } from "../../../server/database/users";
-import { cookies } from "next/headers";
+import { headers } from "next/headers";
 import { createClient } from "mystat-api";
 import {
   getPersistedClient,
@@ -16,7 +16,7 @@ const requestSchema = z.object({
 });
 
 const getUser = async () => {
-  const chatIdStr = cookies().get("chatId")?.value;
+  const chatIdStr = headers().get("x-chat-id");
   if (!chatIdStr) {
     return;
   }

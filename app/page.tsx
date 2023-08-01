@@ -2,9 +2,10 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { paths } from "../utils/routes";
+import { env } from "../env.mjs";
 
 // for development only
-const fallbackId = undefined;
+const fallbackId = env.NEXT_PUBLIC_TEST_ID ?? process.env.NEXT_PUBLIC_TEST_ID;
 
 const maxAttempts = 3;
 const handleLogin = (
@@ -19,9 +20,6 @@ const handleLogin = (
   })
     .then((res) => res.json())
     .then((res) => {
-      // Set-Cookie header not working, so need to set in browser
-      document.cookie = `chatId=${userId}`;
-
       res.logged ? onSuccess() : onError();
     })
     .catch((e) => {
@@ -30,7 +28,7 @@ const handleLogin = (
 };
 
 export default function Page() {
-  const { push, refresh } = useRouter();
+  const { push } = useRouter();
   const [attempts, setAttempts] = useState(1);
 
   useEffect(() => {

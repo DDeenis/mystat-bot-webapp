@@ -1,4 +1,7 @@
-import { getUserByChatId } from "../../../server/database/users";
+import {
+  createAccessToken,
+  getUserByChatId,
+} from "../../../server/database/users";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -13,15 +16,27 @@ export async function POST(req: Request) {
   const chatId = parseInt(chatIdStr);
   const user = await getUserByChatId({ chatId, cache: false });
 
-  if (user) {
+  if (!user) {
     return NextResponse.json(
-      { logged: Boolean(user) },
-      { status: 200, headers: { "Set-Cookie": `chatId=${chatId}` } }
+      { logged: false, message: "User not found" },
+      { status: 404 }
+    );
+  }
+
+  const tokenData = await createAccessToken(chatId);
+
+  if (!tokenData) {
+    return NextResponse.json(
+      { logged: false, message: "Failed to create access token" },
+      { status: 404 }
     );
   }
 
   return NextResponse.json(
-    { logged: false, message: "User not found" },
-    { status: 404 }
+    { logged: Boolean(user) },
+    {
+      status: 200,
+      headers: { "Set-Cookie": `token=${tokenData.token}; Path=/` },
+    }
   );
 }

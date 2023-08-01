@@ -1,4 +1,4 @@
-import { cookies } from "next/headers";
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getUserByChatId } from "../../../server/database/users";
@@ -9,7 +9,8 @@ import {
 } from "../../../server/database/store";
 
 const getUser = async () => {
-  const chatIdStr = cookies().get("chatId")?.value;
+  const chatIdStr = headers().get("x-chat-id");
+
   if (!chatIdStr) {
     return;
   }

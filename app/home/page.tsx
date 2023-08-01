@@ -32,7 +32,7 @@ export default async function Home() {
       <ActionsSection header={"Разное"}>
         <ActionButton path={paths.leaders.group}>Группа и поток</ActionButton>
         <ActionButton path={paths.news.allNews}>Новости</ActionButton>
-        <ActionButton path={paths.info}>Информация о себе</ActionButton>
+        <ActionButton path={paths.info}>Профиль</ActionButton>
         <ActionButton path={paths.reviews}>Отзывы</ActionButton>
         <ActionButton path={paths.settings}>Информация о сайте</ActionButton>
       </ActionsSection>

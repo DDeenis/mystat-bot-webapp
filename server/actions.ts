@@ -1,16 +1,16 @@
 "use server";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { getUserByChatId } from "./database/users";
 import { createClient } from "mystat-api";
 import { getPersistedClient, persistClient } from "./database/store";
 import { cache } from "react";
 
 const getUser = async () => {
-  const chatIdStr = cookies().get("chatId");
+  const chatIdStr = headers().get("x-chat-id");
 
-  if (!chatIdStr?.value) return null;
+  if (!chatIdStr) return null;
 
-  const chatId = parseInt(chatIdStr.value);
+  const chatId = parseInt(chatIdStr);
 
   const userFromDb = await getUserByChatId({ chatId });
   if (!userFromDb) throw `User with id ${chatId} not registered`;
