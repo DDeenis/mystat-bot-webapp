@@ -10,7 +10,6 @@ export default async function LoginError() {
       </p>
       <ul>
         <li>Попробовать еще раз через пару минут</li>
-        <li>Не использовать web версию telegram</li>
       </ul>
       <p>
         Если ошибка продолжает повторяться, смотрите раздел &quot;О боте&quot;

@@ -21,5 +21,6 @@ export async function GET(req: Request) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 403 });
 
   const schedule = await user.getScheduleByDate(date);
+
   return NextResponse.json(schedule, { status: 200 });
 }
