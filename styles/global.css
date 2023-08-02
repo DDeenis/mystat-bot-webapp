@@ -24,8 +24,8 @@ button {
 
 :root {
   color-scheme: var(--tg-color-scheme);
-  --bg-primary: var(--tg-theme-bg-color, rgb(76, 139, 245));
-  --bg-secondary: var(--tg-theme-secondary-bg-color, rgb(255, 255, 255));
+  --bg-primary: var(--tg-theme-bg-color);
+  --bg-secondary: var(--tg-theme-secondary-bg-color);
   --bg-tertiary: rgb(255, 182, 0);
   --bg-error: rgb(234, 67, 53);
   /* TODO: fix */
@@ -36,12 +36,10 @@ button {
   );
 
   --button-bg: var(--tg-theme-button-color, var(--bg-primary));
-  --button-text: var(--tg-theme-button-text-color, rgb(255, 255, 255));
+  --button-text: var(--tg-theme-button-text-color);
   --button-border: 1px solid var(--button-bg);
 
   --link-color: var(--tg-theme-link-color);
-
-  /* TODO: make themes */
 
   --stroke-primary: var(--tg-theme-bg-color);
   --stroke-secondary: var(--tg-theme-secondary-bg-color);

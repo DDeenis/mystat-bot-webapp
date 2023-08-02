@@ -59,7 +59,6 @@ export const createAccessToken = async (chatId: number) => {
       expires: expires.toISOString().toLowerCase("zh-TW"),
     })
     .select("token");
-  console.log(data);
 
   return data.data?.[0] as { token: string } | undefined;
 };
@@ -74,7 +73,7 @@ export const isUserExist = async (chatId: number): Promise<boolean> => {
     const result = await getUserByChatId({ chatId, cache: false });
     return Boolean(result);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 
   return false;

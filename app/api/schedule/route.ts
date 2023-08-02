@@ -10,7 +10,7 @@ export async function GET(req: Request) {
     .safeParse(url.searchParams.get("date"));
 
   if (!dateStr.success) {
-    console.log(dateStr.error);
+    console.error(dateStr.error);
     return NextResponse.json({ message: "Invalid date" }, { status: 400 });
   }
 

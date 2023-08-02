@@ -4,6 +4,8 @@ import {
 } from "../../../server/database/users";
 import { NextResponse } from "next/server";
 
+const cookieMaxAgeSeconds = 1 * 60 * 60;
+
 export async function POST(req: Request) {
   const chatIdStr = await req.text();
   if (!chatIdStr) {
@@ -36,7 +38,9 @@ export async function POST(req: Request) {
     { logged: Boolean(user) },
     {
       status: 200,
-      headers: { "Set-Cookie": `token=${tokenData.token}; Path=/` },
+      headers: {
+        "Set-Cookie": `token=${tokenData.token}; Path=/; SameSite=None; Secure; HttpOnly; Max-Age=${cookieMaxAgeSeconds}`,
+      },
     }
   );
 }
