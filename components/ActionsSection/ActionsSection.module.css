@@ -19,8 +19,8 @@
 }
 
 .mainMenuActions_actions {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 
@@ -29,6 +29,6 @@
   overflow: hidden;
 }
 
-.mainMenuActions_actions > :last-child:nth-child(odd) {
-  grid-column: span 2;
+.mainMenuActions_actions > * {
+  flex: 1 1 160px;
 }
