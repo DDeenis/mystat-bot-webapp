@@ -3,10 +3,11 @@ import { Homework, HomeworkStatus, HomeworkType } from "mystat-api";
 import React, { useRef } from "react";
 import { homeworkTypes, homeworkVariants } from "../../utils/homework";
 import { Multiselect } from "../Multiselect/Multiselect";
-import { EmptyState, LoadingState } from "../PageStates/PageStates";
+import { EmptyState } from "../PageStates/PageStates";
 import { Pagination } from "../Pagination/Pagination";
 import styles from "./HomeworkPage.module.css";
 import { HomeworksList } from "./HomeworksList";
+import { LoadingEllipsis } from "../Loaders/Loaders";
 
 export const HomeworkPage: React.FC = () => {
   const [page, setPage] = React.useState(1);
@@ -84,7 +85,11 @@ export const HomeworkPage: React.FC = () => {
           deleteHomework={deleteHomework}
         />
       )}
-      <LoadingState visible={isLoading} />
+      {isLoading && (
+        <div style={{ margin: "0 auto" }}>
+          <LoadingEllipsis />
+        </div>
+      )}
       <EmptyState visible={isDataEmpty && !isLoading}>
         Нет заданий этого типа
       </EmptyState>

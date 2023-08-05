@@ -11,9 +11,3 @@ export const EmptyState = ({ visible, children }: Props) => {
     <p className={styles.empty}>{children ?? "Нет данных для отображения"}</p>
   ) : null;
 };
-
-export const LoadingState = ({ visible, children }: Props) => {
-  return visible ? (
-    <p className={styles.empty}>{children ?? "Загрузка..."}</p>
-  ) : null;
-};

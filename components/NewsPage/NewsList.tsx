@@ -1,6 +1,6 @@
 import { NewsEntry } from "mystat-api";
 import React from "react";
-import { EmptyState, LoadingState } from "../PageStates/PageStates";
+import { EmptyState } from "../PageStates/PageStates";
 import { NewsListElement } from "./NewsListElement";
 import styles from "./styles/NewsList.module.css";
 

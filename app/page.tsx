@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { paths } from "../utils/routes";
 import { env } from "../env.mjs";
+import { LoadingGrid } from "../components/Loaders/Loaders";
 
 // for development only
 const fallbackId = env.NEXT_PUBLIC_TEST_ID ?? process.env.NEXT_PUBLIC_TEST_ID;
@@ -57,8 +58,20 @@ export default function Page() {
     push(paths.error);
   }
 
-  // TODO: add loader
   return (
-    <div className="login-page">Выполняется вход... (Попытка №{attempts})</div>
+    <div
+      style={{
+        width: "100%",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "0.5rem",
+      }}
+    >
+      <LoadingGrid />
+      <span>Выполняется вход... (Попытка №{attempts})</span>
+    </div>
   );
 }
