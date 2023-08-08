@@ -36,7 +36,7 @@ const padDate = (val: number) => val.toString().padStart(2, "0");
 export const formatHomeworkDate = (dateStr: string) => {
   const date = new Date(dateStr);
   return `${padDate(date.getDate())}.${padDate(
-    date.getMonth()
+    date.getMonth() + 1
   )}.${date.getFullYear()}`;
 };
 
@@ -50,7 +50,7 @@ export const formatNewsDate = (dateStr: string) => {
 export const formatExamDate = (dateStr: string) => {
   const date = new Date(dateStr);
   return `${padDate(date.getDate())}.${padDate(
-    date.getMonth()
+    date.getMonth() + 1
   )}\n${date.getFullYear()}`;
 };
 
