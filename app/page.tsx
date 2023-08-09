@@ -71,7 +71,7 @@ export default function Page() {
       }}
     >
       <LoadingGrid />
-      <span>Выполняется вход... (Попытка №{attempts})</span>
+      <span>Выполняется вход</span>
     </div>
   );
 }

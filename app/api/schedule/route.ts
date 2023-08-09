@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getUserApiClient } from "../../../server/actions";
+import type { ScheduleEntry } from "mystat-api";
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
@@ -20,7 +21,23 @@ export async function GET(req: Request) {
   if (!user)
     return NextResponse.json({ message: "Unauthorized" }, { status: 403 });
 
-  const schedule = await user.getScheduleByDate(date);
+  const scheduleMonths = await user.getMonthSchedule(date);
 
-  return NextResponse.json(schedule, { status: 200 });
+  if (!scheduleMonths) {
+    return NextResponse.json(
+      { message: "Failed to get schedule" },
+      { status: 500 }
+    );
+  }
+
+  const scheduleMonthsGrouped: Record<string, ScheduleEntry[]> = {};
+
+  for (let i = 0; i < scheduleMonths.length; i++) {
+    const element = scheduleMonths[i];
+    const group = scheduleMonthsGrouped[element.date] ?? [];
+    group.push(element);
+    scheduleMonthsGrouped[element.date] = group;
+  }
+
+  return NextResponse.json(scheduleMonthsGrouped, { status: 200 });
 }

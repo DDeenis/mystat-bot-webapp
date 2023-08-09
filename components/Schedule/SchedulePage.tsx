@@ -20,28 +20,52 @@ const toDateString = (date: Date) => {
 export const SchedulePage = ({ defaultDate = new Date() }: Props) => {
   const [date, setDate] = React.useState(defaultDate);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [schedule, setSchedule] = React.useState<ScheduleEntry[]>([]);
+  const [scheduleGroup, setScheduleGroup] = React.useState<
+    Record<string, ScheduleEntry[]>
+  >({});
+  const [scheduleSelected, setScheduleSelected] = React.useState<
+    ScheduleEntry[]
+  >([]);
 
-  const fetchSchedule = React.cache(async () => {
+  const fetchSchedule = React.cache(async (date: Date) => {
     setIsLoading(true);
     const response = await fetch(`/api/schedule?date=${toDateString(date)}`);
-    const result: ScheduleEntry[] = await response.json();
+    const result = await response.json();
     if (result) {
-      setSchedule(result);
+      setScheduleGroup(result);
     }
     setIsLoading(false);
   });
 
   React.useEffect(() => {
-    fetchSchedule();
+    fetchSchedule(date);
+  }, []);
+
+  React.useEffect(() => {
+    setScheduleSelected(scheduleGroup[toDateString(date)] ?? []);
   }, [date]);
 
   return (
     <>
       <BackButton />
-      <Schedule items={schedule} isLoading={isLoading} />
+      <Schedule items={scheduleSelected} isLoading={isLoading} />
       <div className={styles.datepickerContainer}>
-        <Calendar value={date} onChange={setDate} locale="ru-RU" />
+        <Calendar
+          value={date}
+          onChange={setDate}
+          onActiveStartDateChange={(prop) => {
+            fetchSchedule(prop.activeStartDate).then(() => {
+              setDate(prop.activeStartDate);
+            });
+          }}
+          tileClassName={(prop) => {
+            if (prop.view !== "month") return null;
+            return (scheduleGroup[toDateString(prop.date)]?.length ?? 0) === 0
+              ? null
+              : styles.dateWithSchedule;
+          }}
+          locale="ru-RU"
+        />
       </div>
     </>
   );
