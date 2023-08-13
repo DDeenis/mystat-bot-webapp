@@ -17,6 +17,8 @@ const toDateString = (date: Date) => {
     .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
 };
 
+let controller = new AbortController();
+
 export const SchedulePage = ({ defaultDate = new Date() }: Props) => {
   const [date, setDate] = React.useState(defaultDate);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -29,7 +31,9 @@ export const SchedulePage = ({ defaultDate = new Date() }: Props) => {
 
   const fetchSchedule = React.cache(async (date: Date) => {
     setIsLoading(true);
-    const response = await fetch(`/api/schedule?date=${toDateString(date)}`);
+    const response = await fetch(`/api/schedule?date=${toDateString(date)}`, {
+      signal: controller.signal,
+    });
     const result = await response.json();
     if (result) {
       setScheduleGroup(result);
@@ -54,6 +58,8 @@ export const SchedulePage = ({ defaultDate = new Date() }: Props) => {
           value={date}
           onChange={setDate}
           onActiveStartDateChange={(prop) => {
+            controller.abort();
+            controller = new AbortController();
             fetchSchedule(prop.activeStartDate).then(() => {
               setDate(prop.activeStartDate);
             });
