@@ -70,5 +70,6 @@
 
 .containerActive .position,
 .containerActive .studentInfo {
-  background-color: var(--bg-secondary);
+  background-color: var(--button-bg);
+  color: var(--button-text);
 }
