@@ -13,6 +13,14 @@
   animation: skeleton-loading 1.5s ease infinite;
 }
 
+.roundedSm {
+  border-radius: 6px;
+}
+
+.roundedFull {
+  border-radius: 100%;
+}
+
 @keyframes skeleton-loading {
   to {
     background-position: right -40px top 0;

@@ -8,7 +8,7 @@ interface SkeletonProps {
   rounding?: "none" | "sm" | "full";
 }
 
-export function SkeletonLine(props: SkeletonProps) {
+export function SkeletonBlock(props: SkeletonProps) {
   const width = props.width ?? "100%";
   const height = props.height ?? "30px";
 
