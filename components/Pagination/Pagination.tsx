@@ -8,7 +8,7 @@ type Props = {
   onPageChange: (page: number) => void;
 };
 
-const limit = 5;
+const limit = 6;
 
 export const Pagination = ({ page, maxPages, onPageChange }: Props) => {
   const visiblePages: number[] = [];
@@ -17,6 +17,7 @@ export const Pagination = ({ page, maxPages, onPageChange }: Props) => {
   const safeStart = start > 0 ? start : 1;
   const end = limit + safeStart;
   const safeEnd = end < maxPages ? end : maxPages + 1;
+  console.log(safeStart, safeEnd);
 
   for (let i = safeStart; i < safeEnd; i++) {
     visiblePages.push(i);

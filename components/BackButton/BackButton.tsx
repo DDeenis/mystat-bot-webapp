@@ -6,10 +6,13 @@ import styles from "./BackButton.module.css";
 
 type Props = {
   children?: string;
+  forcePath?: string;
 };
 
-export const BackButton = ({ children = "Назад" }: Props) => {
-  const { back } = useRouter();
+export const BackButton = ({ children = "Назад", forcePath }: Props) => {
+  const router = useRouter();
+
+  const back = () => (forcePath ? router.push(forcePath) : router.back());
 
   return (
     <a href="#" onClick={back} className={styles.button}>
