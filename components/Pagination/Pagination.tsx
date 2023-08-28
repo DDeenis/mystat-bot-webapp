@@ -4,20 +4,19 @@ import styles from "./Pagination.module.css";
 
 type Props = {
   page: number;
-  maxPages: number;
+  maxPages?: number;
   onPageChange: (page: number) => void;
 };
 
 const limit = 6;
 
-export const Pagination = ({ page, maxPages, onPageChange }: Props) => {
+export const Pagination = ({ page, maxPages = 50, onPageChange }: Props) => {
   const visiblePages: number[] = [];
 
   const start = page - Math.floor(limit / 2);
   const safeStart = start > 0 ? start : 1;
   const end = limit + safeStart;
   const safeEnd = end < maxPages ? end : maxPages + 1;
-  console.log(safeStart, safeEnd);
 
   for (let i = safeStart; i < safeEnd; i++) {
     visiblePages.push(i);

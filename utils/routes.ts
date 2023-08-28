@@ -5,7 +5,9 @@ export const paths = {
     tomorrow: "schedule/tomorrow",
     month: "schedule/month",
   },
-  homework: "homework",
+  homework: {
+    list: "homework/list",
+  },
   exams: {
     future: "exams/future",
     all: "exams/all",

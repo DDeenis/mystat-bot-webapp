@@ -17,11 +17,17 @@ const homeworkItems = {
 type Props = {
   items: Homework[];
   status: HomeworkStatus;
-  deleteHomework: (id: number) => void;
 };
 
-export const HomeworksList = ({ items, status, deleteHomework }: Props) => {
-  const createOnDelete = (id: number) => () => deleteHomework(id);
+export const HomeworksList = ({ items, status }: Props) => {
+  const deleteHw = (obj: { id: number }) => {
+    return fetch("/api/homework", {
+      body: JSON.stringify(obj),
+      method: "DELETE",
+    });
+  };
+
+  const createOnDelete = (id: number) => () => deleteHw({ id });
 
   return (
     <div className={styles.list}>
