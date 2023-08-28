@@ -1,30 +1,33 @@
 import React from "react";
 import { HomeworkStatus, HomeworkType } from "mystat-api";
-import { HomeworksList } from "../../../components/Homeworks/HomeworksList";
-import { EmptyState } from "../../../components/PageStates/PageStates";
-import { getUserApiClient } from "../../../server/actions";
-import paginationStyles from "../../../components/Pagination/Pagination.module.css";
+import { HomeworksList } from "../../../../../../components/Homeworks/HomeworksList";
+import { EmptyState } from "../../../../../../components/PageStates/PageStates";
+import { getUserApiClient } from "../../../../../../server/actions";
+import paginationStyles from "../../../../../../components/Pagination/Pagination.module.css";
 import clsx from "clsx";
 import Link from "next/link";
-import type { Metadata } from "next";
+import {
+  HomeworkStatusSlug,
+  HomeworkTypeSlug,
+  homeworkStatusFromSlug,
+  homeworkStatusToSlug,
+  homeworkTypeFromSlug,
+  homeworkTypeToSlug,
+} from "../../../../../../utils/homework";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-export const metadata: Metadata = {
-  title: "Homework list",
+  params: { status: HomeworkStatusSlug; type: HomeworkTypeSlug; page: string };
 };
 
 const homeworkPageSize = 6;
-export default async function HomeworkList({ searchParams }: Props) {
+export default async function HomeworkList({ params }: Props) {
   const hwStatus = Number(
-    searchParams["status"] ?? HomeworkStatus.Active
+    homeworkStatusFromSlug[params.status] ?? HomeworkStatus.Active
   ) as HomeworkStatus;
   const hwType = Number(
-    searchParams["type"] ?? HomeworkType.Homework
+    homeworkTypeFromSlug[params.type] ?? HomeworkType.Homework
   ) as HomeworkType;
-  const page = Number(searchParams["page"] ?? "1");
+  const page = Number(params.page ?? "1");
 
   const mystat = await getUserApiClient();
 
@@ -52,7 +55,8 @@ export default async function HomeworkList({ searchParams }: Props) {
           status={hwStatus}
           type={hwType}
           hasPrev={page > 1}
-          hasNext={homeworkList.length <= maxPages}
+          hasNext={page < maxPages}
+          maxPages={maxPages}
         />
       )}
     </>
@@ -66,20 +70,23 @@ const Pagination = ({
   type,
   hasPrev,
   hasNext,
+  maxPages = 500,
 }: {
   page: number;
   status: HomeworkStatus;
   type: HomeworkType;
   hasPrev: boolean;
   hasNext: boolean;
+  maxPages?: number;
 }) => {
   const visiblePages: number[] = [];
 
   const start = page - Math.floor(limit / 2);
   const safeStart = start > 0 ? start : 1;
   const end = limit + safeStart;
+  const safeEnd = end < maxPages ? end : maxPages + 1;
 
-  for (let i = safeStart; i < end; i++) {
+  for (let i = safeStart; i < safeEnd; i++) {
     visiblePages.push(i);
   }
 
@@ -92,7 +99,9 @@ const Pagination = ({
         href={
           prevDisabled
             ? "#"
-            : `/homework/list?status=${status}&type=${type}&page=${page - 1}`
+            : `/homework/list/${homeworkStatusToSlug[status]}/${
+                homeworkTypeToSlug[type]
+              }/${page - 1}`
         }
         passHref
         aria-disabled={prevDisabled}
@@ -110,7 +119,7 @@ const Pagination = ({
       <div className={paginationStyles.pagesContainer}>
         {visiblePages.map((p) => (
           <Link
-            href={`/homework/list?status=${status}&type=${type}&page=${p}`}
+            href={`/homework/list/${homeworkStatusToSlug[status]}/${homeworkTypeToSlug[type]}/${p}`}
             passHref
             key={p}
           >
@@ -128,7 +137,9 @@ const Pagination = ({
         href={
           nextDisabled
             ? "#"
-            : `/homework/list?status=${status}&type=${type}&page=${page + 1}`
+            : `/homework/list/${homeworkStatusToSlug[status]}/${
+                homeworkTypeToSlug[type]
+              }/${page + 1}`
         }
         passHref
         prefetch={true}

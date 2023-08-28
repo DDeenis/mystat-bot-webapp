@@ -1,4 +1,4 @@
-import { LoadingEllipsis } from "../../../components/Loaders/Loaders";
+import { LoadingEllipsis } from "../../../../../../components/Loaders/Loaders";
 
 export default async function Loading() {
   return (

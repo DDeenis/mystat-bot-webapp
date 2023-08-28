@@ -1,3 +1,5 @@
+import { HomeworkStatusSlug, HomeworkTypeSlug } from "./homework";
+
 export const paths = {
   home: "home",
   schedule: {
@@ -6,7 +8,9 @@ export const paths = {
     month: "schedule/month",
   },
   homework: {
-    list: "homework/list",
+    list: {
+      default: `homework/list/${HomeworkStatusSlug.active}/${HomeworkTypeSlug.homework}/1`,
+    },
   },
   exams: {
     future: "exams/future",

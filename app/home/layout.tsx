@@ -19,7 +19,7 @@ export default async function HomeLayout({
         </ActionButton>
       </ActionsSection>
       <ActionsSection header={"Домашние задания"}>
-        <ActionButton prefetch={true} path={paths.homework.list}>
+        <ActionButton prefetch={true} path={paths.homework.list.default}>
           Посмотреть домашние задания
         </ActionButton>
       </ActionsSection>

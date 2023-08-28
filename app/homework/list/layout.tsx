@@ -3,8 +3,17 @@ import React from "react";
 import { BackButton } from "../../../components/BackButton/BackButton";
 import { HomeworkStatus, HomeworkType } from "mystat-api";
 import { Multiselect } from "../../../components/Multiselect/Multiselect";
-import { homeworkTypes, homeworkVariants } from "../../../utils/homework";
-import { useRouter, useSearchParams } from "next/navigation";
+import {
+  HomeworkStatusSlug,
+  HomeworkTypeSlug,
+  homeworkStatusFromSlug,
+  homeworkStatusToSlug,
+  homeworkTypeFromSlug,
+  homeworkTypeToSlug,
+  homeworkTypes,
+  homeworkVariants,
+} from "../../../utils/homework";
+import { useParams, useRouter } from "next/navigation";
 import styles from "../../../components/Homeworks/HomeworkPage.module.css";
 
 export default function HomeworkLayout({
@@ -12,22 +21,29 @@ export default function HomeworkLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const searchParams = useSearchParams();
+  const params = useParams() as {
+    status: HomeworkStatusSlug;
+    type: HomeworkTypeSlug;
+  };
   const router = useRouter();
 
   const hwStatus = Number(
-    searchParams.get("status") ?? HomeworkStatus.Active
+    homeworkStatusFromSlug[params["status"]] ?? HomeworkStatus.Active
   ) as HomeworkStatus;
   const hwType = Number(
-    searchParams.get("type") ?? HomeworkType.Homework
+    homeworkTypeFromSlug[params["type"]] ?? HomeworkType.Homework
   ) as HomeworkType;
 
   const onStatusChange = (newStatus: HomeworkStatus) => {
-    router.push(`/homework/list?status=${newStatus}&type=${hwType}&page=1`);
+    router.push(
+      `/homework/list/${homeworkStatusToSlug[newStatus]}/${homeworkTypeToSlug[hwType]}/1`
+    );
   };
 
   const onTypeChange = (newType: HomeworkType) => {
-    router.push(`/homework/list?status=${hwStatus}&type=${newType}&page=1`);
+    router.push(
+      `/homework/list/${homeworkStatusToSlug[hwStatus]}/${homeworkTypeToSlug[newType]}/1`
+    );
   };
 
   return (
