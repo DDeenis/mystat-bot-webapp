@@ -1,10 +1,29 @@
 "use client";
 import { UserInfoBar } from "../../components/UserInfoBar/UserInfoBar";
 import { SkeletonBlock } from "../../components/Skeleton/Skeleton";
-import { useUserInfo } from "../../utils/hooks";
+import React from "react";
+import { UserInfo } from "mystat-api";
 
 export default function Home() {
-  const { userInfo } = useUserInfo();
+  const [userInfo, setUserInfo] = React.useState<UserInfo>();
+  const loadingRef = React.useRef(false);
+
+  React.useEffect(() => {
+    // fetch user info only once
+    if (loadingRef.current) return;
+    loadingRef.current = true;
+    fetch("/api/user")
+      .then((r) => {
+        if (!r.ok) throw r;
+        return r.json();
+      })
+      .then((r) => {
+        setUserInfo(r);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }, []);
 
   return userInfo ? (
     <UserInfoBar userInfo={userInfo} />
