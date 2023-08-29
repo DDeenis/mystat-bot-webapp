@@ -30,5 +30,6 @@ export const config = {
     "/schedule/:path*",
     "/api/homework",
     "/api/schedule",
+    "/api/user",
   ],
 };

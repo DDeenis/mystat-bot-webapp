@@ -11,7 +11,6 @@
   background-repeat: no-repeat;
   background-position: left -40px top 0;
   animation: skeleton-loading 1.5s ease infinite;
-  flex-shrink: 0;
 }
 
 .roundedSm {

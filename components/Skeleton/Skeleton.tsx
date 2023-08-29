@@ -6,6 +6,7 @@ interface SkeletonProps {
   width?: string;
   height?: string;
   rounding?: "none" | "sm" | "full";
+  style?: React.CSSProperties;
 }
 
 export function SkeletonBlock(props: SkeletonProps) {
@@ -14,7 +15,7 @@ export function SkeletonBlock(props: SkeletonProps) {
 
   return (
     <div
-      style={{ width, height }}
+      style={{ width, height, ...(props.style ?? {}) }}
       className={clsx(styles.skeleton, {
         [styles.roundedSm]: props.rounding === "sm",
         [styles.roundedFull]: props.rounding === "full",
