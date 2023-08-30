@@ -6,17 +6,18 @@ import { env } from "../env.mjs";
 import { LoadingGrid } from "../components/Loaders/Loaders";
 
 // for development only
-const fallbackId = env.NEXT_PUBLIC_TEST_ID ?? process.env.NEXT_PUBLIC_TEST_ID;
+const fallbackData =
+  env.NEXT_PUBLIC_TEST_DATA ?? process.env.NEXT_PUBLIC_TEST_DATA;
 
 const maxAttempts = 3;
 const handleLogin = (
-  userId: number | string,
+  initData: string,
   onSuccess: () => void,
   onError: () => void
 ) => {
-  if (!userId) return;
+  if (!initData) return;
   fetch("/api/login", {
-    body: userId.toString(),
+    body: initData,
     method: "POST",
   })
     .then((res) => res.json())
@@ -36,17 +37,21 @@ export default function Page() {
     const intervalId = setInterval(() => {
       if (!window) return;
 
-      const userId =
-        window.Telegram?.WebApp.initDataUnsafe.user?.id ?? fallbackId;
+      let initData = window.Telegram?.WebApp?.initData ?? fallbackData;
 
-      if (!userId) {
+      // for development only
+      if (!initData) {
+        initData = fallbackData ?? initData;
+      }
+
+      if (!initData) {
         setAttempts((curr) => curr + 1);
         return;
       }
 
       clearInterval(intervalId);
       handleLogin(
-        userId,
+        initData,
         () => push(paths.home),
         () => push(paths.error)
       );

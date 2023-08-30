@@ -1,6 +1,14 @@
 declare global {
   interface Window {
-    Telegram: any;
+    Telegram: {
+      WebApp: {
+        initData: string;
+        initDataUnsafe: any;
+      };
+      Utils: {
+        urlParseQueryString: (value: string) => any;
+      };
+    };
   }
 }
 

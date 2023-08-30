@@ -6,8 +6,9 @@ export const env = createEnv({
     SUPABASE_URL: z.string().url(),
     SUPABASE_KEY: z.string(),
     APP_SECRET: z.string(),
+    BOT_TOKEN: z.string(),
   },
   client: {
-    NEXT_PUBLIC_TEST_ID: z.string().optional(),
+    NEXT_PUBLIC_TEST_DATA: z.string().optional(),
   },
 });
