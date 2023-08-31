@@ -2,6 +2,8 @@ import React from "react";
 import { NewsDetails } from "../../../components/NewsPage/NewsDetails";
 import { getNewsDetails } from "../../../server/actions";
 
+export const revalidate = false;
+
 export default async function NewsDetailsPage({
   params,
 }: {

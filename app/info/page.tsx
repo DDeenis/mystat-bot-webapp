@@ -9,7 +9,13 @@ export default async function UserInfoPage() {
   return (
     <>
       <BackButton />
-      {profileInfo && <UserProfile profileInfo={profileInfo} />}
+      {profileInfo ? (
+        <UserProfile profileInfo={profileInfo} />
+      ) : (
+        <div style={{ textAlign: "center" }}>
+          Не удалось загрузить данные профиля
+        </div>
+      )}
     </>
   );
 }

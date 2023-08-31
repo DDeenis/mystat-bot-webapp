@@ -1,9 +1,10 @@
-import { NextPage } from "next";
 import React from "react";
 import { BackButton } from "../../components/BackButton/BackButton";
 import { EmptyState } from "../../components/PageStates/PageStates";
 import { ReviewsList } from "../../components/Reviews/ReviewsList";
 import { getReviews } from "../../server/actions";
+
+export const revalidate = false;
 
 export default async function ReviewsPage() {
   const reviews = await getReviews();

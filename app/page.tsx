@@ -37,7 +37,7 @@ export default function Page() {
     const intervalId = setInterval(() => {
       if (!window) return;
 
-      let initData = window.Telegram?.WebApp?.initData ?? fallbackData;
+      let initData = window.Telegram.WebApp.initData;
 
       // for development only
       if (!initData) {

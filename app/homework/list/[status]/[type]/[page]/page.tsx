@@ -121,6 +121,7 @@ const Pagination = ({
           <Link
             href={`/homework/list/${homeworkStatusToSlug[status]}/${homeworkTypeToSlug[type]}/${p}`}
             passHref
+            prefetch={p === safeStart || p === safeEnd - 1 ? true : false}
             key={p}
           >
             <button
@@ -142,7 +143,6 @@ const Pagination = ({
               }/${page + 1}`
         }
         passHref
-        prefetch={true}
         aria-disabled={nextDisabled}
       >
         <button
