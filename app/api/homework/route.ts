@@ -103,7 +103,7 @@ export async function POST(req: Request) {
     ...data,
   });
 
-  // revalidatePath(`/homework/list/[status]/[type]/[page]`);
+  revalidatePath(`/homework/list/[status]/[type]/[page]`);
 
   return NextResponse.json(result, {
     status: 201,
@@ -135,7 +135,7 @@ export async function DELETE(req: Request) {
 
   const result = await user.deleteHomework(data.id);
 
-  // revalidatePath(`/homework/list/[status]/[type]/[page]`);
+  revalidatePath(`/homework/list/[status]/[type]/[page]`);
 
   return NextResponse.json({ result }, { status: 200 });
 }
