@@ -46,8 +46,9 @@ export const SchedulePage = ({ defaultDate = new Date() }: Props) => {
   }, []);
 
   React.useEffect(() => {
+    if (isLoading) return;
     setScheduleSelected(scheduleGroup[toDateString(date)] ?? []);
-  }, [date]);
+  }, [date, isLoading]);
 
   return (
     <>
