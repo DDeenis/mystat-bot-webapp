@@ -3,7 +3,6 @@ import clsx from "clsx";
 import styles from "../../../../components/Homeworks/HomeworkUploadModal.module.css";
 import React from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 export default function UploadHomeworkPage({
   params,
@@ -12,7 +11,7 @@ export default function UploadHomeworkPage({
 }) {
   const [answer, setAnswer] = React.useState<string>();
   const [file, setFile] = React.useState<File>();
-  const { replace } = useRouter();
+  const { refresh, back } = useRouter();
 
   const uploadHomework = (obj: {
     id: string;
@@ -34,7 +33,8 @@ export default function UploadHomeworkPage({
     if (answer || file) {
       uploadHomework({ id: params.id, answerText: answer, file }).then((r) => {
         if (r.ok) {
-          replace("/homework");
+          back();
+          refresh();
         }
       });
     }
@@ -54,9 +54,9 @@ export default function UploadHomeworkPage({
         <button className={clsx(styles.btn, styles.btnSend)} onClick={confirm}>
           Отправить
         </button>
-        <Link className={clsx(styles.btn, styles.btnCancel)} href="/homework">
+        <button className={clsx(styles.btn, styles.btnCancel)} onClick={back}>
           Отмена
-        </Link>
+        </button>
       </div>
     </div>
   );

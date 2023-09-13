@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { getUserApiClient } from "../../../server/actions";
+import {
+  homeworkStatusToSlug,
+  homeworkTypeToSlug,
+} from "../../../utils/homework";
+import { HomeworkStatus, HomeworkType } from "mystat-api";
 
 const requestSchema = z.object({
   hwStatus: z.number().min(0).max(5),
@@ -98,7 +103,7 @@ export async function POST(req: Request) {
     ...data,
   });
 
-  revalidatePath("/homework");
+  // revalidatePath(`/homework/list/[status]/[type]/[page]`);
 
   return NextResponse.json(result, {
     status: 201,
@@ -129,6 +134,8 @@ export async function DELETE(req: Request) {
   }
 
   const result = await user.deleteHomework(data.id);
-  revalidatePath("/homework");
-  return NextResponse.json({ result }, { status: 204 });
+
+  // revalidatePath(`/homework/list/[status]/[type]/[page]`);
+
+  return NextResponse.json({ result }, { status: 200 });
 }

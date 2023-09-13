@@ -39,14 +39,12 @@ export const HomeworkActive = ({ item }: Props) => {
           Скачать задание
         </a>
       </InfoCard.Button>
-      <InfoCard.Button>
-        <Link
-          href={`/homework/upload/${item.id}`}
-          style={{ color: "inherit", textDecoration: "none" }}
-        >
-          Загрузить задание
-        </Link>
-      </InfoCard.Button>
+      <Link
+        href={`/homework/upload/${item.id}`}
+        style={{ color: "inherit", textDecoration: "none" }}
+      >
+        <InfoCard.Button>Загрузить задание</InfoCard.Button>
+      </Link>
     </InfoCard>
   );
 };

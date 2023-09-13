@@ -1,3 +1,4 @@
+"use client";
 import { Homework, HomeworkStatus } from "mystat-api";
 import React from "react";
 import { HomeworkActive } from "./HomeworkItems/HomeworkActive";
@@ -5,6 +6,7 @@ import { HomeworkChecked } from "./HomeworkItems/HomeworkChecked";
 import { HomeworkOverdue } from "./HomeworkItems/HomeworkOverdue";
 import { HomeworkUploaded } from "./HomeworkItems/HomeworkUploaded";
 import styles from "./HomeworksList.module.css";
+import { useRouter } from "next/navigation";
 
 const homeworkItems = {
   [HomeworkStatus.Active]: HomeworkActive,
@@ -20,11 +22,13 @@ type Props = {
 };
 
 export const HomeworksList = ({ items, status }: Props) => {
+  const { refresh } = useRouter();
+
   const deleteHw = (obj: { id: number }) => {
     return fetch("/api/homework", {
       body: JSON.stringify(obj),
       method: "DELETE",
-    });
+    }).then(refresh);
   };
 
   const createOnDelete = (id: number) => () => deleteHw({ id });
