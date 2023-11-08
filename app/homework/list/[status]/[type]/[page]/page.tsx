@@ -1,5 +1,5 @@
 import React from "react";
-import { HomeworkStatus, HomeworkType } from "mystat-api";
+import { HomeworkDTO, HomeworkStatus, HomeworkType } from "mystat-api";
 import { HomeworksList } from "../../../../../../components/Homeworks/HomeworksList";
 import { EmptyState } from "../../../../../../components/PageStates/PageStates";
 import { getUserApiClient } from "../../../../../../server/actions";
@@ -36,11 +36,13 @@ export default async function HomeworkList({ params }: Props) {
   }
 
   const homeworkList =
-    (await mystat.getHomeworkList({
-      page: page,
-      status: hwStatus,
-      type: hwType,
-    })) ?? [];
+    (
+      await mystat.getHomeworkList({
+        page: page,
+        status: hwStatus,
+        type: hwType,
+      })
+    )?.data ?? [];
 
   const isDataEmpty = homeworkList?.length === 0;
   const maxPages = homeworkList.length < homeworkPageSize ? page : page + 5;
