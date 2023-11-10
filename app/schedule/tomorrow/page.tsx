@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { SchedulePage } from "../../../components/Schedule/SchedulePage";
 
