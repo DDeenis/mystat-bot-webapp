@@ -11,6 +11,9 @@ const nextConfig = {
     ],
     domains: ["itstep.org"],
   },
+  experimental: {
+    serverActions: true,
+  },
 };
 
 module.exports = nextConfig;
