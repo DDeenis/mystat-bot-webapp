@@ -6,6 +6,7 @@ import {
   initDataToObject,
   validateUserData,
 } from "../../../utils/telegram";
+import PostHogClient from "../../../utils/posthogNode";
 
 const cookieMaxAgeSeconds = 1 * 60 * 60;
 
@@ -57,8 +58,27 @@ export async function POST(req: Request) {
     );
   }
 
+  const logged = Boolean(user);
+
+  const client = PostHogClient();
+  if (logged) {
+    client.capture({
+      distinctId: user.chatId.toString(),
+      event: "user logged in",
+      properties: {
+        $set: { username: user.username },
+      },
+    });
+  } else {
+    client.capture({
+      distinctId: chatId.toString(),
+      event: "user failed to log in",
+    });
+  }
+  await client.shutdownAsync();
+
   return NextResponse.json(
-    { logged: Boolean(user) },
+    { logged },
     {
       status: 200,
       headers: {

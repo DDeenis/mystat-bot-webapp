@@ -11,6 +11,10 @@ type Props = {
   defaultDate?: Date;
 };
 
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
 const toDateString = (date: Date) => {
   return `${date.getFullYear()}-${(date.getMonth() + 1)
     .toString()
@@ -20,7 +24,7 @@ const toDateString = (date: Date) => {
 let controller = new AbortController();
 
 export const SchedulePage = ({ defaultDate = new Date() }: Props) => {
-  const [date, setDate] = React.useState(defaultDate);
+  const [date, setDate] = React.useState<Date>(defaultDate);
   const [isLoading, setIsLoading] = React.useState(false);
   const [scheduleGroup, setScheduleGroup] = React.useState<
     Record<string, ScheduleEntry[]>
@@ -57,13 +61,16 @@ export const SchedulePage = ({ defaultDate = new Date() }: Props) => {
       <div className={styles.datepickerContainer}>
         <Calendar
           value={date}
-          onChange={setDate}
+          onChange={(value) => setDate(value as Date)}
           onActiveStartDateChange={(prop) => {
-            controller.abort();
-            controller = new AbortController();
-            fetchSchedule(prop.activeStartDate).then(() => {
-              setDate(prop.activeStartDate);
-            });
+            const { activeStartDate } = prop;
+            if (activeStartDate) {
+              controller.abort();
+              controller = new AbortController();
+              fetchSchedule(activeStartDate).then(() => {
+                setDate(activeStartDate);
+              });
+            }
           }}
           tileClassName={(prop) => {
             if (prop.view !== "month") return null;

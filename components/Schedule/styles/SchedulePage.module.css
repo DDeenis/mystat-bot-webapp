@@ -82,6 +82,7 @@
 .datepickerContainer :global(.react-calendar__month-view__days) {
   width: 100%;
   justify-content: space-around;
+  max-width: 327px;
 }
 
 .dateWithSchedule {
