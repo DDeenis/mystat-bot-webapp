@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { paths } from "../utils/routes";
 import { env } from "../env.mjs";
 import { LoadingGrid } from "../components/Loaders/Loaders";
+import posthog from "posthog-js";
 
 // for development only
 const fallbackData =
@@ -34,6 +35,12 @@ export default function Page() {
   const [attempts, setAttempts] = useState(1);
 
   useEffect(() => {
+    if (window.Telegram.WebApp.initDataUnsafe?.user?.id) {
+      posthog.identify(
+        window.Telegram.WebApp.initDataUnsafe.user.id.toString()
+      );
+    }
+
     const intervalId = setInterval(() => {
       if (!window) return;
 
