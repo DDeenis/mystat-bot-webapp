@@ -35,12 +35,6 @@ export default function Page() {
   const [attempts, setAttempts] = useState(1);
 
   useEffect(() => {
-    if (window.Telegram.WebApp.initDataUnsafe?.user?.id) {
-      posthog.identify(
-        window.Telegram.WebApp.initDataUnsafe.user.id.toString()
-      );
-    }
-
     const intervalId = setInterval(() => {
       if (!window) return;
 

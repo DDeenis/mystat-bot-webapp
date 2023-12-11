@@ -1,10 +1,10 @@
 import { PostHog } from "posthog-node";
-import { getBaseUrl } from "./routes";
+import { env } from "../env.mjs";
 
 export default function PostHogClient() {
-  return new PostHog(
-    process.env.NEXT_PUBLIC_POSTHOG_KEY ??
-      "phc_yB9RYtfoSuBRrzBPmw52jdQSqLaD6YAIUXjsXNVUY79",
-    { host: `${getBaseUrl()}/ingest`, flushAt: 1, flushInterval: 0 }
-  );
+  return new PostHog(env.NEXT_PUBLIC_POSTHOG_KEY, {
+    host: env.NEXT_PUBLIC_POSTHOG_HOST,
+    flushAt: 1,
+    flushInterval: 0,
+  });
 }
